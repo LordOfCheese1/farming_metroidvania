@@ -17,3 +17,5 @@ res://scripts/base_classes/entity.gd
 res://prefabs/entities/player.tscn
 res://scripts/entities/player.gd
 res://prefabs/rooms/000_beginning.tscn
+res://scripts/autoloads/dialogue_manager.gd
+res://prefabs/rooms/001_combat_tutorial.tscn

@@ -3,7 +3,7 @@ extends Area2D
 
 @export_enum("dialogue") var type = "dialogue"
 @export var params = []
-@export var size = Vector2(100.0, 100.0)
+@export var size = Vector2(80.0, 80.0)
 @export var delete_on_trigger : bool = true
 @export var id = "" # unique for every single trigger
 

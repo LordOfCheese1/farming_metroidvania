@@ -1,11 +1,102 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbx8hv5bdo6hp"]
+[gd_scene load_steps=10 format=3 uid="uid://cbx8hv5bdo6hp"]
 
 [ext_resource type="Script" path="res://scripts/gameplay_scene.gd" id="1_rdt4s"]
 [ext_resource type="PackedScene" uid="uid://c8wwihjlky3de" path="res://prefabs/entities/player.tscn" id="2_smcvs"]
 [ext_resource type="Script" path="res://scripts/level_elements/camera.gd" id="2_w1nua"]
+[ext_resource type="Texture2D" uid="uid://buoojl8a6dwpw" path="res://textures/portraits/fivepebbles.png" id="4_ea6mj"]
 
 [sub_resource type="Theme" id="Theme_jofsl"]
 default_font_size = 28
+
+[sub_resource type="Animation" id="Animation_by5hf"]
+resource_name = "fade_in"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Vector2(0, -141), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:dialogue_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_kitq2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -141)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:dialogue_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_n8urj"]
+resource_name = "fade_out"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.35, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -141)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:dialogue_visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fee2k"]
+_data = {
+"RESET": SubResource("Animation_kitq2"),
+"fade_in": SubResource("Animation_by5hf"),
+"fade_out": SubResource("Animation_n8urj")
+}
 
 [node name="gameplay_scene" type="Node2D"]
 script = ExtResource("1_rdt4s")
@@ -22,16 +113,35 @@ follow_path = NodePath("../player")
 [node name="user_interface" type="CanvasLayer" parent="."]
 
 [node name="dialogue_box" type="Node2D" parent="user_interface"]
+position = Vector2(0, -141)
 
 [node name="bg" type="ColorRect" parent="user_interface/dialogue_box"]
 offset_right = 1280.0
-offset_bottom = 92.0
+offset_bottom = 141.0
 color = Color(0, 0, 0, 1)
 
+[node name="npc_frame" type="ColorRect" parent="user_interface/dialogue_box"]
+offset_left = 1147.0
+offset_top = 11.0
+offset_right = 1265.0
+offset_bottom = 129.0
+color = Color(0.188235, 0.207843, 0.243137, 1)
+
+[node name="npc_portrait" type="Sprite2D" parent="user_interface/dialogue_box"]
+position = Vector2(1206, 70)
+texture = ExtResource("4_ea6mj")
+
 [node name="display_text" type="RichTextLabel" parent="user_interface/dialogue_box"]
-offset_left = 6.0
-offset_top = 3.0
-offset_right = 1130.0
-offset_bottom = 90.0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 1136.0
+offset_bottom = 141.0
 theme = SubResource("Theme_jofsl")
-text = "Rain is coming! Find shelter"
+text = "Gluttonous beast, what brings you to my chamber? You are like no other messenger before you. Perhaps I have underestimated the ability for your kind to communicate my existence?"
+fit_content = true
+scroll_active = false
+
+[node name="anim" type="AnimationPlayer" parent="user_interface/dialogue_box"]
+libraries = {
+"": SubResource("AnimationLibrary_fee2k")
+}

@@ -3,7 +3,7 @@ extends Node2D
 var dialogue_table = {}
 var active_dialogue_name = ""
 var current_index = 0
-var typewriter_speed = 0.5
+var typewriter_speed = 0.8
 var typewriter_progress = 0.0
 var current_dialogue_end_condition = ""
 var dialogue_end_cond_param = null
@@ -31,7 +31,7 @@ func check_end_condition():
 	var value = false
 	match current_dialogue_end_condition:
 		"":
-			if Input.is_action_pressed("attack"):
+			if Input.is_action_pressed("jump"):
 				value = true
 		"i": # for "input"
 			if Input.is_action_pressed(dialogue_end_cond_param):
@@ -49,7 +49,7 @@ func modify_text(original_text : String):
 	# see the functionality of each header under 'check_end_condition()'
 	if orig_text_with_header[0] == "%":
 		current_dialogue_end_condition = orig_text_with_header[1]
-	orig_text_with_header = orig_text_with_header.erase(0, 2)
+		orig_text_with_header = orig_text_with_header.erase(0, 2)
 	
 	# loop through all characters of original text
 	for c in orig_text_with_header:
@@ -60,7 +60,7 @@ func modify_text(original_text : String):
 			else:
 				input_mode = false
 				# if a 2nd "$" is found, take current input and find a keycode
-				new_text = new_text + "[color=b6357c]" + find_key_via_input_action(input) + "[/color]"
+				new_text = new_text + "[color=84ff9b]" + find_key_via_input_action(input) + "[/color]"
 				input = ""
 		elif input_mode == true:
 			input = input + c
@@ -85,13 +85,20 @@ func start_dialogue(dialogue_str_index : String): # you can't acces user interfa
 
 
 func proceed_dialogue():
+	var portrait = null
+	if Globals.gameplay_scene_active:
+		portrait = get_tree().current_scene.get_node("user_interface/dialogue_box/npc_portrait")
+	portrait.texture = null
 	current_dialogue_end_condition = ""
 	dialogue_end_cond_param = null
 	# get table of all text in the current dialogue
 	var active_dialogue_table = dialogue_table[active_dialogue_name]
 	var text_to_display = ""
-	# get text from current index, increment index
+	# confirm that current index is within range
 	if current_index < len(active_dialogue_table):
+		# apply a silly portrait texture if there is one
+		if len(active_dialogue_table[current_index]) > 2:
+			portrait.texture = load("res://textures/portraits/" + active_dialogue_table[current_index][2] + ".png")
 		var raw_text = active_dialogue_table[current_index][0]
 		# if char 0 is "%", look for an end condition parameter
 		if raw_text[0] == "%":

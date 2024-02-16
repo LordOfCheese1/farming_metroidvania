@@ -1,3 +1,9 @@
 {
-	
+	"tutorial_movement" : [
+		["%i Sup Bro, I heard you're new here? You should probably, like, use $left$ and $right$ to move around, Bro.", "right", "tutorialguy0"],
+		["%iOh, and, Bro, after that you should do $jump$ to jump.", "jump", "tutorialguy0"],
+	],
+	"tutorial_combat" : [
+		["%iCareful Bro, that guy looks dangerous. Try to swing your shovel at em with $action$.", "action", "tutorialguy0"]
+	]
 }

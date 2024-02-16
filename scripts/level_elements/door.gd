@@ -2,7 +2,7 @@
 extends Area2D
 
 @export_enum("left", "right", "up", "down", "none") var direction = "left"
-@export var rect_size  = Vector2(100.0, 100.0)
+@export var rect_size  = Vector2(80.0, 80.0)
 @export var id : int = 0
 @export var send_to_id : int = 0
 @export var new_room_path : String
