@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnc45jfhhdbay"]
+
+[ext_resource type="Script" path="res://scripts/level_elements/trigger.gd" id="1_hl4ku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6ldh"]
+size = Vector2(100, 100)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sosv2"]
+font_size = 32
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[node name="trigger" type="Area2D"]
+script = ExtResource("1_hl4ku")
+id = "five pebbles"
+
+[node name="collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x6ldh")
+debug_color = Color(1, 0, 0.996078, 0.419608)
+
+[node name="label" type="Label" parent="."]
+z_index = 2
+offset_right = 40.0
+offset_bottom = 23.0
+text = "five pebbles"
+label_settings = SubResource("LabelSettings_sosv2")

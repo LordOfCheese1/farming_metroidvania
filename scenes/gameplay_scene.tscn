@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbx8hv5bdo6hp"]
+
+[ext_resource type="Script" path="res://scripts/gameplay_scene.gd" id="1_rdt4s"]
+[ext_resource type="PackedScene" uid="uid://c8wwihjlky3de" path="res://prefabs/entities/player.tscn" id="2_smcvs"]
+[ext_resource type="Script" path="res://scripts/level_elements/camera.gd" id="2_w1nua"]
+
+[sub_resource type="Theme" id="Theme_jofsl"]
+default_font_size = 28
+
+[node name="gameplay_scene" type="Node2D"]
+script = ExtResource("1_rdt4s")
+starting_scene_path = "res://prefabs/rooms/000_beginning.tscn"
+
+[node name="player" parent="." instance=ExtResource("2_smcvs")]
+
+[node name="camera" type="Camera2D" parent="."]
+script = ExtResource("2_w1nua")
+follow_path = NodePath("../player")
+
+[node name="active_room" type="Node2D" parent="."]
+
+[node name="user_interface" type="CanvasLayer" parent="."]
+
+[node name="dialogue_box" type="Node2D" parent="user_interface"]
+
+[node name="bg" type="ColorRect" parent="user_interface/dialogue_box"]
+offset_right = 1280.0
+offset_bottom = 92.0
+color = Color(0, 0, 0, 1)
+
+[node name="display_text" type="RichTextLabel" parent="user_interface/dialogue_box"]
+offset_left = 6.0
+offset_top = 3.0
+offset_right = 1130.0
+offset_bottom = 90.0
+theme = SubResource("Theme_jofsl")
+text = "Rain is coming! Find shelter"

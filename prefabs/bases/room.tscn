@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://dft2poo3r6nx4"]
+
+[ext_resource type="Script" path="res://scripts/room.gd" id="1_gidxn"]
+[ext_resource type="Texture2D" uid="uid://ck6x2y5hyghos" path="res://icon.svg" id="2_e64by"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v62tj"]
+texture = ExtResource("2_e64by")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSet" id="TileSet_cf7g6"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
+sources/0 = SubResource("TileSetAtlasSource_v62tj")
+
+[node name="room" type="Node2D"]
+script = ExtResource("1_gidxn")
+
+[node name="entities" type="Node2D" parent="."]
+
+[node name="particles" type="Node2D" parent="."]
+
+[node name="tilemap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_cf7g6")
+rendering_quadrant_size = 32
+format = 2
+
+[node name="doors" type="Node2D" parent="."]
+
+[node name="triggers" type="Node2D" parent="."]
+
+[node name="editor" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="border_left" type="Line2D" parent="editor"]
+points = PackedVector2Array(0, 0, 0, 880)
+default_color = Color(1, 0, 0.117647, 1)
+
+[node name="border_right" type="Line2D" parent="editor"]
+points = PackedVector2Array(1280, 880, 1280, 0)
+default_color = Color(1, 0, 0.117647, 1)
+
+[node name="border_up" type="Line2D" parent="editor"]
+points = PackedVector2Array(0, 0, 1280, 0)
+default_color = Color(1, 0, 0.117647, 1)
+
+[node name="border_down" type="Line2D" parent="editor"]
+points = PackedVector2Array(1280, 880, 0, 880)
+default_color = Color(1, 0, 0.117647, 1)

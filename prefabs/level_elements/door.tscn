@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwgc76hbpm0dp"]
+
+[ext_resource type="Texture2D" uid="uid://cu6brd6kfsvmm" path="res://textures/editor/arrow.png" id="1_cenx5"]
+[ext_resource type="Script" path="res://scripts/level_elements/door.gd" id="1_wnsb8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5t50"]
+size = Vector2(96, 128)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qbs05"]
+font_size = 32
+outline_size = 11
+outline_color = Color(0, 0, 0, 1)
+
+[node name="door" type="Area2D"]
+script = ExtResource("1_wnsb8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x5t50")
+debug_color = Color(0.00784314, 1, 0, 0.419608)
+
+[node name="arrow" type="Sprite2D" parent="."]
+z_index = 2
+rotation = 3.14159
+texture = ExtResource("1_cenx5")
+
+[node name="index_label" type="Label" parent="."]
+z_index = 2
+offset_top = 31.0
+offset_right = 46.0
+offset_bottom = 76.0
+text = "0-0"
+label_settings = SubResource("LabelSettings_qbs05")

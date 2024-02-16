@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8wwihjlky3de"]
+
+[ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_40lhy"]
+[ext_resource type="Texture2D" uid="uid://bntbxh1wjluth" path="res://textures/prototype/player.png" id="2_77bue"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eubf6"]
+height = 84.0
+
+[sub_resource type="Curve" id="Curve_sf6eq"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_40lhy")
+max_hp = 10.0
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_77bue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_eubf6")
+
+[node name="debug_velocity" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width_curve = SubResource("Curve_sf6eq")
+default_color = Color(0, 0.12549, 1, 0.556863)
