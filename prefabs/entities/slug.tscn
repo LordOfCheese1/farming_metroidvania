@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1yrk5ni4h5hx"]
+[gd_scene load_steps=12 format=3 uid="uid://b1yrk5ni4h5hx"]
 
 [ext_resource type="Texture2D" uid="uid://cgc3uogtpvbmf" path="res://textures/entities/slug.png" id="1_6m8df"]
 [ext_resource type="Script" path="res://scripts/entities/slug.gd" id="1_b5nob"]
+[ext_resource type="PackedScene" uid="uid://byuhphggfblsp" path="res://prefabs/components/hitbox.tscn" id="3_74ujp"]
+[ext_resource type="PackedScene" uid="uid://dyhlmh24wo8pd" path="res://prefabs/components/hurtbox.tscn" id="4_cdwbv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o8d5f"]
 size = Vector2(156, 55)
@@ -98,6 +100,12 @@ _data = {
 "move": SubResource("Animation_y8vqi")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wp0u0"]
+size = Vector2(158, 81)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7lra"]
+size = Vector2(78, 52)
+
 [node name="slug" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
@@ -118,3 +126,20 @@ shape = SubResource("RectangleShape2D_o8d5f")
 libraries = {
 "": SubResource("AnimationLibrary_vmbm7")
 }
+
+[node name="hitbox" parent="." instance=ExtResource("3_74ujp")]
+entity = NodePath("..")
+ignore_tag = "evil"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, -22.5)
+shape = SubResource("RectangleShape2D_wp0u0")
+
+[node name="hurtbox" parent="." instance=ExtResource("4_cdwbv")]
+ignore_in_detection = ["evil"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_x7lra")
+
+[connection signal="hit" from="hitbox" to="." method="_on_hitbox_hit"]

@@ -1,6 +1,5 @@
 extends Camera2D
 
-
 @export var follow_path : NodePath
 var smoothing = 0.3
 

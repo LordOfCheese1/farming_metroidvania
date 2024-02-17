@@ -28,3 +28,8 @@ func _process(_delta):
 		$anim.play("move")
 	else:
 		$anim.play("idle")
+
+
+func _on_hitbox_hit():
+	if (Globals.player_pos.x - position.x) != 0:
+			velocity.x = -(Globals.player_pos.x - position.x) / abs(Globals.player_pos.x - position.x) * 200

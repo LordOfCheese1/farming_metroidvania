@@ -25,3 +25,5 @@ res://scripts/autoloads/music_manager.gd
 res://scripts/level_elements/trigger.gd
 res://scripts/misc/coolsville_intro.gd
 res://scripts/gameplay_scene.gd
+res://scripts/misc/showlight.gd
+res://scripts/level_elements/camera.gd

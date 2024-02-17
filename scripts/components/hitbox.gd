@@ -8,7 +8,6 @@ var immunity = 0
 signal hit
 
 
-
 func _ready():
 	add_to_group("hitbox")
 
@@ -25,6 +24,8 @@ func _physics_process(_delta):
 
 
 func trigger_internal_hit():
+	if Globals.gameplay_scene_active:
+		get_tree().current_scene.get_node("camera").zoom = Vector2(1.15, 1.15)
 	immunity = max_immunity
 	var entity_node = get_node(entity)
 	entity_node.hit()
