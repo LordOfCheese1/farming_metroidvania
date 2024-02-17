@@ -22,6 +22,7 @@ DialogueManager="*res://prefabs/autoloads/dialogue_manager.tscn"
 SoundManager="*res://prefabs/autoloads/sound_manager.tscn"
 ParticleSystem="*res://prefabs/autoloads/particle_system.tscn"
 SaveManager="*res://prefabs/autoloads/save_manager.tscn"
+MusicManager="*res://prefabs/autoloads/music_manager.tscn"
 
 [display]
 
@@ -74,4 +75,4 @@ test={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.498039, 0.537255, 0.584314, 1)
+environment/defaults/default_clear_color=Color(0.188235, 0.215686, 0.282353, 1)

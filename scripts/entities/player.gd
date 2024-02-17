@@ -5,6 +5,9 @@ var speed : float = 300.0
 var jump_strength : float = 600.0
 var x_dir = 1
 var is_jumping : float = 0.0
+var hand_attack_rot : float = 0.0
+
+var jump_sfx = preload("res://audio/sfx/player_jump.mp3")
 
 
 func _ready():
@@ -40,10 +43,13 @@ func _physics_process(delta):
 		position = get_global_mouse_position()
 	
 	$visuals/arm_right.look_at(get_global_mouse_position())
-	$visuals/arm_right.rotation_degrees = $visuals/arm_right.rotation_degrees - 45
+	$visuals/arm_right.rotation_degrees = $visuals/arm_right.rotation_degrees - 45 + hand_attack_rot
 	
 	if is_jumping > 0:
 		is_jumping -= delta
+	
+	hand_attack_rot = lerp(hand_attack_rot, 0.0, 0.1)
+	Globals.player_pos = position
 
 
 func _process(_delta):
@@ -64,8 +70,13 @@ func _process(_delta):
 
 
 func jump():
+	SoundManager.new_sound(jump_sfx, randf_range(0.9, 1.1))
 	$anim.play("jump")
 	is_jumping = 0.5
 	velocity.y = -jump_strength
 	if abs(velocity.x) / speed > 0.3:
 		velocity.x = x_dir * 350.0
+
+
+func _on_weapon_melee_used():
+	hand_attack_rot = 110.0

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=3 format=3 uid="uid://bd8psg6hxbth2"]
+
+[ext_resource type="Script" path="res://scripts/resource_bases/weaponresource.gd" id="1_eyp1h"]
+[ext_resource type="Texture2D" uid="uid://d1o1wdn5w8y6y" path="res://textures/weapons/shovel.png" id="2_fwf2t"]
+
+[resource]
+script = ExtResource("1_eyp1h")
+weapon_type = "melee"
+texture = ExtResource("2_fwf2t")
+default_rot = 80.0
+sprite_offset = Vector2(0, -30)
+melee_damage = 1

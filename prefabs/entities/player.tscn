@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8wwihjlky3de"]
+[gd_scene load_steps=20 format=3 uid="uid://c8wwihjlky3de"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_40lhy"]
 [ext_resource type="Texture2D" uid="uid://lup5b3m3pif4" path="res://textures/entities/player/body.png" id="2_d5oke"]
@@ -6,8 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dmuj10674vyr8" path="res://textures/entities/player/leg_right.png" id="3_hde86"]
 [ext_resource type="Texture2D" uid="uid://dij64jobhs8iv" path="res://textures/entities/player/head.png" id="3_p3f4e"]
 [ext_resource type="Texture2D" uid="uid://bm4fb8dtpvsyt" path="res://textures/entities/player/hat.png" id="4_m7gor"]
+[ext_resource type="PackedScene" uid="uid://dpw078e8a6hxy" path="res://prefabs/components/weapon.tscn" id="5_aiuf2"]
 [ext_resource type="Texture2D" uid="uid://c01plq4omofly" path="res://textures/entities/player/arm_left.png" id="6_7iqw6"]
+[ext_resource type="Resource" uid="uid://bd8psg6hxbth2" path="res://resources/weapons/shovel.tres" id="6_in5t2"]
 [ext_resource type="Texture2D" uid="uid://cgt58pu81n3c6" path="res://textures/entities/player/arm_right.png" id="7_v45g7"]
+[ext_resource type="PackedScene" uid="uid://byuhphggfblsp" path="res://prefabs/components/hitbox.tscn" id="11_ihn44"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eubf6"]
 radius = 18.0
@@ -729,6 +732,10 @@ position = Vector2(10, -11)
 texture = ExtResource("7_v45g7")
 offset = Vector2(12, 12)
 
+[node name="weapon" parent="visuals/arm_right" instance=ExtResource("5_aiuf2")]
+position = Vector2(23, 26)
+weapon_resource = ExtResource("6_in5t2")
+
 [node name="body" type="Sprite2D" parent="visuals"]
 texture = ExtResource("2_d5oke")
 
@@ -763,3 +770,15 @@ default_color = Color(0, 0.12549, 1, 0.556863)
 [node name="label" type="Label" parent="debug_velocity"]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="hitbox" parent="." instance=ExtResource("11_ihn44")]
+entity = NodePath("..")
+ignore_tag = "player"
+max_immunity = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_eubf6")
+debug_color = Color(0.701961, 0, 0.670588, 0.419608)
+
+[connection signal="melee_used" from="visuals/arm_right/weapon" to="." method="_on_weapon_melee_used"]

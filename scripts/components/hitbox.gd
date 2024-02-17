@@ -4,7 +4,7 @@ extends Area2D
 @export var ignore_tag = ""
 var current_damager : Area2D
 var immunity = 0
-@export var max_immunity = 16
+@export var max_immunity = 12
 signal hit
 
 
