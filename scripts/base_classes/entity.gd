@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const GRAVITY : float = 1200.0
+const GRAVITY : float = 1300.0
 var input = Vector2(0.0, 0.0)
 var hp : float = 1.0
 var last_hit_from : Vector2

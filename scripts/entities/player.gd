@@ -4,6 +4,7 @@ var accel : float= 0.35
 var speed : float = 300.0
 var jump_strength : float = 600.0
 var x_dir = 1
+var is_jumping : float = 0.0
 
 
 func _ready():
@@ -37,14 +38,34 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("test"):
 		position = get_global_mouse_position()
+	
+	$visuals/arm_right.look_at(get_global_mouse_position())
+	$visuals/arm_right.rotation_degrees = $visuals/arm_right.rotation_degrees - 45
+	
+	if is_jumping > 0:
+		is_jumping -= delta
 
 
 func _process(_delta):
 	$debug_velocity.set_point_position(1, velocity * 0.5)
 	$debug_velocity/label.text = str(Vector2i(snapped(velocity.x, 1.0), snapped(velocity.y, 1.0)))
+	
+	if is_on_floor():
+		if abs(velocity.x) > speed * 0.25:
+			$anim.play("walk")
+		else:
+			$anim.play("idle")
+	else:
+		if is_jumping <= 0:
+			$anim.play("fall")
+	
+	if get_global_mouse_position().x - position.x != 0:
+		$visuals.scale.x = (get_global_mouse_position().x - position.x) / abs((get_global_mouse_position().x - position.x))
 
 
 func jump():
+	$anim.play("jump")
+	is_jumping = 0.5
 	velocity.y = -jump_strength
 	if abs(velocity.x) / speed > 0.3:
 		velocity.x = x_dir * 350.0

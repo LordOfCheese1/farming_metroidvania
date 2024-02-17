@@ -15,16 +15,16 @@ func _ready():
 
 
 func _physics_process(_delta):
-	# check if a dialogue is currently active
-	if active_dialogue_name != "":
-		if check_end_condition() && typewriter_progress >= 1.0:
-			proceed_dialogue()
-	
 	# typewriter effect
 	if Globals.gameplay_scene_active:
 		var dialogue_text_display = get_tree().current_scene.get_node("user_interface/dialogue_box/display_text")
 		dialogue_text_display.visible_ratio += typewriter_speed / float(len(dialogue_text_display.get_parsed_text()))
 		typewriter_progress = dialogue_text_display.visible_ratio
+	
+	# check if a dialogue is currently active
+	if active_dialogue_name != "":
+		if check_end_condition() && typewriter_progress >= 1.0:
+			proceed_dialogue()
 
 
 func check_end_condition():
