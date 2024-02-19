@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=2 format=3 uid="uid://dpa85n8cnewmc"]
+
+[ext_resource type="Script" path="res://scripts/resource_bases/weaponresource.gd" id="1_acn52"]
+
+[resource]
+script = ExtResource("1_acn52")
+weapon_type = "melee"
+default_rot = 0.0
+sprite_offset = Vector2(0, 0)
+melee_damage = 0

@@ -24,3 +24,4 @@ res://scripts/level_elements/plant.gd
 res://prefabs/autoloads/farm_manager.tscn
 res://scripts/autoloads/farm_manager.gd
 res://prefabs/autoloads/music_manager.tscn
+res://prefabs/components/weapon.tscn
