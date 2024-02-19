@@ -1,8 +1,12 @@
 extends Node2D
 
 @export var weapon_resource : WeaponResource
-@export var player_path : NodePath
 var melee_attack_cd = 0
+var current_weapon_index = 0
+var weapons_available = { # filename : quantity, -1 is infite
+	"shovel" : -1,
+	"seeds_carrot" : 1
+}
 signal melee_used
 signal throw_used
 
@@ -16,6 +20,11 @@ func _process(_delta):
 		$sprite.texture = null
 		$sprite.rotation_degrees = 0.0
 		$sprite.offset = Vector2(0, 0)
+	
+	if Input.is_action_just_pressed("scroll_up"):
+		cycle_weapons(-1)
+	if Input.is_action_just_pressed("scroll_down"):
+		cycle_weapons(1)
 
 
 func _physics_process(_delta):
@@ -38,6 +47,8 @@ func use():
 			"throwable":
 				throw_attack()
 				emit_signal("throw_used")
+			"seeds":
+				use_seeds()
 
 
 func melee_attack():
@@ -47,3 +58,26 @@ func melee_attack():
 
 func throw_attack():
 	pass
+
+
+func use_seeds():
+	FarmManager.plant_a_plant(weapon_resource.seed_id)
+
+
+func cycle_weapons(dir : int):
+	current_weapon_index += dir
+	if current_weapon_index > len(weapons_available) - 1:
+		current_weapon_index = 0
+	if current_weapon_index < 0:
+		current_weapon_index = len(weapons_available) - 1
+	if weapons_available[weapons_available.keys()[current_weapon_index]] != 0:
+		weapon_resource = load("res://resources/weapons/" + weapons_available.keys()[current_weapon_index] + ".tres")
+		interface_update()
+	else:
+		cycle_weapons(dir)
+
+
+func interface_update():
+	if Globals.gameplay_scene_active:
+		var display_sprite = get_tree().current_scene.get_node("user_interface/weapon/sprite")
+		display_sprite.texture = weapon_resource.texture

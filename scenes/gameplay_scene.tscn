@@ -145,3 +145,8 @@ scroll_active = false
 libraries = {
 "": SubResource("AnimationLibrary_fee2k")
 }
+
+[node name="weapon" type="Node2D" parent="user_interface"]
+
+[node name="sprite" type="Sprite2D" parent="user_interface/weapon"]
+position = Vector2(40, 840)
