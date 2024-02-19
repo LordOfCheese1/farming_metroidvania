@@ -19,3 +19,8 @@ res://prefabs/rooms/005_plaza.tscn
 res://prefabs/level_elements/moving_platform.tscn
 res://scripts/level_elements/moving_platform.gd
 res://prefabs/rooms/006_city_greenhouse.tscn
+res://prefabs/level_elements/plant.tscn
+res://scripts/level_elements/plant.gd
+res://prefabs/autoloads/farm_manager.tscn
+res://scripts/autoloads/farm_manager.gd
+res://prefabs/autoloads/music_manager.tscn

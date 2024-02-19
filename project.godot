@@ -23,6 +23,7 @@ SoundManager="*res://prefabs/autoloads/sound_manager.tscn"
 ParticleSystem="*res://prefabs/autoloads/particle_system.tscn"
 SaveManager="*res://prefabs/autoloads/save_manager.tscn"
 MusicManager="*res://prefabs/autoloads/music_manager.tscn"
+FarmManager="*res://prefabs/autoloads/farm_manager.tscn"
 
 [display]
 
