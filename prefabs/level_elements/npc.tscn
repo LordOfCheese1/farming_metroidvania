@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://5cdthndl7f8w"]
+
+[ext_resource type="Script" path="res://scripts/level_elements/npc.gd" id="1_p0wyj"]
+[ext_resource type="Texture2D" uid="uid://ck6x2y5hyghos" path="res://icon.svg" id="2_045hm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6iljw"]
+size = Vector2(160, 80)
+
+[node name="npc" type="Area2D"]
+script = ExtResource("1_p0wyj")
+texture = ExtResource("2_045hm")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = ExtResource("2_045hm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_6iljw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -42,6 +42,8 @@ func _process(_delta):
 			if direction == "right" && player.velocity.x > 1:
 				change_scene()
 			if direction == "up" && player.velocity.y < -1:
+				if player != null:
+					player.delayed_velocity.y = -1000
 				change_scene()
 			if direction == "down" && player.velocity.y > 1:
 				change_scene()

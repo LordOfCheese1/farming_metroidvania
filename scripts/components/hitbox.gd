@@ -28,11 +28,11 @@ func trigger_internal_hit():
 		get_tree().current_scene.get_node("camera").zoom = Vector2(1.15, 1.15)
 	immunity = max_immunity
 	var entity_node = get_node(entity)
-	entity_node.hit()
 	entity_node.hp -= current_damager.damage
 	entity_node.last_hit_from = current_damager.global_position
 	emit_signal("hit")
 	current_damager.emit_signal("has_hit")
+	entity_node.hit()
 	print("hit from " + current_damager.get_parent().name + " to " + get_node(entity).name + " - " + str(current_damager.damage) + " dmg")
 
 

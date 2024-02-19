@@ -84,6 +84,13 @@ func start_dialogue(dialogue_str_index : String): # you can't acces user interfa
 	proceed_dialogue()
 
 
+func discard_dialogue():
+	if active_dialogue_name != "":
+		active_dialogue_name = ""
+		apply_text_to_user_interface("")
+		current_index = 0
+
+
 func proceed_dialogue():
 	var portrait = null
 	if Globals.gameplay_scene_active:

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn681jr4h2jj1"]
+
+[ext_resource type="Script" path="res://scripts/particles/particle_damage_text.gd" id="1_ymn4b"]
+[ext_resource type="Texture2D" uid="uid://thdv4ol2s3mm" path="res://textures/fx/bubble_ouch.png" id="2_taghn"]
+
+[node name="particle_damage_text" type="Node2D"]
+script = ExtResource("1_ymn4b")
+lifetime = 0.5
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_taghn")

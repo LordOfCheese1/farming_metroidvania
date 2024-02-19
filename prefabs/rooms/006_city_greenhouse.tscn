@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5bn677q7wekn"]
+
+[ext_resource type="PackedScene" uid="uid://dft2poo3r6nx4" path="res://prefabs/bases/room.tscn" id="1_rjt7o"]
+
+[node name="006-city_greenhouse" instance=ExtResource("1_rjt7o")]

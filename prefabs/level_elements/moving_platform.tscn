@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://msxebsg1p55h"]
+
+[ext_resource type="Texture2D" uid="uid://e2ach5hl16er" path="res://textures/level/lift.png" id="1_av2v8"]
+[ext_resource type="Script" path="res://scripts/level_elements/moving_platform.gd" id="1_hu8d5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h8xgy"]
+size = Vector2(160, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2oi5h"]
+size = Vector2(160, 16)
+
+[node name="moving_platform" type="AnimatableBody2D"]
+script = ExtResource("1_hu8d5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_av2v8")
+offset = Vector2(0, -100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h8xgy")
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -196)
+shape = SubResource("RectangleShape2D_2oi5h")
+one_way_collision = true
+
+[node name="line" type="Line2D" parent="."]
+points = PackedVector2Array(0, -220, 0, -1200)
+width = 2.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="editor_guideline" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+default_color = Color(1, 0, 0.321569, 1)

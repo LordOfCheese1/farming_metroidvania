@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://caklabx7iehsg"]
+
+[ext_resource type="Script" path="res://scripts/particles/particle_blood.gd" id="1_sst8m"]
+[ext_resource type="Texture2D" uid="uid://bcns70p1ckm3m" path="res://textures/fx/blood.png" id="1_wcjiq"]
+
+[node name="blood" type="Node2D"]
+script = ExtResource("1_sst8m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wcjiq")

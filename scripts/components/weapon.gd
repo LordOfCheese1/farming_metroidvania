@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var weapon_resource : WeaponResource
+@export var player_path : NodePath
 var melee_attack_cd = 0
 signal melee_used
 signal throw_used
@@ -23,7 +24,7 @@ func _physics_process(_delta):
 		$hurtbox/CollisionShape2D.disabled = false
 	else:
 		$hurtbox/CollisionShape2D.disabled = true
-		if Input.is_action_just_pressed("action"):
+		if Input.is_action_just_pressed("action") && !Globals.freeze_player_movement:
 			use()
 	$trail.modulate.a = melee_attack_cd / 12.0
 
@@ -32,7 +33,6 @@ func use():
 	if weapon_resource != null:
 		match weapon_resource.weapon_type:
 			"melee":
-				
 				melee_attack()
 				emit_signal("melee_used")
 			"throwable":
@@ -41,6 +41,7 @@ func use():
 
 
 func melee_attack():
+	$hurtbox.damage = weapon_resource.melee_damage
 	melee_attack_cd = 12
 
 

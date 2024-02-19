@@ -23,7 +23,7 @@ func _process(_delta):
 			set_camera()
 
 
-func rearrange_player():
+func rearrange_player(door_is_up = false):
 	var player = get_node_or_null("player")
 	if player != null:
 		# add player to new room's entities node
@@ -33,7 +33,10 @@ func rearrange_player():
 		# look for door with fitting ID and put the player there, do nothing if no door is found
 		for door in $active_room.get_child(0).get_node("doors").get_children(): 
 			if door.id == door_to_look_for:
-				player.position = door.position + Vector2(0, (door.rect_size.y / 2) - 50)
+				if !door_is_up:
+					player.position = door.position + Vector2(0, (door.rect_size.y / 2) - 50)
+				else:
+					player.position = door.position
 
 
 func set_camera():

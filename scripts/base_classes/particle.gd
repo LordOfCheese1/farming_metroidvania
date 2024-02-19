@@ -4,7 +4,7 @@ var velocity = Vector2(0, 0)
 var time = 0.0
 @export var lifetime : float = 30.0
 var dir = Vector2(0, 0)
-const GRAVITY : float = 700.0
+const GRAVITY : float = 1000.0
 const delta = 0.017
 
 
