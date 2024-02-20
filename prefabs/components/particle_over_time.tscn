@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://14a85qk2q6k4"]
+
+[ext_resource type="Script" path="res://scripts/components/particle_over_time.gd" id="1_vy1cg"]
+
+[node name="particle_over_time" type="Node2D"]
+script = ExtResource("1_vy1cg")

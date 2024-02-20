@@ -20,7 +20,8 @@ func new_music(code : String):
 	if code != "nothing":
 		current_loop_start = tracklist[code][1]
 		current_loop_end = tracklist[code][2]
-		$music_player.stream = tracklist[code][0]
-		$music_player.play(0.0)
+		if $music_player.stream != tracklist[code][0]:
+			$music_player.stream = tracklist[code][0]
+			$music_player.play(0.0)
 	else:
 		$music_player.stream = null

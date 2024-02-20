@@ -5,7 +5,8 @@ var melee_attack_cd = 0
 var current_weapon_index = 0
 var weapons_available = { # filename : quantity, -1 is infite
 	"shovel" : -1,
-	"seeds_carrot" : 1
+	"seeds_carrot" : 5,
+	"carrot" : 5
 }
 signal melee_used
 signal throw_used
@@ -49,6 +50,9 @@ func use():
 				emit_signal("throw_used")
 			"seeds":
 				use_seeds()
+		if weapons_available[weapons_available.keys()[current_weapon_index]] == 0:
+			cycle_weapons(1)
+		interface_update()
 
 
 func melee_attack():
@@ -57,11 +61,18 @@ func melee_attack():
 
 
 func throw_attack():
-	pass
+	if Globals.gameplay_scene_active:
+		var projectile = load(weapon_resource.projectile_path).instantiate()
+		projectile.velocity = Vector2(get_global_mouse_position() - global_position).normalized() * 900
+		projectile.position = global_position
+		get_tree().current_scene.get_node("active_room").get_child(0).get_node("projectiles").call_deferred("add_child", projectile)
+		weapons_available[weapons_available.keys()[current_weapon_index]] -= 1
 
 
 func use_seeds():
-	FarmManager.plant_a_plant(weapon_resource.seed_id)
+	if len(FarmManager.plants_in_proximity) > 0:
+		FarmManager.plant_a_plant(weapon_resource.seed_id)
+		weapons_available[weapons_available.keys()[current_weapon_index]] -= 1
 
 
 func cycle_weapons(dir : int):
@@ -81,3 +92,7 @@ func interface_update():
 	if Globals.gameplay_scene_active:
 		var display_sprite = get_tree().current_scene.get_node("user_interface/weapon/sprite")
 		display_sprite.texture = weapon_resource.texture
+		if weapons_available[weapons_available.keys()[current_weapon_index]] > 0:
+			get_tree().current_scene.get_node("user_interface/weapon/amount_display").text = str(weapons_available[weapons_available.keys()[current_weapon_index]])
+		else:
+			get_tree().current_scene.get_node("user_interface/weapon/amount_display").text = "Infinite"

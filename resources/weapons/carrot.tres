@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=3 format=3 uid="uid://byqwcf60jkua0"]
+
+[ext_resource type="Script" path="res://scripts/resource_bases/weaponresource.gd" id="1_gj3mm"]
+[ext_resource type="Texture2D" uid="uid://jkgfu7uf0f0h" path="res://textures/weapons/carrot.png" id="2_17ibe"]
+
+[resource]
+script = ExtResource("1_gj3mm")
+weapon_type = "throwable"
+texture = ExtResource("2_17ibe")
+default_rot = 0.0
+sprite_offset = Vector2(14, 5)
+melee_damage = 0
+seed_id = ""
+projectile_path = "res://prefabs/projectiles/carrot_projectile.tscn"

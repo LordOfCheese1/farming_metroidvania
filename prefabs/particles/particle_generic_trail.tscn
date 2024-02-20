@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5qjxt8gqalub"]
+
+[ext_resource type="Script" path="res://scripts/particles/particle_generic_trail.gd" id="1_3emdk"]
+[ext_resource type="Texture2D" uid="uid://cf57fmcptc2ey" path="res://textures/fx/circle.png" id="2_dhre3"]
+
+[node name="particle_generic_trail" type="Node2D"]
+script = ExtResource("1_3emdk")
+lifetime = 0.5
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_dhre3")

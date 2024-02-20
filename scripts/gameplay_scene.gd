@@ -19,6 +19,8 @@ func _process(_delta):
 			current_scene_name = $active_room.get_child(0).name
 			rearrange_player()
 			$camera.follow_path = NodePath()
+			if SaveManager.save_data["plants"].keys().has(current_scene_name):
+				FarmManager.load_plants()
 		if $camera.follow_path == NodePath():
 			set_camera()
 
@@ -64,6 +66,9 @@ func switch_room(new_room_path : String, door_to_send_to : int, door_sent_from =
 		$active_room.get_child(0).call_deferred("free")
 	# add new room
 	var new_room = load(new_room_path).instantiate()
+	if new_room.has_plants:
+		if !SaveManager.save_data["plants"].keys().has(new_room.name):
+			SaveManager.save_data["plants"][new_room.name] = {}
 	$active_room.call_deferred("add_child", new_room)
 	door_to_look_for = door_to_send_to
 	print("room swap: " + old_room_name + "-" + str(door_sent_from) + " to " + new_room.name + "-" + str(door_to_send_to))

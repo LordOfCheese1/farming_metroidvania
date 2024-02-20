@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbx8hv5bdo6hp"]
+[gd_scene load_steps=11 format=3 uid="uid://cbx8hv5bdo6hp"]
 
 [ext_resource type="Script" path="res://scripts/gameplay_scene.gd" id="1_rdt4s"]
 [ext_resource type="PackedScene" uid="uid://c8wwihjlky3de" path="res://prefabs/entities/player.tscn" id="2_smcvs"]
@@ -98,6 +98,11 @@ _data = {
 "fade_out": SubResource("Animation_n8urj")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_gofkt"]
+font_size = 26
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
 [node name="gameplay_scene" type="Node2D"]
 script = ExtResource("1_rdt4s")
 starting_scene_path = "res://prefabs/rooms/000_beginning.tscn"
@@ -150,3 +155,10 @@ libraries = {
 
 [node name="sprite" type="Sprite2D" parent="user_interface/weapon"]
 position = Vector2(40, 840)
+
+[node name="amount_display" type="Label" parent="user_interface/weapon"]
+offset_left = 57.0
+offset_top = 837.0
+offset_right = 102.0
+offset_bottom = 873.0
+label_settings = SubResource("LabelSettings_gofkt")

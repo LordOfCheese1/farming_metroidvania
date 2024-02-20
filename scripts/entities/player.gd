@@ -9,6 +9,8 @@ var hand_attack_rot : float = 0.0
 var has_released_jump = false
 var delayed_velocity = Vector2(0, 0)
 var is_near_npc = false
+var user_input = Vector2(0, 0)
+var weapon = null
 
 var jump_sfx = preload("res://audio/sfx/player_jump.mp3")
 
@@ -18,11 +20,10 @@ func _ready():
 	entity_setup()
 	$interact_text.text = DialogueManager.modify_text($interact_text.text)
 	$interact_text.parse_bbcode(DialogueManager.modify_text($interact_text.text))
+	weapon = $visuals/arm_right/weapon
 
 
 func _physics_process(delta):
-	var user_input = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
-	
 	if Globals.freeze_player_movement:
 		user_input = Vector2(0.0, 0.0)
 	
@@ -50,9 +51,6 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-	if Input.is_action_pressed("test"):
-		position = get_global_mouse_position()
-	
 	$visuals/arm_right.look_at(get_global_mouse_position())
 	$visuals/arm_right.rotation_degrees = $visuals/arm_right.rotation_degrees - 45 + hand_attack_rot
 	
@@ -67,7 +65,21 @@ func _physics_process(delta):
 
 
 func _process(_delta):
-	$interact_text.visible = is_near_npc
+	user_input = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"))
+	
+	if is_on_floor():
+		if Input.is_action_just_pressed("jump") && !Globals.freeze_player_movement:
+			jump()
+	else:
+		if velocity.y < 0 && !has_released_jump:
+			if Input.is_action_just_released("jump") && !Globals.freeze_player_movement:
+				has_released_jump = true
+				velocity.y = velocity.y / 2
+	
+	if Input.is_action_pressed("test"):
+		position = get_global_mouse_position()
+	
+	$interact_text.visible = is_near_npc 
 	$debug_velocity.set_point_position(1, velocity * 0.5)
 	$debug_velocity/label.text = str(Vector2i(snapped(velocity.x, 1.0), snapped(velocity.y, 1.0)))
 	
@@ -96,3 +108,7 @@ func jump():
 
 func _on_weapon_melee_used():
 	hand_attack_rot = 110.0
+
+
+func _on_weapon_throw_used():
+	hand_attack_rot = -40

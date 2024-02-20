@@ -2,21 +2,41 @@ extends Area2D
 
 var stage = 0
 var max_stage = 1
+var id = ""
+@export var pickup_scene : PackedScene
 
 
 func _ready():
 	add_to_group("plant")
 
 
-func update_visuals(tex : Texture):
+func update_visuals(tex : Texture, needs_texture = true):
 	var plant_sprite = $sprite
-	plant_sprite.texture = tex
-	plant_sprite.hframes = max_stage
+	if needs_texture:
+		plant_sprite.texture = tex
+	else:
+		plant_sprite.texture = null
+	plant_sprite.hframes = max_stage + 1
 	plant_sprite.frame = stage
 
 
 func attempt_harvest():
-	pass
+	if stage >= max_stage && stage > 0:
+		var pickup = pickup_scene.instantiate()
+		pickup.item_id = id
+		pickup.position = Vector2(position.x + 40, position.y)
+		get_parent().get_parent().get_node("stuff").call_deferred("add_child", pickup)
+		clear_plant()
+
+
+func clear_plant():
+	stage = 0
+	id = ""
+	var plant_saves = SaveManager.save_data["plants"]
+	if plant_saves.keys().has(get_parent().get_parent().name):
+		if plant_saves[get_parent().get_parent().name].keys().has(name):
+			plant_saves[get_parent().get_parent().name].erase(name)
+	update_visuals(Texture.new(), false)
 
 
 func _on_body_entered(body):

@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://cjqoskn45465x"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/carrot_projectile.gd" id="1_4ey07"]
+[ext_resource type="Texture2D" uid="uid://jkgfu7uf0f0h" path="res://textures/weapons/carrot.png" id="2_j475h"]
+[ext_resource type="PackedScene" uid="uid://14a85qk2q6k4" path="res://prefabs/components/particle_over_time.tscn" id="3_b7iy0"]
+[ext_resource type="PackedScene" uid="uid://b5qjxt8gqalub" path="res://prefabs/particles/particle_generic_trail.tscn" id="4_p7fh4"]
+[ext_resource type="PackedScene" uid="uid://dyhlmh24wo8pd" path="res://prefabs/components/hurtbox.tscn" id="5_46yys"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ugkx1"]
+radius = 18.0278
+
+[node name="carrot_projectile" type="Area2D"]
+script = ExtResource("1_4ey07")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_j475h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ugkx1")
+
+[node name="particle_over_time" parent="." instance=ExtResource("3_b7iy0")]
+particle_to_add = ExtResource("4_p7fh4")
+time_between_spawns = 3
+
+[node name="hurtbox" parent="." instance=ExtResource("5_46yys")]
+damage = 2.0
+ignore_in_detection = ["player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("CircleShape2D_ugkx1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="has_hit" from="hurtbox" to="." method="_on_hurtbox_has_hit"]

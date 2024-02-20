@@ -810,3 +810,4 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [connection signal="melee_used" from="visuals/arm_right/weapon" to="." method="_on_weapon_melee_used"]
+[connection signal="throw_used" from="visuals/arm_right/weapon" to="." method="_on_weapon_throw_used"]
