@@ -36,6 +36,13 @@ rect_size = Vector2(80, 240)
 id = 2
 new_room_path = "res://prefabs/rooms/007_city_alley.tscn"
 
+[node name="door4" parent="doors" index="3" instance=ExtResource("3_0a4dq")]
+position = Vector2(1320, 720)
+direction = "right"
+rect_size = Vector2(80, 160)
+id = 3
+new_room_path = "res://prefabs/rooms/009_the_snail.tscn"
+
 [node name="border_left" parent="editor" index="0"]
 points = PackedVector2Array(0, -1120, 0, 880)
 

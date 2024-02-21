@@ -5,13 +5,14 @@ var rot = 0.0
 
 func _ready():
 	velocity = velocity * 900
-	$sprite.look_at(get_global_mouse_position())
-	$sprite.rotation_degrees += 45
+	$sprite.look_at(position + velocity)
+	$sprite.rotation_degrees -= 135
 
 
 func _physics_process(delta):
 	velocity.y += 900 * delta
-	$sprite.rotation_degrees += velocity.x * 0.05
+	$sprite.look_at(position + velocity)
+	$sprite.rotation_degrees -= 135
 	projectile_update(delta)
 
 
@@ -21,7 +22,7 @@ func perish():
 
 
 func _on_body_entered(body):
-	if body.get_class() == "TileMap":
+	if body.get_class() == "TileMap" or body.get_class() == "StaticBody2D":
 		perish()
 
 

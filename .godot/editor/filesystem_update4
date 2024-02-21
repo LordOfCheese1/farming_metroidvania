@@ -38,3 +38,10 @@ res://scripts/projectiles/melon_bomb.gd
 res://prefabs/particles/particle_melon_juice.tscn
 res://scripts/particles/particle_melon_juice.gd
 res://prefabs/autoloads/particle_system.tscn
+res://prefabs/projectiles/carrot_projectile.tscn
+res://scripts/autoloads/dialogue_manager.gd
+res://prefabs/rooms/008_intro_to_dantes_inferno.tscn
+res://prefabs/level_elements/breakable_block.tscn
+res://prefabs/rooms/009_the_snail.tscn
+res://scripts/level_elements/breakable_block.gd
+res://scripts/autoloads/save_manager.gd

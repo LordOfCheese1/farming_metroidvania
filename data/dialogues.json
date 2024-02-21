@@ -6,8 +6,20 @@
 	"tutorial_combat" : [
 		["%iCareful Bro, that guy looks dangerous. Try to swing your shovel at em with $action$.", "action", "tutorialguy0"]
 	],
+	"tutorial_farming" : [
+		["%iAlright Bro, now use $scroll_down$ and $scroll_up$ to cycle through your items.", "scroll_down", "tutorialguy0"],
+		["%iSee those seeds Bro? Yeah, plant them on brown floor with $action$.", "action", "tutorialguy0"],
+		["When you're done, leave, and come back sometime later.", "", "tutorialguy0"]
+	],
 	"city_person_a" : [
-		["Hi there comrade, you're looking kinda odd."],
-		["You seem like you'd want to visit the greenhouse, it's east of here."]
+		["Hi there comrade, you're looking kinda odd.", "", "the_cringe_itself"],
+		["You seem like you'd want to visit the greenhouse, it's east of here.", "", "the_cringe_itself"]
+	],
+	"fat_person" : [
+		["Oh, hello.", "", "chonker"],
+		["I'm a big dum dum. They put a watermelon here, to detonate the floor.", "", "chonker"],
+		["And my dumb ass ATE IT.", "", "chonker_sad"],
+		["I ATE THE SEEDS TOO.", "", "chonker"],
+		["Now there's a melon growing in my tummy :(", "", "chonker_sad"]
 	]
 }

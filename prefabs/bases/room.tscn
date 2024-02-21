@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dft2poo3r6nx4"]
+[gd_scene load_steps=15 format=3 uid="uid://dft2poo3r6nx4"]
 
 [ext_resource type="Script" path="res://scripts/room.gd" id="1_gidxn"]
 [ext_resource type="Texture2D" uid="uid://d3mxmhetdhkyj" path="res://textures/tiles/coolsville.png" id="2_nvece"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://culfslt16cv7u" path="res://textures/tiles/coolsville_bg.png" id="4_8ukm8"]
 [ext_resource type="Texture2D" uid="uid://bx3wyo0mooqi7" path="res://textures/tiles/dirt.png" id="5_1ahwo"]
 [ext_resource type="Texture2D" uid="uid://dq1rpdcbbr0g7" path="res://textures/tiles/bricks.png" id="6_56trq"]
+[ext_resource type="Texture2D" uid="uid://bwajkramc58i0" path="res://textures/tiles/bricks_bg.png" id="7_yyu36"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dnm3s"]
 texture = ExtResource("2_nvece")
@@ -1468,6 +1469,37 @@ texture_region_size = Vector2i(80, 80)
 8:4/0/terrains_peering_bit/left_side = 2
 8:4/0/terrains_peering_bit/top_side = 2
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yn6av"]
+texture = ExtResource("7_yyu36")
+texture_region_size = Vector2i(80, 80)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+0:3/0 = 0
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
+1:3/0 = 0
+1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_0/angular_velocity = 0.0
+
 [sub_resource type="TileSet" id="TileSet_cf7g6"]
 tile_size = Vector2i(80, 80)
 physics_layer_0/collision_layer = 3
@@ -1484,6 +1516,7 @@ sources/0 = SubResource("TileSetAtlasSource_dnm3s")
 sources/2 = SubResource("TileSetAtlasSource_22rmn")
 sources/3 = SubResource("TileSetAtlasSource_qb53l")
 sources/4 = SubResource("TileSetAtlasSource_cji3o")
+sources/5 = SubResource("TileSetAtlasSource_yn6av")
 
 [node name="room" type="Node2D"]
 script = ExtResource("1_gidxn")
@@ -1533,15 +1566,19 @@ metadata/_edit_lock_ = true
 [node name="border_left" type="Line2D" parent="editor"]
 points = PackedVector2Array(0, 0, 0, 880)
 default_color = Color(1, 0, 0.117647, 1)
+metadata/_edit_lock_ = true
 
 [node name="border_right" type="Line2D" parent="editor"]
 points = PackedVector2Array(1280, 880, 1280, 0)
 default_color = Color(1, 0, 0.117647, 1)
+metadata/_edit_lock_ = true
 
 [node name="border_up" type="Line2D" parent="editor"]
 points = PackedVector2Array(0, 0, 1280, 0)
 default_color = Color(1, 0, 0.117647, 1)
+metadata/_edit_lock_ = true
 
 [node name="border_down" type="Line2D" parent="editor"]
 points = PackedVector2Array(1280, 880, 0, 880)
 default_color = Color(1, 0, 0.117647, 1)
+metadata/_edit_lock_ = true

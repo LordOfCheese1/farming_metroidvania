@@ -34,7 +34,7 @@ func check_end_condition():
 			if Input.is_action_pressed("jump"):
 				value = true
 		"i": # for "input"
-			if Input.is_action_pressed(dialogue_end_cond_param):
+			if Input.is_action_pressed(dialogue_end_cond_param) or Input.is_action_just_pressed(dialogue_end_cond_param):
 				value = true
 	return value
 

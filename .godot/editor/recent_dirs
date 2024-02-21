@@ -1,3 +1,6 @@
+res://scripts/level_elements
+res://prefabs/rooms
+res://prefabs/level_elements
 res://scripts/base_classes
 res://scripts/particles
 res://prefabs/particles
@@ -7,11 +10,8 @@ res://resources/weapons
 res://scripts/interface
 res://prefabs/interface
 res://scenes
-res://prefabs/rooms
 res://scripts/entities
 res://prefabs/entities
-res://scripts/level_elements
-res://prefabs/level_elements
 res://scripts/components
 res://prefabs/components
 res://prefabs/autoloads

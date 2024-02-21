@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var starting_scene_path : String
+@export var starting_scene_path = "res://prefabs/rooms/000_beginning.tscn"
 var current_scene_name = ""
 var door_to_look_for : int = -1
 @export var transition_scale : float = 1.0
