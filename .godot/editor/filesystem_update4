@@ -31,3 +31,6 @@ res://prefabs/level_elements/item_pickup.tscn
 res://scripts/level_elements/item_pickup.gd
 res://scripts/base_classes/entity.gd
 res://prefabs/entities/slug.tscn
+res://prefabs/entities/snail.tscn
+res://scripts/gameplay_scene.gd
+res://scripts/level_elements/door.gd

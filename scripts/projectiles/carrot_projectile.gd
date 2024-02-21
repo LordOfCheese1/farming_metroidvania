@@ -14,10 +14,16 @@ func _physics_process(delta):
 	projectile_update(delta)
 
 
+func perish():
+	ParticleSystem.new_circle(load("res://prefabs/particles/particle_generic_trail.tscn"), global_position, 12)
+	call_deferred("free")
+
+
 func _on_body_entered(body):
 	if body.get_class() == "TileMap":
-		call_deferred("free")
+		perish()
 
 
 func _on_hurtbox_has_hit():
-	call_deferred("free")
+	perish()
+ 

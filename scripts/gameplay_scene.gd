@@ -3,12 +3,15 @@ extends Node2D
 @export var starting_scene_path : String
 var current_scene_name = ""
 var door_to_look_for : int = -1
+@export var transition_scale : float = 1.0
+var orig_polygon = PackedVector2Array([Vector2(0, -1), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0)])
 @export var dialogue_visible = false # don't actually change this in the editor, it's only here for anim to access
 
 
 func _ready():
 	add_to_group("gameplay")
 	switch_room(starting_scene_path, 0)
+	transition_scale = 1092
 
 
 func _process(_delta):
@@ -23,6 +26,8 @@ func _process(_delta):
 				FarmManager.load_plants()
 		if $camera.follow_path == NodePath():
 			set_camera()
+	
+	scale_transition()
 
 
 func rearrange_player(door_is_up = false):
@@ -71,4 +76,14 @@ func switch_room(new_room_path : String, door_to_send_to : int, door_sent_from =
 			SaveManager.save_data["plants"][new_room.name] = {}
 	$active_room.call_deferred("add_child", new_room)
 	door_to_look_for = door_to_send_to
+	Globals.freeze_player_movement = false
 	print("room swap: " + old_room_name + "-" + str(door_sent_from) + " to " + new_room.name + "-" + str(door_to_send_to))
+
+
+func scale_transition():
+	for i in len($user_interface/screen_transition/square.polygon):
+		$user_interface/screen_transition/square.polygon[i] = orig_polygon[i] * transition_scale
+
+
+func start_fade_out():
+	$user_interface/screen_transition/anim.play("fade_out")

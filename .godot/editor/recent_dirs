@@ -1,3 +1,5 @@
+res://scripts/entities
+res://prefabs/entities
 res://scripts/level_elements
 res://prefabs/level_elements
 res://scripts/particles
@@ -11,8 +13,6 @@ res://prefabs/autoloads
 res://scripts/autoloads
 res://prefabs/rooms
 res://scripts/misc
-res://scripts/entities
-res://prefabs/entities
 res://prefabs
 res://prefabs/bases
 C:/Gamedev/Godot4/farming_metroidvania/data

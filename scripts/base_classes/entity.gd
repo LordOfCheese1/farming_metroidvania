@@ -34,7 +34,8 @@ func hit():
 			for i in randi_range(min_seed_drops, max_seed_drops):
 				var item_pickup = load("res://prefabs/level_elements/item_pickup.tscn").instantiate()
 				item_pickup.item_id = seed_to_drop_id
-				item_pickup.position = position + Vector2(i * 80, -20)
+				item_pickup.position = position + Vector2(i * 80, -30)
+				item_pickup.time = randf_range(0.0, 2 * PI)
 				get_parent().get_parent().get_node("stuff").call_deferred("add_child", item_pickup)
 		if save_death_temporarily:
 			var room_name = get_tree().current_scene.get_node("active_room").get_child(0).name

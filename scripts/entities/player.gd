@@ -30,7 +30,7 @@ func _physics_process(delta):
 	if user_input.x != 0:
 		x_dir = user_input.x / abs(user_input.x)
 	
-	if velocity.y < GRAVITY:
+	if velocity.y < GRAVITY && !Globals.freeze_player_movement:
 		velocity.y += GRAVITY * delta
 	
 	velocity.x = lerp(velocity.x, user_input.x * speed, accel)

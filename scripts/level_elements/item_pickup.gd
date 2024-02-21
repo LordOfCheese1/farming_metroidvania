@@ -14,6 +14,9 @@ func _ready():
 func _physics_process(delta):
 	time += delta
 	$bubble.rotation_degrees = sin(2 * time) * 15
+	$bubble.scale.x = 1 + sin(time) * 0.1
+	$bubble.scale.y = $bubble.scale.x
+	$bubble.position.y = (sin(time * 2) + 1) * 5
 	if !self_destruct:
 		$bubble.scale = lerp($bubble.scale, Vector2(1, 1), 0.2)
 		$bubble.modulate.a = lerp($bubble.modulate.a, 1.0, 0.2)
