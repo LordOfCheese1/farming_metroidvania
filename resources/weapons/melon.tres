@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="WeaponResource" load_steps=2 format=3 uid="uid://bew0mtlft2ury"]
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=3 format=3 uid="uid://bew0mtlft2ury"]
 
 [ext_resource type="Script" path="res://scripts/resource_bases/weaponresource.gd" id="1_1sta7"]
+[ext_resource type="Texture2D" uid="uid://bqn77f211ybvp" path="res://textures/weapons/melon.png" id="2_htqt3"]
 
 [resource]
 script = ExtResource("1_1sta7")
-weapon_type = "melee"
-default_rot = 0.0
-sprite_offset = Vector2(0, 0)
+weapon_type = "throwable"
+texture = ExtResource("2_htqt3")
+default_rot = 45.0
+sprite_offset = Vector2(20, 0)
 melee_damage = 0
 seed_id = ""
-projectile_path = ""
+projectile_path = "res://prefabs/projectiles/melon_bomb.tscn"

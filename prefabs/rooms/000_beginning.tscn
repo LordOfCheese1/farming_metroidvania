@@ -27,3 +27,6 @@ new_room_path = "res://prefabs/rooms/001_combat_tutorial.tscn"
 position = Vector2(130, 670)
 params = ["tutorial_movement"]
 id = "movement tutorial"
+
+[node name="border_left" parent="editor" index="0"]
+position = Vector2(76, 0)

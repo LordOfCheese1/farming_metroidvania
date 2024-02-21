@@ -4,6 +4,7 @@ var rot = 0.0
 
 
 func _ready():
+	velocity = velocity * 900
 	$sprite.look_at(get_global_mouse_position())
 	$sprite.rotation_degrees += 45
 

@@ -7,7 +7,8 @@ var weapons_available = { # filename : quantity, -1 is infite
 	"shovel" : -1,
 	"seeds_carrot" : 10,
 	"seeds_melon" : 10,
-	"carrot" : 10
+	"carrot" : 10,
+	"melon" : 10
 }
 signal melee_used
 signal throw_used
@@ -64,7 +65,7 @@ func melee_attack():
 func throw_attack():
 	if Globals.gameplay_scene_active:
 		var projectile = load(weapon_resource.projectile_path).instantiate()
-		projectile.velocity = Vector2(get_global_mouse_position() - global_position).normalized() * 900
+		projectile.velocity = Vector2(get_global_mouse_position() - global_position).normalized()
 		projectile.position = global_position
 		get_tree().current_scene.get_node("active_room").get_child(0).get_node("projectiles").call_deferred("add_child", projectile)
 		weapons_available[weapons_available.keys()[current_weapon_index]] -= 1

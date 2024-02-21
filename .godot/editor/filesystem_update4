@@ -31,3 +31,10 @@ res://scripts/interface/button.gd
 res://resources/weapons/seeds_melon.tres
 res://scripts/components/weapon.gd
 res://scripts/autoloads/farm_manager.gd
+res://resources/weapons/melon.tres
+res://prefabs/projectiles/melon_bomb.tscn
+res://scripts/projectiles/carrot_projectile.gd
+res://scripts/projectiles/melon_bomb.gd
+res://prefabs/particles/particle_melon_juice.tscn
+res://scripts/particles/particle_melon_juice.gd
+res://prefabs/autoloads/particle_system.tscn
