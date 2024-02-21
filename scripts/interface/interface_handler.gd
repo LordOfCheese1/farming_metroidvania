@@ -10,12 +10,18 @@ func _process(_delta):
 	if Input.is_action_just_pressed("down"):
 		cycle(1)
 	
+	if get_child_count() > 0:
+		current_object = get_children()[selection_index]
+	
 	if current_object != null:
+		current_object.is_selected = true
 		if Input.is_action_just_pressed("confirm"):
 			current_object.emit_signal("use")
 
 
 func cycle(dir : int = 1):
+	if current_object != null:
+		current_object.is_selected = false
 	selection_index += dir
 	
 	if selection_index < 0:

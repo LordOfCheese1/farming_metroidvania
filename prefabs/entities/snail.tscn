@@ -164,7 +164,7 @@ max_hp = 10.0
 save_death_temporarily = true
 min_seed_drops = 1
 max_seed_drops = 3
-seed_to_drop_id = "seeds_carrot"
+seed_to_drop_id = "seeds_melon"
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_062im")

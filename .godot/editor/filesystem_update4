@@ -26,3 +26,8 @@ res://scenes/main_menu.tscn
 res://prefabs/interface/interface_handler.tscn
 res://scripts/interface/interface_handler.gd
 res://scripts/base_classes/interface_object.gd
+res://prefabs/interface/button.tscn
+res://scripts/interface/button.gd
+res://resources/weapons/seeds_melon.tres
+res://scripts/components/weapon.gd
+res://scripts/autoloads/farm_manager.gd

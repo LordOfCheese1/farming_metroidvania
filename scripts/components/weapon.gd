@@ -5,8 +5,9 @@ var melee_attack_cd = 0
 var current_weapon_index = 0
 var weapons_available = { # filename : quantity, -1 is infite
 	"shovel" : -1,
-	"seeds_carrot" : 5,
-	"carrot" : 5
+	"seeds_carrot" : 10,
+	"seeds_melon" : 10,
+	"carrot" : 10
 }
 signal melee_used
 signal throw_used

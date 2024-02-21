@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=3 format=3 uid="uid://35xarny1rqm4"]
+
+[ext_resource type="Script" path="res://scripts/resource_bases/weaponresource.gd" id="1_2qbdg"]
+[ext_resource type="Texture2D" uid="uid://cwitckxlolwp0" path="res://textures/weapons/seeds_melon.png" id="2_8aa71"]
+
+[resource]
+script = ExtResource("1_2qbdg")
+weapon_type = "seeds"
+texture = ExtResource("2_8aa71")
+default_rot = 45.0
+sprite_offset = Vector2(17, 0)
+melee_damage = 0
+seed_id = "melon"
+projectile_path = ""
