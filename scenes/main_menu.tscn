@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c84iux7yfig1p"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7jrny"]
+font_size = 200
+outline_size = 64
+outline_color = Color(0, 0, 0, 1)
+
+[node name="main_menu" type="Node2D"]
+
+[node name="title" type="Label" parent="."]
+offset_right = 1280.0
+offset_bottom = 273.0
+text = "TITLE"
+label_settings = SubResource("LabelSettings_7jrny")
+horizontal_alignment = 1

@@ -1,0 +1,36 @@
+[gd_scene load_steps=8 format=3 uid="uid://mvqugiq4q423"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/spit.gd" id="1_kly6x"]
+[ext_resource type="Texture2D" uid="uid://bhjpwa8k1up2f" path="res://textures/projectiles/spit.png" id="2_6yinu"]
+[ext_resource type="PackedScene" uid="uid://14a85qk2q6k4" path="res://prefabs/components/particle_over_time.tscn" id="3_12drr"]
+[ext_resource type="PackedScene" uid="uid://dxgodn1vt8xpq" path="res://prefabs/particles/particle_spiky.tscn" id="4_2rwim"]
+[ext_resource type="PackedScene" uid="uid://dyhlmh24wo8pd" path="res://prefabs/components/hurtbox.tscn" id="5_4cly3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebhuy"]
+radius = 39.1152
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s33v8"]
+radius = 35.0
+
+[node name="spit" type="Area2D"]
+script = ExtResource("1_kly6x")
+particle = ExtResource("4_2rwim")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_6yinu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ebhuy")
+
+[node name="particle_over_time" parent="." instance=ExtResource("3_12drr")]
+particle_to_add = ExtResource("4_2rwim")
+time_between_spawns = 3
+
+[node name="hurtbox" parent="." instance=ExtResource("5_4cly3")]
+ignore_in_detection = ["evil"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("CircleShape2D_s33v8")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="has_hit" from="hurtbox" to="." method="_on_hurtbox_has_hit"]

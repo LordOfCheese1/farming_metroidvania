@@ -1,10 +1,52 @@
-[gd_scene load_steps=8 format=3 uid="uid://iy7hkj65xyw"]
+[gd_scene load_steps=13 format=3 uid="uid://iy7hkj65xyw"]
 
 [ext_resource type="Texture2D" uid="uid://brde7gqblyqnq" path="res://textures/entities/snail.png" id="1_062im"]
 [ext_resource type="Script" path="res://scripts/entities/snail.gd" id="1_b5jd0"]
+[ext_resource type="PackedScene" uid="uid://mvqugiq4q423" path="res://prefabs/projectiles/spit.tscn" id="2_028xa"]
+[ext_resource type="PackedScene" uid="uid://byuhphggfblsp" path="res://prefabs/components/hitbox.tscn" id="4_m7036"]
+[ext_resource type="PackedScene" uid="uid://dyhlmh24wo8pd" path="res://prefabs/components/hurtbox.tscn" id="5_708gx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvy30"]
 size = Vector2(268, 117)
+
+[sub_resource type="Animation" id="Animation_4cpqa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_7hirm"]
 resource_name = "move"
@@ -47,45 +89,6 @@ tracks/2/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_4cpqa"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("sprite:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="Animation" id="Animation_rwokr"]
 resource_name = "spit"
 tracks/0/type = "value"
@@ -107,10 +110,10 @@ tracks/1/path = NodePath("sprite:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.6, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.6, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 0]
+"values": [0, 1, 2, 0, 0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -124,6 +127,20 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.2, 0.8), Vector2(0.8, 1.2), Vector2(1, 1)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_spit"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e8l0a"]
 _data = {
@@ -132,10 +149,22 @@ _data = {
 "spit": SubResource("Animation_rwokr")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epvlf"]
+size = Vector2(280, 203)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chnel"]
+size = Vector2(268, 80)
+
 [node name="snail" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_b5jd0")
+spit_scene = ExtResource("2_028xa")
+max_hp = 10.0
+save_death_temporarily = true
+min_seed_drops = 1
+max_seed_drops = 3
+seed_to_drop_id = "seeds_carrot"
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_062im")
@@ -149,3 +178,20 @@ shape = SubResource("RectangleShape2D_rvy30")
 libraries = {
 "": SubResource("AnimationLibrary_e8l0a")
 }
+
+[node name="hitbox" parent="." instance=ExtResource("4_m7036")]
+entity = NodePath("..")
+ignore_tag = "evil"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 5.5)
+shape = SubResource("RectangleShape2D_epvlf")
+
+[node name="hurtbox" parent="." instance=ExtResource("5_708gx")]
+ignore_in_detection = ["evil"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(0, 67)
+shape = SubResource("RectangleShape2D_chnel")
+
+[connection signal="hit" from="hitbox" to="." method="_on_hitbox_hit"]

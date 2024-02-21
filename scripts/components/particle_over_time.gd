@@ -5,7 +5,7 @@ extends Node2D
 var cooldown = 0
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if cooldown > 0:
 		cooldown -= 1
 	else:

@@ -24,11 +24,11 @@ func new_particle(particle_scene : PackedScene, pos : Vector2, dir : float):
 		particle.call_deferred("free")
 
 
-func new_circle(particle_scene : PackedScene, pos : Vector2, amt : int, range = 40):
+func new_circle(particle_scene : PackedScene, pos : Vector2, amt : int, spread = 40):
 	for i in amt:
 		var particle = particle_scene.instantiate()
 		var angle = (float(i) / float(amt)) * 2 * PI
-		particle.position = pos + Vector2(sin(angle), cos(angle)) * range
+		particle.position = pos + Vector2(sin(angle), cos(angle)) * spread
 		if Globals.gameplay_scene_active:
 			get_tree().current_scene.get_node("active_room").get_child(0).get_node("particles").call_deferred("add_child", particle)
 		else:

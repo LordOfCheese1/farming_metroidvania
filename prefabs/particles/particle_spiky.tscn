@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxgodn1vt8xpq"]
+
+[ext_resource type="Script" path="res://scripts/particles/particle_spiky.gd" id="1_k3fom"]
+
+[node name="particle_spiky" type="Node2D"]
+script = ExtResource("1_k3fom")
+lifetime = 0.4
+
+[node name="polygon" type="Polygon2D" parent="."]
+color = Color(0.698039, 0.854902, 0.729412, 1)
+polygon = PackedVector2Array(0, -42, 36.4, 21, -36.4, 21)
