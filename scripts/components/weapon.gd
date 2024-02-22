@@ -5,7 +5,7 @@ var melee_attack_cd = 0
 var current_weapon_index = 0
 var weapons_available = { # filename : quantity, -1 is infite
 	"shovel" : -1,
-	"seeds_carrot" : 10,
+	"seeds_carrot" : 5,
 	"seeds_melon" : 10,
 	"carrot" : 10,
 	"melon" : 10
@@ -73,8 +73,9 @@ func throw_attack():
 
 func use_seeds():
 	if len(FarmManager.plants_in_proximity) > 0:
-		FarmManager.plant_a_plant(weapon_resource.seed_id)
-		weapons_available[weapons_available.keys()[current_weapon_index]] -= 1
+		if FarmManager.plants_in_proximity[0].id == "":
+			FarmManager.plant_a_plant(weapon_resource.seed_id)
+			weapons_available[weapons_available.keys()[current_weapon_index]] -= 1
 
 
 func cycle_weapons(dir : int):

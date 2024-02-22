@@ -3,9 +3,15 @@ extends "res://scripts/base_classes/interface_object.gd"
 
 @export var size = Vector2(40, 40)
 @export var colour : Color
-@export_enum("scene_switch", "quit") var to_do_on_usage = "scene_switch"
+@export_enum("scene_switch", "quit", "keybind", "taxi_goal") var to_do_on_usage = "scene_switch"
 @export var params = []
 @export var text_to_put : String
+var listening_for_input = false
+var illegal_inputs = [
+	"Escape",
+	"Enter",
+	"Alt",
+]
 
 
 func _ready():
@@ -13,23 +19,56 @@ func _ready():
 	$rect.color = colour
 
 
+func _input(event):
+	if event is InputEventKey or event is InputEventMouseButton && !Engine.is_editor_hint():
+		if event.is_pressed():
+			if listening_for_input && event.as_text() != "Enter":
+				InputMap.action_erase_events(params[0])
+				InputMap.action_add_event(params[0], event)
+				listening_for_input = false
+
+
 func _process(_delta):
-	$display_text.text = text_to_put
 	$display_text.position = $rect.position
 	$display_text.size = $rect.size
+	$display_text.text = text_to_put
+	$input_bind.position.x = $rect.size.x * 0.5 + 10.0
+	$input_bind.position.y = $rect.position.y
+	$input_bind.size = $rect.size
+	if to_do_on_usage != "keybind":
+		$input_bind.text = ""
 	if Engine.is_editor_hint():
 		$rect.position = -size * 0.5
 		$rect.size = size
 		$rect.color = colour
 	else:
-		
+		if to_do_on_usage == "keybind":
+			$input_bind.text = DialogueManager.find_key_via_input_action(params[0])
+		if !listening_for_input:
+			$display_text.text = text_to_put
 		$rect.position = -$rect.size * 0.5
 		if is_selected:
 			$outline.visible = true
 			$outline.size = size + Vector2(6, 6)
 			$outline.position = -$outline.size * 0.5
+			
+			if listening_for_input:
+				$display_text.text = "Hit a button..."
+				get_parent().disabled = true
+			else:
+				get_parent().disabled = false
 		else:
 			$outline.visible = false
+			listening_for_input = false
+		
+		if mouse_is_here() && !get_parent().disabled:
+			get_parent().jump_selection(self)
+
+
+func mouse_is_here():
+	var mouse_pos = get_global_mouse_position()
+	var rect_pos = global_position
+	return abs(rect_pos.x - mouse_pos.x) < size.x * 0.5 && abs(rect_pos.y - mouse_pos.y) < size.y * 0.5
 
 
 func _on_use():
@@ -38,3 +77,5 @@ func _on_use():
 			get_tree().change_scene_to_file(params[0])
 		"quit":
 			get_tree().quit()
+		"keybind":
+			listening_for_input = !listening_for_input

@@ -2,10 +2,17 @@ extends Node2D
 
 var save_data = {
 	"finished_triggers" : [],
-	"temporary_enemy_deaths" : [],
 	"broken_blocks" : [],
 	"plants" : {}
 }
+var session_data = {
+	"temporary_enemy_deaths" : []
+}
+
+
+func save_to_disk():
+	pass
+
 
 func tick_plants():
 	print("growth tick")

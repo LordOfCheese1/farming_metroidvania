@@ -16,6 +16,7 @@ offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
+metadata/_edit_lock_ = true
 
 [node name="rect" type="ColorRect" parent="."]
 offset_left = -20.0
@@ -34,5 +35,16 @@ text = "Aaaaa"
 label_settings = SubResource("LabelSettings_gjnnt")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="input_bind" type="Label" parent="."]
+offset_left = 30.0
+offset_top = -20.0
+offset_right = 131.0
+offset_bottom = 35.0
+text = "Hehe"
+label_settings = SubResource("LabelSettings_gjnnt")
+vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [connection signal="use" from="." to="." method="_on_use"]

@@ -56,7 +56,7 @@ func set_camera():
 		$camera.set_boundaries(room.top_left.x, room.bottom_right.x, room.top_left.y, room.bottom_right.y)
 
 
-func switch_room(new_room_path : String, door_to_send_to : int, door_sent_from = 0):
+func switch_room(new_room_path : String, door_to_send_to : int, door_sent_from = 0, fancy_id = ""):
 	# assume that the old room is the init spawn if no previous room is given
 	var old_room_name = "spawn"
 	# check if a room currently exists
@@ -75,7 +75,10 @@ func switch_room(new_room_path : String, door_to_send_to : int, door_sent_from =
 		if !SaveManager.save_data["plants"].keys().has(new_room.name):
 			SaveManager.save_data["plants"][new_room.name] = {}
 	$active_room.call_deferred("add_child", new_room)
-	door_to_look_for = door_to_send_to
+	if fancy_id == "":
+		door_to_look_for = door_to_send_to
+	else:
+		door_to_look_for = -1
 	Globals.freeze_player_movement = false
 	print("room swap: " + old_room_name + "-" + str(door_sent_from) + " to " + new_room.name + "-" + str(door_to_send_to))
 

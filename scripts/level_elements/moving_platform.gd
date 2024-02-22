@@ -2,12 +2,12 @@
 extends AnimatableBody2D
 
 @export var go_to_y : float
-var time = -3.4
+@export var time : float = -3.4
 var init_y_pos = 0.0
 
 
 func _ready():
-	$line.points[1].y = -500 + go_to_y
+	$line.points[1].y = -500 + -abs(go_to_y)
 	if !Engine.is_editor_hint():
 		init_y_pos = position.y
 

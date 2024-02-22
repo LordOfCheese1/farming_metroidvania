@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbx8hv5bdo6hp"]
+[gd_scene load_steps=17 format=3 uid="uid://cbx8hv5bdo6hp"]
 
 [ext_resource type="Script" path="res://scripts/gameplay_scene.gd" id="1_rdt4s"]
 [ext_resource type="PackedScene" uid="uid://c8wwihjlky3de" path="res://prefabs/entities/player.tscn" id="2_smcvs"]
 [ext_resource type="Script" path="res://scripts/level_elements/camera.gd" id="2_w1nua"]
 [ext_resource type="Texture2D" uid="uid://buoojl8a6dwpw" path="res://textures/portraits/fivepebbles.png" id="4_ea6mj"]
+[ext_resource type="PackedScene" uid="uid://da3ddgwibmequ" path="res://prefabs/interface/interface_handler.tscn" id="5_ewune"]
+[ext_resource type="PackedScene" uid="uid://c3jbyoyt5qsdw" path="res://prefabs/interface/button.tscn" id="6_1bo1v"]
 
 [sub_resource type="Theme" id="Theme_jofsl"]
 default_font_size = 28
@@ -256,7 +258,26 @@ offset_right = 102.0
 offset_bottom = 873.0
 label_settings = SubResource("LabelSettings_gofkt")
 
+[node name="taxi_menu" type="Node2D" parent="user_interface"]
+
+[node name="interface_handler" parent="user_interface/taxi_menu" instance=ExtResource("5_ewune")]
+
+[node name="button" parent="user_interface/taxi_menu/interface_handler" instance=ExtResource("6_1bo1v")]
+position = Vector2(640, 160)
+size = Vector2(400, 80)
+to_do_on_usage = "taxi_goal"
+params = ["res://prefabs/rooms/006_city_greenhouse.tscn"]
+text_to_put = "City greenhouse"
+
+[node name="button2" parent="user_interface/taxi_menu/interface_handler" instance=ExtResource("6_1bo1v")]
+position = Vector2(640, 280)
+size = Vector2(400, 80)
+to_do_on_usage = "taxi_goal"
+params = ["res://prefabs/rooms/006_city_greenhouse.tscn"]
+text_to_put = "Dingus"
+
 [node name="screen_transition" type="Node2D" parent="user_interface"]
+visible = false
 
 [node name="square" type="Polygon2D" parent="user_interface/screen_transition"]
 position = Vector2(640, 440)

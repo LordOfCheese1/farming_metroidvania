@@ -1,0 +1,182 @@
+[gd_scene load_steps=10 format=3 uid="uid://d2cf8wuydl04s"]
+
+[ext_resource type="Texture2D" uid="uid://dm42js8uye3ah" path="res://textures/decor/taxi/shell.png" id="1_1ppjk"]
+[ext_resource type="Texture2D" uid="uid://dij64jobhs8iv" path="res://textures/entities/player/head.png" id="1_de85i"]
+[ext_resource type="Script" path="res://scripts/level_elements/taxi.gd" id="1_jqp2v"]
+[ext_resource type="Texture2D" uid="uid://bm4fb8dtpvsyt" path="res://textures/entities/player/hat.png" id="2_0lir3"]
+[ext_resource type="Texture2D" uid="uid://btaot1vpqgs5o" path="res://textures/decor/taxi/wheel.png" id="2_k3yxg"]
+
+[sub_resource type="Animation" id="Animation_ppafw"]
+resource_name = "drive"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals/shell:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 2),
+"transitions": PackedFloat32Array(0.450625, 2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-20, 0), Vector2(700, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/shell/wheel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 2),
+"transitions": PackedFloat32Array(0.45, 2, 1),
+"update": 0,
+"values": [0.0, -1.5708, 12.2173]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("visuals/shell/wheel2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6, 2),
+"transitions": PackedFloat32Array(0.45, 2, 1),
+"update": 0,
+"values": [0.0, -1.5708, 12.2173]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("visuals/head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6, 2),
+"transitions": PackedFloat32Array(0.45, 2, 2),
+"update": 0,
+"values": [Vector2(22, -16), Vector2(2, -16), Vector2(722, -16)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("visuals:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b5wgn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals/shell:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/shell/wheel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("visuals/shell/wheel2:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("visuals/head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(22, -16)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("visuals:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xma8d"]
+_data = {
+"RESET": SubResource("Animation_b5wgn"),
+"drive": SubResource("Animation_ppafw")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xl3ow"]
+size = Vector2(320, 110)
+
+[node name="taxi" type="Area2D"]
+script = ExtResource("1_jqp2v")
+
+[node name="visuals" type="Node2D" parent="."]
+
+[node name="head" type="Sprite2D" parent="visuals"]
+visible = false
+position = Vector2(22, -16)
+texture = ExtResource("1_de85i")
+
+[node name="hat" type="Sprite2D" parent="visuals/head"]
+position = Vector2(-2, -10)
+texture = ExtResource("2_0lir3")
+
+[node name="shell" type="Sprite2D" parent="visuals"]
+texture = ExtResource("1_1ppjk")
+
+[node name="wheel" type="Sprite2D" parent="visuals/shell"]
+position = Vector2(96, 54)
+rotation = -1.5708
+texture = ExtResource("2_k3yxg")
+
+[node name="wheel2" type="Sprite2D" parent="visuals/shell"]
+position = Vector2(-96, 54)
+rotation = -1.5708
+texture = ExtResource("2_k3yxg")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xma8d")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 19)
+shape = SubResource("RectangleShape2D_xl3ow")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -22,7 +22,7 @@ func entity_setup():
 	
 	if save_death_temporarily:
 		var room_name = get_tree().current_scene.get_node("active_room").get_child(0).name
-		if SaveManager.save_data["temporary_enemy_deaths"].has(room_name + "-" + name):
+		if SaveManager.session_data["temporary_enemy_deaths"].has(room_name + "-" + name):
 			call_deferred("free")
 
 
@@ -39,7 +39,7 @@ func hit():
 				get_parent().get_parent().get_node("stuff").call_deferred("add_child", item_pickup)
 		if save_death_temporarily:
 			var room_name = get_tree().current_scene.get_node("active_room").get_child(0).name
-			SaveManager.save_data["temporary_enemy_deaths"].append(room_name + "-" + name)
+			SaveManager.session_data["temporary_enemy_deaths"].append(room_name + "-" + name)
 
 
 func blood():

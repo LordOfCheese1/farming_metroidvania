@@ -4,11 +4,14 @@ extends Node2D
 @export var top_left = Vector2i(0, 0)
 @export var bottom_right = Vector2i(1280, 880)
 @export var has_plants = false
+@export var music : String
 
 
 func _ready():
 	if !Engine.is_editor_hint():
 		$editor.call_deferred("free")
+		if music != "":
+			MusicManager.new_music(music)
 
 
 func _process(_delta):

@@ -1,7 +1,7 @@
 extends "res://scripts/base_classes/entity.gd"
 
 var accel : float= 0.35
-var speed : float = 300.0
+var speed : float = 320.0
 var jump_strength : float = 650.0
 var x_dir = 1
 var is_jumping : float = 0.0
@@ -11,8 +11,10 @@ var delayed_velocity = Vector2(0, 0)
 var is_near_npc = false
 var user_input = Vector2(0, 0)
 var weapon = null
+var dust_particle_cd = 0
 
 var jump_sfx = preload("res://audio/sfx/player_jump.mp3")
+@export var dust_particle : PackedScene
 
 
 func _ready():
@@ -36,13 +38,19 @@ func _physics_process(delta):
 	velocity.x = lerp(velocity.x, user_input.x * speed, accel)
 	
 	if is_on_floor():
+		if abs(velocity.x) > speed * 0.5:
+			if dust_particle_cd > 0:
+				dust_particle_cd -= 1
+			else:
+				ParticleSystem.new_particle(dust_particle, global_position + Vector2(0, 63), -x_dir * 0.1)
+				dust_particle_cd = 4
 		has_released_jump = true
-		speed = 300.0
+		speed = 320.0
 		accel = 0.35
 		if Input.is_action_just_pressed("jump") && !Globals.freeze_player_movement:
 			jump()
 	else:
-		speed = 350.0
+		speed = 360.0
 		accel = 0.1
 		if velocity.y < 0 && !has_released_jump:
 			if Input.is_action_just_released("jump") && !Globals.freeze_player_movement:

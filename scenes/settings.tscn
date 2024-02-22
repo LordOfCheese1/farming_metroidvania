@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://diqc3dnuxoym1"]
+
+[ext_resource type="PackedScene" uid="uid://da3ddgwibmequ" path="res://prefabs/interface/interface_handler.tscn" id="1_mwl2w"]
+[ext_resource type="PackedScene" uid="uid://c3jbyoyt5qsdw" path="res://prefabs/interface/button.tscn" id="2_qydcb"]
+
+[node name="settings" type="Node2D"]
+
+[node name="interface_handler" parent="." instance=ExtResource("1_mwl2w")]
+
+[node name="button" parent="interface_handler" instance=ExtResource("2_qydcb")]
+position = Vector2(169, 80)
+size = Vector2(240, 60)
+to_do_on_usage = "keybind"
+params = ["left"]
+text_to_put = "Left"
+
+[node name="button2" parent="interface_handler" instance=ExtResource("2_qydcb")]
+position = Vector2(169, 180)
+size = Vector2(240, 60)
+to_do_on_usage = "keybind"
+params = ["right"]
+text_to_put = "Right"
+
+[node name="button3" parent="interface_handler" instance=ExtResource("2_qydcb")]
+position = Vector2(169, 280)
+size = Vector2(240, 60)
+to_do_on_usage = "keybind"
+params = ["up"]
+text_to_put = "Up"
+
+[node name="button4" parent="interface_handler" instance=ExtResource("2_qydcb")]
+position = Vector2(169, 380)
+size = Vector2(240, 60)
+to_do_on_usage = "keybind"
+params = ["down"]
+text_to_put = "Down"
+
+[node name="button5" parent="interface_handler" instance=ExtResource("2_qydcb")]
+position = Vector2(169, 480)
+size = Vector2(240, 60)
+to_do_on_usage = "keybind"
+params = ["jump"]
+text_to_put = "Jump"
+
+[node name="button6" parent="interface_handler" instance=ExtResource("2_qydcb")]
+position = Vector2(169, 780)
+size = Vector2(240, 60)
+params = ["res://scenes/main_menu.tscn"]
+text_to_put = "Back"

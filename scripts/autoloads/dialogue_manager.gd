@@ -71,10 +71,11 @@ func modify_text(original_text : String):
 
 func find_key_via_input_action(input : String):
 	var input_keycode = ""
-	if InputMap.action_get_events(input)[0] is InputEventKey:
-		input_keycode = OS.get_keycode_string(InputMap.action_get_events(input)[0].physical_keycode)
-	else:
-		input_keycode = InputMap.action_get_events(input)[0].as_text()
+	if len(InputMap.action_get_events(input)) > 0:
+		if InputMap.action_get_events(input)[0] is InputEventKey:
+			input_keycode = OS.get_keycode_string(InputMap.action_get_events(input)[0].physical_keycode)
+		else:
+			input_keycode = InputMap.action_get_events(input)[0].as_text()
 	return input_keycode
 
 
