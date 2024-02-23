@@ -260,6 +260,13 @@ label_settings = SubResource("LabelSettings_gofkt")
 
 [node name="taxi_menu" type="Node2D" parent="user_interface"]
 
+[node name="bg" type="ColorRect" parent="user_interface/taxi_menu"]
+offset_left = 400.0
+offset_top = 80.0
+offset_right = 880.0
+offset_bottom = 360.0
+color = Color(0.623529, 0.686275, 0.811765, 1)
+
 [node name="interface_handler" parent="user_interface/taxi_menu" instance=ExtResource("5_ewune")]
 
 [node name="button" parent="user_interface/taxi_menu/interface_handler" instance=ExtResource("6_1bo1v")]

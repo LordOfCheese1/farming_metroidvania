@@ -10,7 +10,7 @@ var listening_for_input = false
 var illegal_inputs = [
 	"Escape",
 	"Enter",
-	"Alt",
+	"Alt"
 ]
 
 
@@ -63,6 +63,10 @@ func _process(_delta):
 		
 		if mouse_is_here() && !get_parent().disabled:
 			get_parent().jump_selection(self)
+		
+		if to_do_on_usage == "taxi_goal":
+			if get_parent().disabled:
+				is_selected = false
 
 
 func mouse_is_here():
@@ -79,3 +83,9 @@ func _on_use():
 			get_tree().quit()
 		"keybind":
 			listening_for_input = !listening_for_input
+		"taxi_goal":
+			taxi_response()
+
+func taxi_response():
+	if is_selected && Globals.gameplay_scene_active:
+		get_tree().current_scene.do_the_taxi()

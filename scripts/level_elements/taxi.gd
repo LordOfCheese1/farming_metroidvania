@@ -13,11 +13,16 @@ func _process(_delta):
 		if Input.is_action_just_pressed("jump"):
 			if player != null:
 				player.delayed_velocity.y = 700
-			if DialogueManager.active_dialogue_name == "":
+			if !get_tree().current_scene.taxi_menu_active:
+				get_tree().current_scene.toggle_taxi_interface(true)
 				player.hide()
 				$visuals/head.show()
 				player_is_here = false
 				Globals.freeze_player_movement = true
+
+
+func drive():
+	$anim.play("drive")
 
 
 func _on_body_entered(body):

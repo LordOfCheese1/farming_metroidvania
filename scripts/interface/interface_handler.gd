@@ -16,7 +16,8 @@ func _process(_delta):
 		current_object = get_children()[selection_index]
 	
 	if current_object != null:
-		current_object.is_selected = true
+		if !disabled:
+			current_object.is_selected = true
 		if Input.is_action_just_pressed("confirm"):
 			current_object.emit_signal("use")
 
