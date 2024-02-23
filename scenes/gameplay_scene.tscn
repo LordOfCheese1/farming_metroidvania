@@ -284,7 +284,6 @@ params = ["res://prefabs/rooms/006_city_greenhouse.tscn"]
 text_to_put = "Dingus"
 
 [node name="screen_transition" type="Node2D" parent="user_interface"]
-visible = false
 
 [node name="square" type="Polygon2D" parent="user_interface/screen_transition"]
 position = Vector2(640, 440)

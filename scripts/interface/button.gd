@@ -55,7 +55,7 @@ func _process(_delta):
 			if listening_for_input:
 				$display_text.text = "Hit a button..."
 				get_parent().disabled = true
-			else:
+			elif to_do_on_usage == "keybind":
 				get_parent().disabled = false
 		else:
 			$outline.visible = false
@@ -87,5 +87,5 @@ func _on_use():
 			taxi_response()
 
 func taxi_response():
-	if is_selected && Globals.gameplay_scene_active:
-		get_tree().current_scene.do_the_taxi()
+	if is_selected && Globals.gameplay_scene_active && !get_parent().disabled:
+		get_tree().current_scene.do_the_taxi(params[0])

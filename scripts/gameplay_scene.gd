@@ -7,6 +7,8 @@ var door_to_look_for : int = -1
 var orig_polygon = PackedVector2Array([Vector2(0, -1), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0)])
 @export var dialogue_visible = false # don't actually change this in the editor, it's only here for anim to access
 var taxi_menu_active = false
+var current_taxi_goal = ""
+var room_to_be_swapped = false
 
 
 func _ready():
@@ -23,7 +25,8 @@ func _process(_delta):
 		for thing in fancy_stuff.get_children():
 			pass # taxis and loading onto save points here
 		# check if there's a new room, rearrange player and reset camera follow if so
-		if $active_room.get_child(0).name != current_scene_name:
+		if room_to_be_swapped:#$active_room.get_child(0).name != current_scene_name:
+			room_to_be_swapped = false
 			current_scene_name = $active_room.get_child(0).name
 			rearrange_player()
 			$camera.follow_path = NodePath()
@@ -43,7 +46,21 @@ func rearrange_player(door_is_up = false):
 		player.get_parent().remove_child(player)
 		player_new_parent.add_child(player)
 		# look for door with fitting ID and put the player there, do nothing if no door is found
-		for door in $active_room.get_child(0).get_node("doors").get_children(): 
+		if door_to_look_for != -1:
+			find_door(door_is_up, player)
+		else:
+			find_taxi(player)
+
+func find_taxi(player):
+	if current_taxi_goal != "":
+		current_taxi_goal = ""
+		for thing in $active_room.get_child(0).get_node("fancy_stuff").get_children():
+			if thing.is_in_group("taxi"):
+				player.position = thing.position - Vector2(thing.dir * 240, 0)
+
+
+func find_door(door_is_up : bool, player):
+	for door in $active_room.get_child(0).get_node("doors").get_children(): 
 			if door.id == door_to_look_for:
 				if !door_is_up:
 					player.position = door.position + Vector2(0, (door.rect_size.y / 2) - 50)
@@ -85,6 +102,7 @@ func switch_room(new_room_path : String, door_to_send_to : int, door_sent_from =
 	else:
 		door_to_look_for = -1
 	Globals.freeze_player_movement = false
+	room_to_be_swapped = true
 	print("room swap: " + old_room_name + "-" + str(door_sent_from) + " to " + new_room.name + "-" + str(door_to_send_to))
 
 
@@ -98,13 +116,16 @@ func start_fade_out():
 
 
 func toggle_taxi_interface(on_off = true): # true to make it show up, false to make it not
+	print("taxi interface toggled - " + str(on_off))
 	$user_interface/taxi_menu.visible = on_off
 	taxi_menu_active = on_off
 	$user_interface/taxi_menu/interface_handler.disabled = !on_off
 
 
-func do_the_taxi():
+func do_the_taxi(room : String):
+	current_taxi_goal = room
 	if $active_room.get_child_count() > 0:
 		for i in $active_room.get_child(0).get_node("fancy_stuff").get_children():
 			if i.is_in_group("taxi"):
-				pass
+				i.drive()
+				toggle_taxi_interface(false)
