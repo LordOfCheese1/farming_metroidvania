@@ -12,6 +12,7 @@ var is_near_npc = false
 var user_input = Vector2(0, 0)
 var weapon = null
 var dust_particle_cd = 0
+var prev_pos = Vector2(0, 0)
 
 var jump_sfx = preload("res://audio/sfx/player_jump.mp3")
 @export var dust_particle : PackedScene
@@ -26,6 +27,7 @@ func _ready():
 
 
 func _physics_process(delta):
+	prev_pos = global_position
 	if Globals.freeze_player_movement:
 		user_input = Vector2(0.0, 0.0)
 	
@@ -38,12 +40,6 @@ func _physics_process(delta):
 	velocity.x = lerp(velocity.x, user_input.x * speed, accel)
 	
 	if is_on_floor():
-		if abs(velocity.x) > speed * 0.5:
-			if dust_particle_cd > 0:
-				dust_particle_cd -= 1
-			else:
-				ParticleSystem.new_particle(dust_particle, global_position + Vector2(0, 63), -x_dir * 0.1)
-				dust_particle_cd = 4
 		has_released_jump = true
 		speed = 320.0
 		accel = 0.35
@@ -70,6 +66,14 @@ func _physics_process(delta):
 	
 	velocity += delayed_velocity
 	delayed_velocity = Vector2(0, 0)
+	
+	if is_on_floor():
+		if abs(velocity.x) > speed * 0.5:
+			if dust_particle_cd > 0:
+				dust_particle_cd -= 1
+			elif abs(global_position.y - prev_pos.y) < 3:
+				ParticleSystem.new_particle(dust_particle, global_position + Vector2(0, 63), -x_dir * 0.1)
+				dust_particle_cd = 4
 
 
 func _process(_delta):

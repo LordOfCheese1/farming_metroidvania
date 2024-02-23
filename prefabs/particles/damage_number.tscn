@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2cljo6phyrux"]
+
+[ext_resource type="Script" path="res://scripts/particles/damage_number.gd" id="1_8ibrc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qh2e8"]
+resource_local_to_scene = true
+font_size = 36
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[node name="damage_number" type="Node2D"]
+script = ExtResource("1_8ibrc")
+
+[node name="label" type="Label" parent="."]
+offset_left = -187.0
+offset_right = 187.0
+offset_bottom = 50.0
+pivot_offset = Vector2(187, 0)
+label_settings = SubResource("LabelSettings_qh2e8")
+horizontal_alignment = 1
+vertical_alignment = 1

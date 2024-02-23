@@ -42,8 +42,14 @@ to_do_on_usage = "keybind"
 params = ["jump"]
 text_to_put = "Jump"
 
+[node name="button7" parent="interface_handler" instance=ExtResource("2_qydcb")]
+position = Vector2(720, 80)
+size = Vector2(240, 60)
+to_do_on_usage = "toggle_fullscreen"
+text_to_put = "Windowed"
+
 [node name="button6" parent="interface_handler" instance=ExtResource("2_qydcb")]
-position = Vector2(169, 780)
+position = Vector2(169, 800)
 size = Vector2(240, 60)
 params = ["res://scenes/main_menu.tscn"]
 text_to_put = "Back"

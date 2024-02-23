@@ -5,6 +5,10 @@ var time = 0.0
 var velocity = Vector2(0, 0)
 
 
+func setup():
+	add_to_group("projectile")
+
+
 func projectile_update(delta : float):
 	position += velocity * delta
 	time += delta

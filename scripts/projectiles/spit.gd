@@ -4,6 +4,7 @@ extends "res://scripts/base_classes/projectile.gd"
 
 
 func _ready():
+	setup()
 	velocity.y = -700
 	$sprite.scale = Vector2(0, 0)
 

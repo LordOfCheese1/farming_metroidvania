@@ -33,6 +33,10 @@ func trigger_internal_hit():
 	emit_signal("hit")
 	current_damager.emit_signal("has_hit")
 	entity_node.hit()
+	var damage_number = load("res://prefabs/particles/damage_number.tscn").instantiate()
+	damage_number.damage = current_damager.damage
+	damage_number.position = global_position
+	get_tree().current_scene.get_node("active_room").get_child(0).get_node("particles").call_deferred("add_child", damage_number)
 	print("hit from " + current_damager.get_parent().name + " to " + get_node(entity).name + " - " + str(current_damager.damage) + " dmg")
 
 

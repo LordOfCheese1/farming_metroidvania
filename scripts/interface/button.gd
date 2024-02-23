@@ -3,7 +3,7 @@ extends "res://scripts/base_classes/interface_object.gd"
 
 @export var size = Vector2(40, 40)
 @export var colour : Color
-@export_enum("scene_switch", "quit", "keybind", "taxi_goal") var to_do_on_usage = "scene_switch"
+@export_enum("scene_switch", "quit", "keybind", "taxi_goal", "toggle_fullscreen") var to_do_on_usage = "scene_switch"
 @export var params = []
 @export var text_to_put : String
 var listening_for_input = false
@@ -17,6 +17,15 @@ var illegal_inputs = [
 func _ready():
 	$rect.size = size
 	$rect.color = colour
+	if !Engine.is_editor_hint():
+		if to_do_on_usage == "toggle_fullscreen":
+			match DisplayServer.window_get_mode():
+				DisplayServer.WINDOW_MODE_WINDOWED:
+					text_to_put = "Windowed"
+				DisplayServer.WINDOW_MODE_MAXIMIZED:
+					text_to_put = "Maximized"
+				DisplayServer.WINDOW_MODE_FULLSCREEN:
+					text_to_put = "Fullscreen"
 
 
 func _input(event):
@@ -85,6 +94,22 @@ func _on_use():
 			listening_for_input = !listening_for_input
 		"taxi_goal":
 			taxi_response()
+		"toggle_fullscreen":
+			update_window()
+
+
+func update_window():
+	match DisplayServer.window_get_mode():
+		DisplayServer.WINDOW_MODE_WINDOWED:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+			text_to_put = "Maximized"
+		DisplayServer.WINDOW_MODE_MAXIMIZED:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			text_to_put = "Fullscreen"
+		DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			text_to_put = "Windowed"
+
 
 func taxi_response():
 	if is_selected && Globals.gameplay_scene_active && !get_parent().disabled:

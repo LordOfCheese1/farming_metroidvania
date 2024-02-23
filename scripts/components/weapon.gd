@@ -7,8 +7,8 @@ var weapons_available = { # filename : quantity, -1 is infite
 	"shovel" : -1,
 	"seeds_carrot" : 5,
 	"seeds_melon" : 10,
-	"carrot" : 10,
-	"melon" : 10
+	"carrot" : 100,
+	"melon" : 100
 }
 signal melee_used
 signal throw_used

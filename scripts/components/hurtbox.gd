@@ -11,3 +11,20 @@ func _ready():
 
 func ignore(tag_to_be_ignored : String):
 	ignore_in_detection.append(tag_to_be_ignored)
+
+
+func _on_area_entered(area):
+	if area.is_in_group("hurtbox"):
+		if area.get_parent().is_in_group("projectile"):
+			var speed = abs(area.get_parent().velocity.x) + abs(area.get_parent().velocity.y)
+			area.get_parent().velocity = (area.get_parent().global_position - get_parent().global_position).normalized() * speed * 1.2
+			area.ignore_in_detection = []
+			area.damage = area.damage + damage
+			if Globals.gameplay_scene_active:
+				get_tree().current_scene.get_node("camera").zoom = Vector2(1.3, 1.3)
+			ParticleSystem.new_circle(load("res://prefabs/particles/particle_parry.tscn"), area.global_position, 12, 80)
+			var damage_number = load("res://prefabs/particles/damage_number.tscn").instantiate()
+			damage_number.damage = area.damage
+			damage_number.position = global_position
+			get_tree().current_scene.get_node("active_room").get_child(0).get_node("particles").call_deferred("add_child", damage_number)
+			print("parry")

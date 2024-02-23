@@ -2,7 +2,7 @@ extends Node2D
 
 var tracklist = {
 	# [path in res://, intro ends at, song ends at]
-	"menu" : [load("res://audio/music/menu.mp3"), 0.0, 24.0],
+	"menu" : [load("res://audio/music/menu.mp3"), 0.0, 27.4],
 	"coolsville" : [load("res://audio/music/coolsville.mp3"), 3.0, 48.01]
 }
 var current_loop_start : float = 0.0

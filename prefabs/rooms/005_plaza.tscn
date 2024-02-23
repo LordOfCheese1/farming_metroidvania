@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b7kfyi5euiggg"]
+[gd_scene load_steps=5 format=3 uid="uid://b7kfyi5euiggg"]
 
 [ext_resource type="PackedScene" uid="uid://dft2poo3r6nx4" path="res://prefabs/bases/room.tscn" id="1_exet8"]
+[ext_resource type="PackedScene" uid="uid://2h2m14p18e2" path="res://prefabs/level_elements/save_point.tscn" id="2_36140"]
 [ext_resource type="PackedScene" uid="uid://msxebsg1p55h" path="res://prefabs/level_elements/moving_platform.tscn" id="2_q3uer"]
 [ext_resource type="PackedScene" uid="uid://bwgc76hbpm0dp" path="res://prefabs/level_elements/door.tscn" id="3_0a4dq"]
 
@@ -8,6 +9,9 @@
 top_left = Vector2i(0, -1120)
 has_plants = null
 music = "coolsville"
+
+[node name="save_point" parent="fancy_stuff" index="0" instance=ExtResource("2_36140")]
+position = Vector2(886, 320)
 
 [node name="moving_platform" parent="stuff" index="0" instance=ExtResource("2_q3uer")]
 position = Vector2(320, 860)

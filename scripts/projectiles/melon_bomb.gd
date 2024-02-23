@@ -6,6 +6,7 @@ var self_destruct = false
 
 
 func _ready():
+	setup()
 	velocity = velocity * 800
 
 
