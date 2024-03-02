@@ -2,6 +2,8 @@ extends Node2D
 
 var gameplay_scene_active = false
 var player_pos = Vector2(0, 0)
+var player_max_health : float = 10.0
+var player_health : float = 10.0
 var remaining_pause = 0
 var freeze_player_movement = false
 

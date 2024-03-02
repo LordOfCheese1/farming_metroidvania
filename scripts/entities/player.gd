@@ -63,6 +63,8 @@ func _physics_process(delta):
 	
 	hand_attack_rot = lerp(hand_attack_rot, 0.0, 0.1)
 	Globals.player_pos = position
+	Globals.player_max_health = max_hp
+	Globals.player_health = hp
 	
 	velocity += delayed_velocity
 	delayed_velocity = Vector2(0, 0)
@@ -124,3 +126,8 @@ func _on_weapon_melee_used():
 
 func _on_weapon_throw_used():
 	hand_attack_rot = -40
+
+
+func _on_hitbox_hit():
+	if Globals.gameplay_scene_active:
+		get_tree().current_scene.player_hit()

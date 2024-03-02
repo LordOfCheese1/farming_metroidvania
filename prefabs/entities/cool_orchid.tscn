@@ -1,0 +1,170 @@
+[gd_scene load_steps=14 format=3 uid="uid://kf2ogco83tq6"]
+
+[ext_resource type="Script" path="res://scripts/entities/cool_orchid.gd" id="1_8gwom"]
+[ext_resource type="PackedScene" uid="uid://mvqugiq4q423" path="res://prefabs/projectiles/spit.tscn" id="2_3y4rx"]
+[ext_resource type="Texture2D" uid="uid://1tqa3gfryxvo" path="res://textures/entities/orchid/head.png" id="2_fc6d4"]
+[ext_resource type="PackedScene" uid="uid://b17t7pw2j4sb0" path="res://prefabs/projectiles/spore.tscn" id="3_8aqql"]
+[ext_resource type="Texture2D" uid="uid://4pxhtfk38chl" path="res://textures/entities/orchid/stem.png" id="3_jykd1"]
+[ext_resource type="Texture2D" uid="uid://cksq3sgtbikx7" path="res://textures/entities/orchid/leaf_right.png" id="4_4q6or"]
+[ext_resource type="PackedScene" uid="uid://bwoh31pr8453m" path="res://prefabs/projectiles/vine.tscn" id="4_sifpo"]
+[ext_resource type="Texture2D" uid="uid://cehhjt0x4xhp5" path="res://textures/entities/orchid/leaf_left.png" id="5_hg2k8"]
+[ext_resource type="PackedScene" uid="uid://byuhphggfblsp" path="res://prefabs/components/hitbox.tscn" id="6_gr05n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1o6e3"]
+size = Vector2(204, 123)
+
+[sub_resource type="Animation" id="Animation_0xds5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals/stem:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/stem/head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("visuals/stem/leaf_left:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("visuals/stem/leaf_right:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jek1u"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("visuals/stem:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, -0.0872665]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("visuals/stem/head:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0872665]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("visuals/stem/leaf_left:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.450625, 1),
+"update": 0,
+"values": [0.0, 0.191986]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("visuals/stem/leaf_right:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1.10957, 1),
+"update": 0,
+"values": [0.0, -0.0872665]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8prj3"]
+_data = {
+"RESET": SubResource("Animation_0xds5"),
+"idle": SubResource("Animation_jek1u")
+}
+
+[node name="cool_orchid" type="CharacterBody2D"]
+script = ExtResource("1_8gwom")
+spit = ExtResource("2_3y4rx")
+spore = ExtResource("3_8aqql")
+vine = ExtResource("4_sifpo")
+max_hp = 42.0
+blood_amt = 0
+
+[node name="visuals" type="Node2D" parent="."]
+
+[node name="stem" type="Sprite2D" parent="visuals"]
+texture = ExtResource("3_jykd1")
+offset = Vector2(0, -100)
+
+[node name="head" type="Sprite2D" parent="visuals/stem"]
+position = Vector2(0, -220)
+texture = ExtResource("2_fc6d4")
+offset = Vector2(0, -20)
+
+[node name="leaf_left" type="Sprite2D" parent="visuals/stem"]
+position = Vector2(-7, -120)
+texture = ExtResource("4_4q6or")
+offset = Vector2(-18, 0)
+flip_h = true
+
+[node name="leaf_right" type="Sprite2D" parent="visuals/stem"]
+position = Vector2(11, -120)
+texture = ExtResource("5_hg2k8")
+offset = Vector2(26, 0)
+flip_h = true
+
+[node name="hitbox" parent="." instance=ExtResource("6_gr05n")]
+position = Vector2(0, -234)
+entity = NodePath("..")
+ignore_tag = "evil"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_1o6e3")
+disabled = true
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8prj3")
+}

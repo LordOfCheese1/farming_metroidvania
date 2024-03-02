@@ -44,5 +44,5 @@ func emit_spit():
 
 
 func _on_hitbox_hit():
-	if hp < 1:
+	if hp <= 0:
 		call_deferred("free")

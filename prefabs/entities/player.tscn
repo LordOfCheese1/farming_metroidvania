@@ -713,8 +713,8 @@ _data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eubf6"]
-radius = 18.0
-height = 104.0
+radius = 14.0
+height = 84.0
 
 [sub_resource type="Theme" id="Theme_t1wv5"]
 default_font_size = 24
@@ -722,7 +722,7 @@ default_font_size = 24
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_40lhy")
 dust_particle = ExtResource("2_s1nm7")
-max_hp = 10.0
+max_hp = 15.0
 
 [node name="visuals" type="Node2D" parent="."]
 
@@ -785,7 +785,7 @@ ignore_tag = "player"
 max_immunity = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(0, 8)
+position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_eubf6")
 debug_color = Color(0.701961, 0, 0.670588, 0.419608)
 
@@ -813,3 +813,4 @@ shortcut_keys_enabled = false
 
 [connection signal="melee_used" from="visuals/arm_right/weapon" to="." method="_on_weapon_melee_used"]
 [connection signal="throw_used" from="visuals/arm_right/weapon" to="." method="_on_weapon_throw_used"]
+[connection signal="hit" from="hitbox" to="." method="_on_hitbox_hit"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://b17t7pw2j4sb0"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/spore.gd" id="1_p8f2y"]
+[ext_resource type="Texture2D" uid="uid://eiteaaqk5nb3" path="res://textures/projectiles/spore.png" id="2_odad1"]
+[ext_resource type="PackedScene" uid="uid://dyhlmh24wo8pd" path="res://prefabs/components/hurtbox.tscn" id="3_37a1h"]
+[ext_resource type="PackedScene" uid="uid://14a85qk2q6k4" path="res://prefabs/components/particle_over_time.tscn" id="4_4hqye"]
+[ext_resource type="PackedScene" uid="uid://754106cwwsb3" path="res://prefabs/particles/particle_spore.tscn" id="5_tw5hq"]
+
+[node name="spore" type="Area2D"]
+script = ExtResource("1_p8f2y")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_odad1")
+
+[node name="hurtbox" parent="." instance=ExtResource("3_37a1h")]
+damage = 2.0
+ignore_in_detection = ["evil"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hurtbox"]
+polygon = PackedVector2Array(28, 0, 15, -1, 1, -18, -18, -20, -26, -15, -25, -9, -23, -6, -29, -2, -23, 4, -29, 11, -27, 17, -4, 20, 29, 4)
+
+[node name="particle_over_time" parent="." instance=ExtResource("4_4hqye")]
+particle_to_add = ExtResource("5_tw5hq")
+time_between_spawns = 2
+
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="has_hit" from="hurtbox" to="." method="_on_hurtbox_has_hit"]

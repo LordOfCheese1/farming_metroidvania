@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://754106cwwsb3"]
+
+[ext_resource type="Script" path="res://scripts/particles/particle_spore.gd" id="1_uw1kx"]
+
+[node name="particle_spore" type="Node2D"]
+script = ExtResource("1_uw1kx")
+lifetime = 0.5
+
+[node name="shape" type="Polygon2D" parent="."]
+color = Color(0.639216, 0.717647, 0.333333, 1)
+polygon = PackedVector2Array(-23, 1, -4, -20, 16, -4, 12, 10, -7, 18)

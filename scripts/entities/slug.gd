@@ -32,7 +32,7 @@ func _process(_delta):
 
 func _on_hitbox_hit():
 	if (Globals.player_pos.x - position.x) != 0:
-			velocity.x = -(Globals.player_pos.x - position.x) / abs(Globals.player_pos.x - position.x) * 300
-			velocity.y = -100
-	if hp < 1:
+		velocity.x = -(Globals.player_pos.x - position.x) / abs(Globals.player_pos.x - position.x) * 300
+		velocity.y = -100
+	if hp <= 0:
 		call_deferred("free")

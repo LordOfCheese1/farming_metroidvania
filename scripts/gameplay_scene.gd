@@ -9,6 +9,9 @@ var orig_polygon = PackedVector2Array([Vector2(0, -1), Vector2(1, 0), Vector2(0,
 var taxi_menu_active = false
 var current_taxi_goal = ""
 var room_to_be_swapped = false
+var time = 0.0
+var player_has_been_hit = 0
+var pl_bar_points = []
 
 
 func _ready():
@@ -16,6 +19,9 @@ func _ready():
 	switch_room(starting_scene_path, 0)
 	transition_scale = 1092
 	toggle_taxi_interface(false)
+	
+	for i in range(8):
+		pl_bar_points.append($user_interface/player_healthbar/fill.polygon[i])
 
 
 func _process(_delta):
@@ -36,6 +42,13 @@ func _process(_delta):
 			set_camera()
 	
 	scale_transition()
+
+
+func _physics_process(delta):
+	time += delta
+	if player_has_been_hit > 0:
+		player_has_been_hit -= 1
+	adjust_player_healthbar()
 
 
 func rearrange_player(door_is_up = false):
@@ -129,3 +142,36 @@ func do_the_taxi(room : String):
 			if i.is_in_group("taxi"):
 				i.drive()
 				toggle_taxi_interface(false)
+
+
+func adjust_player_healthbar():
+	var fill = $user_interface/player_healthbar/fill
+	var value = clamp(Globals.player_health / Globals.player_max_health, 0, 1)
+	
+	if player_has_been_hit <= 0:
+		if value >= 0.9:
+			$user_interface/player_healthbar/smiley.frame = 0
+		elif value >= 0.55:
+			$user_interface/player_healthbar/smiley.frame = 1
+		elif value >= 0.3:
+			$user_interface/player_healthbar/smiley.frame = 2
+		else:
+			$user_interface/player_healthbar/smiley.frame = 3
+	else:
+		$user_interface/player_healthbar/smiley.frame = 4
+	
+	if value <= 0:
+		$user_interface/player_healthbar.hide()
+	else:
+		$user_interface/player_healthbar.show()
+	for i in range(8):
+		var wave = (sin(time * 3) + 1) * -1.5
+		fill.polygon[i] = lerp(fill.polygon[i], pl_bar_points[i] + Vector2(0, (1 - value) * 144 + wave), 0.1)
+
+
+func player_hit():
+	player_has_been_hit = 10
+
+
+func trigger_boss(music : String):
+	MusicManager.new_music(music)
