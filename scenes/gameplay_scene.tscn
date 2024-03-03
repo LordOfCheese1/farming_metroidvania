@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://cbx8hv5bdo6hp"]
+[gd_scene load_steps=20 format=3 uid="uid://cbx8hv5bdo6hp"]
 
 [ext_resource type="Script" path="res://scripts/gameplay_scene.gd" id="1_rdt4s"]
 [ext_resource type="PackedScene" uid="uid://c8wwihjlky3de" path="res://prefabs/entities/player.tscn" id="2_smcvs"]
 [ext_resource type="Script" path="res://scripts/level_elements/camera.gd" id="2_w1nua"]
 [ext_resource type="Texture2D" uid="uid://buoojl8a6dwpw" path="res://textures/portraits/fivepebbles.png" id="4_ea6mj"]
 [ext_resource type="Texture2D" uid="uid://1iqgy5dfv4j2" path="res://textures/interface/player_healthbar.png" id="4_gmlkk"]
+[ext_resource type="Texture2D" uid="uid://dueh30nurrnhw" path="res://textures/interface/boss_bar.png" id="4_yo7fc"]
 [ext_resource type="PackedScene" uid="uid://da3ddgwibmequ" path="res://prefabs/interface/interface_handler.tscn" id="5_ewune"]
 [ext_resource type="PackedScene" uid="uid://c3jbyoyt5qsdw" path="res://prefabs/interface/button.tscn" id="6_1bo1v"]
 [ext_resource type="Texture2D" uid="uid://rno238jv1lpj" path="res://textures/interface/health_smiley.png" id="6_ns2da"]
@@ -201,7 +202,6 @@ _data = {
 
 [node name="gameplay_scene" type="Node2D"]
 script = ExtResource("1_rdt4s")
-starting_scene_path = "res://prefabs/rooms/011_cerberus.tscn"
 transition_scale = 541.108
 
 [node name="player" parent="." instance=ExtResource("2_smcvs")]
@@ -215,6 +215,32 @@ follow_path = NodePath("../player")
 [node name="user_interface" type="CanvasLayer" parent="."]
 
 [node name="boss" type="Node2D" parent="user_interface"]
+
+[node name="boss_bar" type="Node2D" parent="user_interface"]
+
+[node name="fill" type="Line2D" parent="user_interface/boss_bar"]
+points = PackedVector2Array(324, 40, 956, 40)
+width = 40.0
+default_color = Color(0.596078, 0.133333, 0, 1)
+
+[node name="frame" type="Sprite2D" parent="user_interface/boss_bar"]
+position = Vector2(640, 40)
+texture = ExtResource("4_yo7fc")
+
+[node name="player_healthbar" type="Node2D" parent="user_interface"]
+
+[node name="fill" type="Polygon2D" parent="user_interface/player_healthbar"]
+color = Color(1, 0.14902, 0.54902, 1)
+polygon = PackedVector2Array(9, 16, 13, 25, 23, 32, 29, 34, 41, 34, 47, 32, 57, 25, 61, 16, 61, 141, 61, 148, 53, 158, 41, 163, 27, 163, 14, 155, 9, 145, 9, 139)
+
+[node name="outline" type="Sprite2D" parent="user_interface/player_healthbar"]
+position = Vector2(35, 85)
+texture = ExtResource("4_gmlkk")
+
+[node name="smiley" type="Sprite2D" parent="user_interface/player_healthbar"]
+position = Vector2(35, 93)
+texture = ExtResource("6_ns2da")
+hframes = 5
 
 [node name="dialogue_box" type="Node2D" parent="user_interface"]
 position = Vector2(0, -141)
@@ -261,21 +287,6 @@ offset_top = 837.0
 offset_right = 102.0
 offset_bottom = 873.0
 label_settings = SubResource("LabelSettings_gofkt")
-
-[node name="player_healthbar" type="Node2D" parent="user_interface"]
-
-[node name="fill" type="Polygon2D" parent="user_interface/player_healthbar"]
-color = Color(1, 0.14902, 0.54902, 1)
-polygon = PackedVector2Array(9, 16, 13, 25, 23, 32, 29, 34, 41, 34, 47, 32, 57, 25, 61, 16, 61, 141, 61, 148, 53, 158, 41, 163, 27, 163, 14, 155, 9, 145, 9, 139)
-
-[node name="outline" type="Sprite2D" parent="user_interface/player_healthbar"]
-position = Vector2(35, 85)
-texture = ExtResource("4_gmlkk")
-
-[node name="smiley" type="Sprite2D" parent="user_interface/player_healthbar"]
-position = Vector2(35, 93)
-texture = ExtResource("6_ns2da")
-hframes = 5
 
 [node name="taxi_menu" type="Node2D" parent="user_interface"]
 

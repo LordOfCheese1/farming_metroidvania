@@ -1,13 +1,13 @@
+res://prefabs/rooms
+res://scripts/level_elements
+res://prefabs/level_elements
 res://scripts/projectiles
 res://prefabs/projectiles
 res://scripts/particles
 res://scripts/base_classes
 res://prefabs/particles
-res://prefabs/rooms
 res://scripts/entities
 res://prefabs/entities
-res://scripts/level_elements
-res://prefabs/level_elements
 C:/Gamedev/Godot4/Exports/FarmingMetroid/web
 res://scripts/misc
 res://scenes

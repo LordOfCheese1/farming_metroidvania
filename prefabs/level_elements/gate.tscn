@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://clj8w6nhm141t"]
+
+[ext_resource type="Script" path="res://scripts/level_elements/gate.gd" id="1_tp1y6"]
+[ext_resource type="Texture2D" uid="uid://ceqiktdrm6pju" path="res://textures/level/gate.png" id="2_hw7w1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d25dc"]
+size = Vector2(120, 160)
+
+[sub_resource type="Animation" id="Animation_vqcqy"]
+resource_name = "close"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, -170), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_saxc8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -170)]
+}
+
+[sub_resource type="Animation" id="Animation_tdgs4"]
+resource_name = "open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -170)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7c88x"]
+_data = {
+"RESET": SubResource("Animation_saxc8"),
+"close": SubResource("Animation_vqcqy"),
+"open": SubResource("Animation_tdgs4")
+}
+
+[node name="gate" type="StaticBody2D"]
+script = ExtResource("1_tp1y6")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -170)
+texture = ExtResource("2_hw7w1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_d25dc")
+disabled = true
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7c88x")
+}

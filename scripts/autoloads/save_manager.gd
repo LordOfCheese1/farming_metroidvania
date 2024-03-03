@@ -3,7 +3,8 @@ extends Node2D
 var save_data = {
 	"finished_triggers" : [],
 	"broken_blocks" : [],
-	"plants" : {}
+	"plants" : {},
+	"permanent_enemy_deaths" : []
 }
 var session_data = {
 	"temporary_enemy_deaths" : []

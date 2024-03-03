@@ -10,6 +10,7 @@ func _ready():
 
 func _on_body_entered(body):
 	if body.is_in_group("player"):
+		body.hp = body.max_hp
 		if $thing.frame == 0:
 			ParticleSystem.new_circle(juice_particle, $thing.global_position, 16, 80)
 		$anim.play("spin")

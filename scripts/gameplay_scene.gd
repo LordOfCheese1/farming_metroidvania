@@ -12,6 +12,7 @@ var room_to_be_swapped = false
 var time = 0.0
 var player_has_been_hit = 0
 var pl_bar_points = []
+var current_boss = null
 
 
 func _ready():
@@ -49,6 +50,7 @@ func _physics_process(delta):
 	if player_has_been_hit > 0:
 		player_has_been_hit -= 1
 	adjust_player_healthbar()
+	adjust_boss_bar()
 
 
 func rearrange_player(door_is_up = false):
@@ -169,9 +171,27 @@ func adjust_player_healthbar():
 		fill.polygon[i] = lerp(fill.polygon[i], pl_bar_points[i] + Vector2(0, (1 - value) * 144 + wave), 0.1)
 
 
+func adjust_boss_bar():
+	var fill = $user_interface/boss_bar/fill
+	var value = 0
+	var wave = (sin(time * 2) + 1) * 2
+	if current_boss != null:
+		$user_interface/boss_bar.modulate.a = lerp($user_interface/boss_bar.modulate.a, 1.0, 0.2)
+		value = clamp(current_boss.hp / current_boss.max_hp, 0, 1)
+	else:
+		$user_interface/boss_bar.modulate.a = lerp($user_interface/boss_bar.modulate.a, 0.0, 0.2)
+	fill.points[1].x = lerp(fill.points[1].x, 324.0 + value * 632.0 + wave, 0.1)
+
+
 func player_hit():
 	player_has_been_hit = 10
 
 
-func trigger_boss(music : String):
+func trigger_boss(music : String, boss_node = null):
 	MusicManager.new_music(music)
+	if boss_node != null:
+		current_boss = boss_node
+
+
+func boss_done():
+	current_boss = null
