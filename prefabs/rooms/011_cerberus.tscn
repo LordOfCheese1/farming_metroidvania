@@ -34,3 +34,4 @@ position = Vector2(1320, 640)
 direction = "right"
 rect_size = Vector2(80, 160)
 id = 1
+new_room_path = "res://prefabs/rooms/012_hell.tscn"

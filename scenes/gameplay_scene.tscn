@@ -202,6 +202,7 @@ _data = {
 
 [node name="gameplay_scene" type="Node2D"]
 script = ExtResource("1_rdt4s")
+starting_scene_path = "res://prefabs/rooms/011_cerberus.tscn"
 transition_scale = 541.108
 
 [node name="player" parent="." instance=ExtResource("2_smcvs")]
