@@ -4,7 +4,8 @@ var tracklist = {
 	# [path in res://, intro ends at, song ends at]
 	"menu" : [load("res://audio/music/menu.mp3"), 0.0, 27.4],
 	"coolsville" : [load("res://audio/music/coolsville.mp3"), 3.0, 48.01],
-	"flowerboss" : [load("res://audio/music/flowerboss.mp3"), 10.28, 37.70]
+	"flowerboss" : [load("res://audio/music/flowerboss.mp3"), 10.28, 37.70],
+	"hell_on_earth" : [load("res://audio/music/hell_on_earth.mp3"), 3.42, 37.70]
 }
 var current_loop_start : float = 0.0
 var current_loop_end : float = 0.0

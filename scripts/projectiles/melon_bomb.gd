@@ -42,4 +42,5 @@ func effects_b():
 
 func _on_hurtbox_body_entered(body):
 	if body.is_in_group("player"):
+		body.is_grappling = true
 		body.velocity += (body.position - position) * 10

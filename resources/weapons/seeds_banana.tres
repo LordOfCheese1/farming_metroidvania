@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=3 format=3 uid="uid://eh7rmr5e4ect"]
+
+[ext_resource type="Script" path="res://scripts/resource_bases/weaponresource.gd" id="1_3vsr4"]
+[ext_resource type="Texture2D" uid="uid://cbq1575cbtupg" path="res://textures/weapons/seeds_banana.png" id="2_erwqt"]
+
+[resource]
+script = ExtResource("1_3vsr4")
+weapon_type = "seeds"
+texture = ExtResource("2_erwqt")
+default_rot = 45.0
+sprite_offset = Vector2(0, 0)
+melee_damage = 0
+seed_id = "banana"
+projectile_path = ""

@@ -2,6 +2,8 @@ extends Area2D
 
 @export var damage : float
 @export var ignore_in_detection = []
+@export var is_parriable = true
+@export var causes_parries = true
 signal has_hit
 signal has_parried
 
@@ -15,8 +17,8 @@ func ignore(tag_to_be_ignored : String):
 
 
 func _on_area_entered(area):
-	if area.is_in_group("hurtbox"):
-		if area.get_parent().is_in_group("projectile"):
+	if area.is_in_group("hurtbox") && causes_parries:
+		if area.get_parent().is_in_group("projectile") && area.is_parriable:
 			var speed = abs(area.get_parent().velocity.x) + abs(area.get_parent().velocity.y)
 			area.get_parent().velocity = (area.global_position - global_position).normalized() * speed * 1.2
 			area.ignore_in_detection = []

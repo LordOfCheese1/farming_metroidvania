@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c8wwihjlky3de"]
+[gd_scene load_steps=25 format=3 uid="uid://c8wwihjlky3de"]
 
 [ext_resource type="Script" path="res://scripts/entities/player.gd" id="1_40lhy"]
 [ext_resource type="Texture2D" uid="uid://lup5b3m3pif4" path="res://textures/entities/player/body.png" id="2_d5oke"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://bd8psg6hxbth2" path="res://resources/weapons/shovel.tres" id="6_in5t2"]
 [ext_resource type="Texture2D" uid="uid://cgt58pu81n3c6" path="res://textures/entities/player/arm_right.png" id="7_v45g7"]
 [ext_resource type="PackedScene" uid="uid://byuhphggfblsp" path="res://prefabs/components/hitbox.tscn" id="11_ihn44"]
+[ext_resource type="PackedScene" uid="uid://dyhlmh24wo8pd" path="res://prefabs/components/hurtbox.tscn" id="13_sff8t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_me6xc"]
 radius = 18.0
@@ -719,6 +720,9 @@ height = 84.0
 [sub_resource type="Theme" id="Theme_t1wv5"]
 default_font_size = 24
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xlk63"]
+size = Vector2(56, 133)
+
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_40lhy")
 dust_particle = ExtResource("2_s1nm7")
@@ -810,6 +814,17 @@ text = "$jump$ to interact."
 fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false
+
+[node name="grapple_hurtbox" parent="." instance=ExtResource("13_sff8t")]
+damage = 1.0
+ignore_in_detection = ["player", "grapple"]
+is_parriable = false
+causes_parries = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grapple_hurtbox"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_xlk63")
+debug_color = Color(0, 1, 0.25098, 0.419608)
 
 [connection signal="melee_used" from="visuals/arm_right/weapon" to="." method="_on_weapon_melee_used"]
 [connection signal="throw_used" from="visuals/arm_right/weapon" to="." method="_on_weapon_throw_used"]

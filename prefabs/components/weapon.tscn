@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dpw078e8a6hxy"]
+[gd_scene load_steps=6 format=3 uid="uid://dpw078e8a6hxy"]
 
 [ext_resource type="Script" path="res://scripts/components/weapon.gd" id="1_v25bc"]
 [ext_resource type="PackedScene" uid="uid://dyhlmh24wo8pd" path="res://prefabs/components/hurtbox.tscn" id="2_g1icr"]
+[ext_resource type="PackedScene" uid="uid://d4f8jd2kjb7gn" path="res://prefabs/projectiles/banana_hook.tscn" id="2_l30og"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eo766"]
 radius = 40.0
@@ -12,11 +13,12 @@ point_count = 3
 
 [node name="weapon" type="Node2D"]
 script = ExtResource("1_v25bc")
+grapple_hook = ExtResource("2_l30og")
 
 [node name="sprite" type="Sprite2D" parent="."]
 
 [node name="hurtbox" parent="." instance=ExtResource("2_g1icr")]
-ignore_in_detection = ["player"]
+ignore_in_detection = ["player", "melee"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2(37, 0)

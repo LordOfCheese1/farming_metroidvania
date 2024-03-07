@@ -2,7 +2,8 @@ extends Node2D
 
 var plant_table = { # id : max growth stage
 	"carrot" : 2,
-	"melon" : 3
+	"melon" : 3,
+	"banana" : 3
 }
 var plants_in_proximity = []
 var plant_tick_timer = 120

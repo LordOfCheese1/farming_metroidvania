@@ -7,4 +7,4 @@ process_mode = 3
 script = ExtResource("1_iro0l")
 
 [node name="music_player" type="AudioStreamPlayer" parent="."]
-volume_db = -14.0
+volume_db = -22.0

@@ -11,3 +11,4 @@ default_rot = 45.0
 sprite_offset = Vector2(10, 0)
 melee_damage = 0
 seed_id = "carrot"
+projectile_path = ""

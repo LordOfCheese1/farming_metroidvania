@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=3 format=3 uid="uid://b6gljs72q5tnl"]
+
+[ext_resource type="Script" path="res://scripts/resource_bases/weaponresource.gd" id="1_07eig"]
+[ext_resource type="Texture2D" uid="uid://jv3rr2cbammx" path="res://textures/projectiles/bananahook.png" id="2_xs43d"]
+
+[resource]
+script = ExtResource("1_07eig")
+weapon_type = "grappling_hook"
+texture = ExtResource("2_xs43d")
+default_rot = 135.0
+sprite_offset = Vector2(0, 0)
+melee_damage = 0
+seed_id = ""
+projectile_path = ""

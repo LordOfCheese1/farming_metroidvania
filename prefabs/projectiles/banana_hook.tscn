@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4f8jd2kjb7gn"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/banana_hook.gd" id="1_oaydh"]
+[ext_resource type="Texture2D" uid="uid://jv3rr2cbammx" path="res://textures/projectiles/bananahook.png" id="2_xhym8"]
+[ext_resource type="PackedScene" uid="uid://dyhlmh24wo8pd" path="res://prefabs/components/hurtbox.tscn" id="3_5b6p4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3lv60"]
+radius = 26.0192
+
+[node name="banana_hook" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_oaydh")
+
+[node name="line" type="Line2D" parent="."]
+points = PackedVector2Array(-79, 0, 0, 0)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="sprite" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_xhym8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3lv60")
+
+[node name="hurtbox" parent="." instance=ExtResource("3_5b6p4")]
+damage = 0.5
+ignore_in_detection = ["player", "grapple"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("CircleShape2D_3lv60")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="has_hit" from="hurtbox" to="." method="_on_hurtbox_has_hit"]

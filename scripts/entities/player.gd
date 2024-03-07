@@ -13,8 +13,12 @@ var user_input = Vector2(0, 0)
 var weapon = null
 var dust_particle_cd = 0
 var prev_pos = Vector2(0, 0)
+var is_grappling = false
+var has_done_grapple_hit = false
+var footstep_cd = 0
 
 var jump_sfx = preload("res://audio/sfx/player_jump.mp3")
+var footstep_sfx = preload("res://audio/sfx/player_footstep.mp3")
 @export var dust_particle : PackedScene
 
 
@@ -40,6 +44,7 @@ func _physics_process(delta):
 	velocity.x = lerp(velocity.x, user_input.x * speed, accel)
 	
 	if is_on_floor():
+		is_grappling = false
 		has_released_jump = true
 		speed = 320.0
 		accel = 0.35
@@ -47,7 +52,10 @@ func _physics_process(delta):
 			jump()
 	else:
 		speed = 360.0
-		accel = 0.1
+		if is_grappling && abs(velocity.x) > speed:
+			accel = 0.0
+		else:
+			accel = 0.1
 		if velocity.y < 0 && !has_released_jump:
 			if Input.is_action_just_released("jump") && !Globals.freeze_player_movement:
 				has_released_jump = true
@@ -73,9 +81,25 @@ func _physics_process(delta):
 		if abs(velocity.x) > speed * 0.5:
 			if dust_particle_cd > 0:
 				dust_particle_cd -= 1
-			elif abs(global_position.y - prev_pos.y) < 3:
-				ParticleSystem.new_particle(dust_particle, global_position + Vector2(0, 63), -x_dir * 0.1)
-				dust_particle_cd = 4
+			else:
+				if abs(global_position.y - prev_pos.y) < 3:
+					ParticleSystem.new_particle(dust_particle, global_position + Vector2(0, 63), -x_dir * 0.1)
+					dust_particle_cd = 4
+			if footstep_cd > 0:
+				footstep_cd -= 1
+			else:
+				footstep_cd = 15
+				SoundManager.new_sound(footstep_sfx, randf_range(0.9, 1.1))
+	
+	if abs(velocity.x) > speed * 2:
+		if !has_done_grapple_hit:
+			$grapple_hurtbox/CollisionShape2D.disabled = false
+			has_done_grapple_hit = true
+		else:
+			$grapple_hurtbox/CollisionShape2D.disabled = true
+		$hitbox.immunity = $hitbox.max_immunity
+	else:
+		$grapple_hurtbox/CollisionShape2D.disabled = true
 
 
 func _process(_delta):
