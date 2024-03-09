@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://btk46oeimy5yj"]
+
+[ext_resource type="Script" path="res://scripts/particles/particle_magic.gd" id="1_67e8j"]
+[ext_resource type="Texture2D" uid="uid://bw08y2dh7nhbu" path="res://textures/fx/magic.png" id="2_8r546"]
+
+[node name="particle_magic" type="Node2D"]
+script = ExtResource("1_67e8j")
+lifetime = 0.8
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_8r546")

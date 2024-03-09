@@ -63,8 +63,9 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-	$visuals/arm_right.look_at(get_global_mouse_position())
-	$visuals/arm_right.rotation_degrees = $visuals/arm_right.rotation_degrees - 45 + hand_attack_rot
+	if hp > 0:
+		$visuals/arm_right.look_at(get_global_mouse_position())
+		$visuals/arm_right.rotation_degrees = $visuals/arm_right.rotation_degrees - 45 + hand_attack_rot
 	
 	if is_jumping > 0:
 		is_jumping -= delta
@@ -94,12 +95,19 @@ func _physics_process(delta):
 	if abs(velocity.x) > speed * 2:
 		if !has_done_grapple_hit:
 			$grapple_hurtbox/CollisionShape2D.disabled = false
+			$grapple_hurtbox.damage = snapped(abs(velocity.x) / (speed * 1.5), 0.2)
 			has_done_grapple_hit = true
 		else:
 			$grapple_hurtbox/CollisionShape2D.disabled = true
 		$hitbox.immunity = $hitbox.max_immunity
 	else:
 		$grapple_hurtbox/CollisionShape2D.disabled = true
+	
+	if Globals.reset_health:
+		Globals.reset_health = false
+		hp = max_hp
+		Globals.player_health = hp
+		Globals.freeze_player_movement = false
 
 
 func _process(_delta):
@@ -121,17 +129,30 @@ func _process(_delta):
 	$debug_velocity.set_point_position(1, velocity * 0.5)
 	$debug_velocity/label.text = str(Vector2i(snapped(velocity.x, 1.0), snapped(velocity.y, 1.0)))
 	
-	if is_on_floor():
-		if abs(velocity.x) > speed * 0.25:
-			$anim.play("walk")
+	if hp > 0:
+		$hitbox/CollisionShape2D.disabled = false
+		$visuals/arm_right/weapon.show()
+		if is_on_floor():
+			if abs(velocity.x) > speed * 0.25:
+				$anim.play("walk")
+			else:
+				$anim.play("idle")
 		else:
-			$anim.play("idle")
+			if is_jumping <= 0:
+				$anim.play("fall")
 	else:
-		if is_jumping <= 0:
-			$anim.play("fall")
+		$hitbox/CollisionShape2D.disabled = true
+		$visuals/arm_right/weapon.hide()
+		velocity.y = 1
+		if $visuals.modulate.a > 0.5:
+			$anim.play("death")
 	
-	if get_global_mouse_position().x - position.x != 0:
+	if get_global_mouse_position().x - position.x != 0 && hp > 0:
 		$visuals.scale.x = (get_global_mouse_position().x - position.x) / abs((get_global_mouse_position().x - position.x))
+
+
+func start_death():
+	get_tree().current_scene.player_death()
 
 
 func jump():

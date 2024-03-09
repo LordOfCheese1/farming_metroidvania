@@ -16,4 +16,6 @@ func _on_body_entered(body):
 		$anim.play("spin")
 		$thing.frame = 1
 		SaveManager.session_data["temporary_enemy_deaths"] = []
+		SaveManager.save_data["current_room_name"] = get_tree().current_scene.get_node("active_room").get_child(0).scene_file_path
+		SaveManager.save_data["save_point_name"] = name
 		SaveManager.save_to_disk()

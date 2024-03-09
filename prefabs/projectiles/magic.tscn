@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://866hq1klodqm"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/magic.gd" id="1_ettm6"]
+[ext_resource type="Texture2D" uid="uid://bw0w0iemucq14" path="res://textures/projectiles/magic.png" id="2_l7jxq"]
+[ext_resource type="PackedScene" uid="uid://14a85qk2q6k4" path="res://prefabs/components/particle_over_time.tscn" id="3_s20xk"]
+[ext_resource type="PackedScene" uid="uid://btk46oeimy5yj" path="res://prefabs/particles/particle_magic.tscn" id="4_vlapk"]
+[ext_resource type="PackedScene" uid="uid://dyhlmh24wo8pd" path="res://prefabs/components/hurtbox.tscn" id="5_u6tih"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c1gfk"]
+radius = 19.0263
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f21b4"]
+size = Vector2(1000, 1000)
+
+[node name="magic" type="Area2D"]
+script = ExtResource("1_ettm6")
+that_particle = ExtResource("4_vlapk")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_l7jxq")
+offset = Vector2(-10, 0)
+
+[node name="particle_over_time" parent="." instance=ExtResource("3_s20xk")]
+particle_to_add = ExtResource("4_vlapk")
+time_between_spawns = 3
+
+[node name="hurtbox" parent="." instance=ExtResource("5_u6tih")]
+collision_layer = 3
+collision_mask = 3
+damage = 2.0
+ignore_in_detection = ["evil"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource("CircleShape2D_c1gfk")
+
+[node name="check_for_devil" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="check_for_devil"]
+shape = SubResource("RectangleShape2D_f21b4")
+disabled = true
+
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="has_parried" from="hurtbox" to="." method="_on_hurtbox_has_parried"]
+[connection signal="body_entered" from="check_for_devil" to="." method="_on_check_for_devil_body_entered"]

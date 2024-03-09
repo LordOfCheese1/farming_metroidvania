@@ -1,14 +1,15 @@
-res://scripts/entities
+res://scripts/projectiles
 res://scripts/base_classes
+res://prefabs/projectiles
+C:/Gamedev/Godot4/farming_metroidvania
+res://scripts/particles
+res://prefabs/particles
+res://scripts/entities
 res://prefabs/entities
 res://resources/weapons
-res://scripts/projectiles
-res://prefabs/projectiles
 res://prefabs/rooms
 res://scripts/level_elements
 res://prefabs/level_elements
-res://scripts/particles
-res://prefabs/particles
 C:/Gamedev/Godot4/Exports/FarmingMetroid/web
 res://scripts/misc
 res://scenes
@@ -19,4 +20,3 @@ res://prefabs/components
 res://prefabs/autoloads
 res://scripts/autoloads
 res://prefabs
-res://prefabs/bases

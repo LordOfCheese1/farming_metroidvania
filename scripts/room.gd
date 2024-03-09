@@ -10,8 +10,11 @@ extends Node2D
 func _ready():
 	if !Engine.is_editor_hint():
 		$editor.call_deferred("free")
-		if music != "":
+		if music != "" && scene_file_path != "res://prefabs/rooms/000_beginning.tscn":
 			MusicManager.new_music(music)
+		elif scene_file_path == "res://prefabs/rooms/000_beginning.tscn":
+			if !SaveManager.save_data["coolsville_music_done"]:
+				MusicManager.new_music(music)
 
 
 func _process(_delta):

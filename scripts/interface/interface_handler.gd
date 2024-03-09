@@ -14,6 +14,7 @@ func _process(_delta):
 	
 	if get_child_count() > 0:
 		current_object = get_children()[selection_index]
+		
 	
 	if current_object != null:
 		if !disabled:

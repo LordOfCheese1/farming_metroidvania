@@ -26,9 +26,13 @@ func _on_area_entered(area):
 			if Globals.gameplay_scene_active:
 				get_tree().current_scene.get_node("camera").zoom = Vector2(1.1, 1.1)
 			ParticleSystem.new_circle(load("res://prefabs/particles/particle_parry.tscn"), area.global_position, 12, 80)
-			var damage_number = load("res://prefabs/particles/damage_number.tscn").instantiate()
-			damage_number.damage = area.damage
-			damage_number.position = global_position
-			get_tree().current_scene.get_node("active_room").get_child(0).get_node("particles").call_deferred("add_child", damage_number)
+			do_damage_number(area)
 			area.emit_signal("has_parried")
 			print("parry")
+
+
+func do_damage_number(proj):
+	var damage_number = load("res://prefabs/particles/damage_number.tscn").instantiate()
+	damage_number.damage = proj.damage
+	damage_number.position = global_position
+	get_tree().current_scene.get_node("active_room").get_child(0).get_node("particles").call_deferred("add_child", damage_number)

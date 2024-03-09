@@ -168,6 +168,7 @@ script = ExtResource("1_jqp2v")
 visible = false
 position = Vector2(22, -16)
 texture = ExtResource("1_de85i")
+hframes = 2
 
 [node name="hat" type="Sprite2D" parent="visuals/head"]
 position = Vector2(-2, -10)

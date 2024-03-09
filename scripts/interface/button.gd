@@ -19,13 +19,10 @@ func _ready():
 	$rect.color = colour
 	if !Engine.is_editor_hint():
 		if to_do_on_usage == "toggle_fullscreen":
-			match DisplayServer.window_get_mode():
-				DisplayServer.WINDOW_MODE_WINDOWED:
-					text_to_put = "Windowed"
-				DisplayServer.WINDOW_MODE_MAXIMIZED:
-					text_to_put = "Maximized"
-				DisplayServer.WINDOW_MODE_FULLSCREEN:
-					text_to_put = "Fullscreen"
+			if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+				text_to_put = "Fullscreen"
+			else:
+				text_to_put = "Windowed"
 
 
 func _input(event):
@@ -89,7 +86,8 @@ func _on_use():
 		"scene_switch":
 			get_tree().change_scene_to_file(params[0])
 		"quit":
-			get_tree().quit()
+			if OS.get_name() != "Web":
+				get_tree().quit()
 		"keybind":
 			listening_for_input = !listening_for_input
 		"taxi_goal":
@@ -99,16 +97,15 @@ func _on_use():
 
 
 func update_window():
-	match DisplayServer.window_get_mode():
-		DisplayServer.WINDOW_MODE_WINDOWED:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
-			text_to_put = "Maximized"
-		DisplayServer.WINDOW_MODE_MAXIMIZED:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-			text_to_put = "Fullscreen"
-		DisplayServer.WINDOW_MODE_FULLSCREEN:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-			text_to_put = "Windowed"
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		print("SET IT TO WINDOWED")
+		text_to_put = "Windowed"
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		DisplayServer.window_set_size(Vector2i(1280, 880))
+	else:
+		print("SET IT TO FULLSCREEN")
+		text_to_put = "Fullscreen"
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 
 func taxi_response():

@@ -192,6 +192,20 @@ tracks/2/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finish_fade_out"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wnjrn"]
 _data = {
@@ -202,7 +216,8 @@ _data = {
 
 [node name="gameplay_scene" type="Node2D"]
 script = ExtResource("1_rdt4s")
-transition_scale = 541.108
+starting_scene_path = "res://prefabs/rooms/012_hell.tscn"
+transition_scale = 1092.0
 
 [node name="player" parent="." instance=ExtResource("2_smcvs")]
 

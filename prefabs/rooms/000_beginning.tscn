@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://dnc45jfhhdbay" path="res://prefabs/level_elements/trigger.tscn" id="3_1ilku"]
 
 [node name="000-beginning" instance=ExtResource("1_q5dt4")]
-has_plants = null
 music = "nothing"
 
 [node name="tilemap" parent="." index="8"]

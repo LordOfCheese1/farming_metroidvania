@@ -26,5 +26,6 @@ func _on_trigger_triggered():
 	get_node(light_1).show()
 	get_node(light_2).show()
 	get_node(the_buildings).show()
+	SaveManager.save_data["coolsville_music_done"] = true
 	the_noise_real.call_deferred("free")
 	call_deferred("free")

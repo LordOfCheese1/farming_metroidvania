@@ -22,7 +22,9 @@ func _physics_process(_delta):
 				Globals.freeze_player_movement = true
 	else:
 		if DialogueManager.active_dialogue_name == "":
-			Globals.freeze_player_movement = false
+			if player != null:
+				if player.hp > 0:
+					Globals.freeze_player_movement = false
 			DialogueManager.discard_dialogue()
 
 

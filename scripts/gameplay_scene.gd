@@ -17,10 +17,10 @@ var current_boss = null
 
 func _ready():
 	add_to_group("gameplay")
-	switch_room(starting_scene_path, 0)
-	transition_scale = 1092
+	SaveManager.load_from_disk()
 	toggle_taxi_interface(false)
-	
+	reload()
+	transition_scale = 1092
 	for i in range(8):
 		pl_bar_points.append($user_interface/player_healthbar/fill.polygon[i])
 
@@ -28,9 +28,6 @@ func _ready():
 func _process(_delta):
 	# check if any room is present at all
 	if $active_room.get_child_count() > 0:
-		var fancy_stuff = $active_room.get_child(0).get_node("fancy_stuff")
-		for thing in fancy_stuff.get_children():
-			pass # taxis and loading onto save points here
 		# check if there's a new room, rearrange player and reset camera follow if so
 		if room_to_be_swapped:#$active_room.get_child(0).name != current_scene_name:
 			room_to_be_swapped = false
@@ -53,6 +50,14 @@ func _physics_process(delta):
 	adjust_boss_bar()
 
 
+func reload():
+	starting_scene_path = SaveManager.save_data["current_room_name"]
+	if SaveManager.save_data["save_point_name"] == "":
+		switch_room(starting_scene_path, 0)
+	else:
+		switch_room(starting_scene_path, -2)
+
+
 func rearrange_player(door_is_up = false):
 	var player = get_node_or_null("player")
 	if player != null:
@@ -61,10 +66,13 @@ func rearrange_player(door_is_up = false):
 		player.get_parent().remove_child(player)
 		player_new_parent.add_child(player)
 		# look for door with fitting ID and put the player there, do nothing if no door is found
-		if door_to_look_for != -1:
+		if door_to_look_for > -1:
 			find_door(door_is_up, player)
-		else:
+		elif door_to_look_for == -1: # taxi
 			find_taxi(player)
+		elif door_to_look_for == -2: # save point
+			find_save_point(SaveManager.save_data["save_point_name"], player)
+
 
 func find_taxi(player):
 	if current_taxi_goal != "":
@@ -81,6 +89,12 @@ func find_door(door_is_up : bool, player):
 					player.position = door.position + Vector2(0, (door.rect_size.y / 2) - 50)
 				else:
 					player.position = door.position
+
+
+func find_save_point(save_point_name : String, player):
+	for thing in $active_room.get_child(0).get_node("fancy_stuff").get_children():
+		if thing.is_in_group("save_point") && thing.name == save_point_name:
+			player.position = thing.position - Vector2(120, 60)
 
 
 func set_camera():
@@ -132,6 +146,13 @@ func start_fade_out():
 
 func toggle_taxi_interface(on_off = true): # true to make it show up, false to make it not
 	print("taxi interface toggled - " + str(on_off))
+	var i = 0
+	for key in SaveManager.save_data["unlocked_taxis"].keys():
+		if SaveManager.save_data["unlocked_taxis"][key]:
+			$user_interface/taxi_menu/interface_handler.get_child(i).show()
+		else:
+			$user_interface/taxi_menu/interface_handler.get_child(i).hide()
+		i += 1
 	$user_interface/taxi_menu.visible = on_off
 	taxi_menu_active = on_off
 	$user_interface/taxi_menu/interface_handler.disabled = !on_off
@@ -183,8 +204,20 @@ func adjust_boss_bar():
 	fill.points[1].x = lerp(fill.points[1].x, 324.0 + value * 632.0 + wave, 0.1)
 
 
+func player_death():
+	start_fade_out()
+
+
 func player_hit():
 	player_has_been_hit = 10
+
+
+func finish_fade_out():
+	if Globals.player_health <= 0:
+		Globals.reset_health = true
+		Globals.player_health = Globals.player_max_health
+		get_node("camera").zoom = Vector2(1, 1)
+		reload()
 
 
 func trigger_boss(music : String, boss_node = null):
