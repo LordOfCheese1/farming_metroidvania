@@ -4,7 +4,6 @@ var orig_pos = Vector2(0, 0)
 var t = 0.0
 var attacking = 0
 var attack_cd = 60
-var time = 0.0
 @export var magic_particle : PackedScene
 @export var magic_proj_scene : PackedScene
 
@@ -16,7 +15,6 @@ func _ready():
 
 
 func _physics_process(delta):
-	time += delta
 	if attacking <= 0:
 		t += delta
 		$anim.play("idle")
@@ -34,7 +32,7 @@ func _physics_process(delta):
 			get_tree().current_scene.get_node("active_room").get_child(0).get_node("projectiles").call_deferred("add_child", magic_proj)
 			$summoning_circle.modulate.a = 0.0
 	
-	position = orig_pos + Vector2(sin(t), cos(t)) * 200 + Vector2(0, sin(time * 3) * 80)
+	position = orig_pos + Vector2(sin(t), cos(t)) * 200
 	
 	if position.distance_to(Globals.player_pos) < 600:
 		if Globals.player_pos.x < position.x:
@@ -50,3 +48,6 @@ func _physics_process(delta):
 	else:
 		if attacking <= 0:
 			$summoning_circle.modulate.a = 0.0
+	
+	if hp <= 0:
+		call_deferred("free")

@@ -18,4 +18,5 @@ func _on_body_entered(body):
 		SaveManager.session_data["temporary_enemy_deaths"] = []
 		SaveManager.save_data["current_room_name"] = get_tree().current_scene.get_node("active_room").get_child(0).scene_file_path
 		SaveManager.save_data["save_point_name"] = name
+		body.save_weapons()
 		SaveManager.save_to_disk()

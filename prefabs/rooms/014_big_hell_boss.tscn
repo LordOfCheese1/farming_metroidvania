@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5v0xhsf2t40s"]
+
+[ext_resource type="PackedScene" uid="uid://dft2poo3r6nx4" path="res://prefabs/bases/room.tscn" id="1_knt20"]
+
+[node name="014-big_hell_boss" instance=ExtResource("1_knt20")]

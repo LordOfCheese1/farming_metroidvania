@@ -1,8 +1,5 @@
-dying and loading a save
-finish that one big room in area 1
-finish that other big room in area 2
-save unlocked taxis 
 apple
+SOUND EFFECTS
 Heavenly disgrace
 Make a little hellish gauntlet up to a boss
 come up with said boss
@@ -15,3 +12,4 @@ DECOR(A LOT OF IT)
 The final little escape section after the boss
 CREDITS(OR just a "thanks for playing" will do as well)
 Redo hell music because I dont like it(Use church organ, it's cool)
+Pause menu without the pause part

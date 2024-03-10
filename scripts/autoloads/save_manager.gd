@@ -11,6 +11,15 @@ var save_data = {
 	"unlocked_taxis" : {
 		"res://prefabs/rooms/006_city_greenhouse.tscn" : false,
 		"res://prefabs/rooms/013_hell_greenhouse.tscn" : false
+	},
+	"weapons" : {
+		"shovel" : -1,
+		"seeds_carrot" : 5,
+		"seeds_melon" : 0,
+		"seeds_banana" : 0,
+		"carrot" : 0,
+		"melon" : 0,
+		"banana" : 0
 	}
 }
 var session_data = {

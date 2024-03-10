@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bcj0xijitk121"]
+
+[ext_resource type="Script" path="res://scripts/entities/silly_flower.gd" id="1_eymam"]
+[ext_resource type="Texture2D" uid="uid://c8q3umlfo7xvh" path="res://textures/entities/sillyflower_head.png" id="2_iiuk6"]
+[ext_resource type="PackedScene" uid="uid://754106cwwsb3" path="res://prefabs/particles/particle_spore.tscn" id="2_o3du6"]
+[ext_resource type="PackedScene" uid="uid://b17t7pw2j4sb0" path="res://prefabs/projectiles/spore.tscn" id="3_cr4ms"]
+[ext_resource type="PackedScene" uid="uid://byuhphggfblsp" path="res://prefabs/components/hitbox.tscn" id="5_322gv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u7fvw"]
+radius = 24.5153
+
+[node name="silly_flower" type="CharacterBody2D"]
+script = ExtResource("1_eymam")
+spore_particle_scene = ExtResource("2_o3du6")
+spore_projectile_scene = ExtResource("3_cr4ms")
+max_hp = 10.0
+blood_amt = 0
+save_death_temporarily = true
+min_seed_drops = 2
+max_seed_drops = 2
+seed_to_drop_id = "seeds_banana"
+
+[node name="visuals" type="Node2D" parent="."]
+
+[node name="neck" type="Line2D" parent="visuals"]
+points = PackedVector2Array(0, 0, 80, 0)
+width = 4.0
+default_color = Color(0, 0, 0, 1)
+
+[node name="head" type="Sprite2D" parent="visuals"]
+position = Vector2(80, 0)
+texture = ExtResource("2_iiuk6")
+
+[node name="hitbox" parent="." instance=ExtResource("5_322gv")]
+position = Vector2(80, 0)
+entity = NodePath("..")
+ignore_tag = "evil"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_u7fvw")
+
+[connection signal="hit" from="hitbox" to="." method="_on_hitbox_hit"]

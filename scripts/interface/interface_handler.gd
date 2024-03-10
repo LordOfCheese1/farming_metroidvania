@@ -32,6 +32,9 @@ func cycle(dir : int = 1):
 		selection_index = get_child_count() - 1
 	if selection_index >= get_child_count():
 		selection_index = 0
+	
+	if !get_children()[selection_index].visible:
+		cycle(-dir)
 
 
 func jump_selection(object : Node2D):

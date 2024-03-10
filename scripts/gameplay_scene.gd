@@ -56,6 +56,7 @@ func reload():
 		switch_room(starting_scene_path, 0)
 	else:
 		switch_room(starting_scene_path, -2)
+	Globals.update_weapons = true
 
 
 func rearrange_player(door_is_up = false):

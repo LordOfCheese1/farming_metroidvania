@@ -67,7 +67,7 @@ func _process(_delta):
 			$outline.visible = false
 			listening_for_input = false
 		
-		if mouse_is_here() && !get_parent().disabled:
+		if mouse_is_here() && !get_parent().disabled && visible:
 			get_parent().jump_selection(self)
 		
 		if to_do_on_usage == "taxi_goal":

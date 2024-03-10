@@ -8,17 +8,22 @@ var active_grapple_hook = null
 var weapons_available = { # filename : quantity, -1 is infite
 	"shovel" : -1,
 	"seeds_carrot" : 5,
-	"seeds_melon" : 10,
-	"seeds_banana" : 100,
-	"carrot" : 100,
-	"melon" : 100,
-	"banana" : 100
+	"seeds_melon" : 0,
+	"seeds_banana" : 0,
+	"carrot" : 0,
+	"melon" : 0,
+	"banana" : 0
 }
 signal melee_used
 signal throw_used
 
 
 func _process(_delta):
+	if Globals.update_weapons:
+		Globals.update_weapons = false
+		for i in weapons_available.keys():
+			weapons_available[i] = SaveManager.save_data["weapons"][i]
+	
 	if weapon_resource != null:
 		$sprite.texture = weapon_resource.texture
 		$sprite.rotation_degrees = weapon_resource.default_rot
@@ -59,6 +64,8 @@ func use():
 			"grappling_hook":
 				grapple()
 		if weapons_available[weapons_available.keys()[current_weapon_index]] == 0:
+			
+			print(weapons_available.keys()[current_weapon_index])
 			cycle_weapons(1)
 		interface_update()
 

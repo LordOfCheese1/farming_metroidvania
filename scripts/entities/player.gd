@@ -165,6 +165,10 @@ func jump():
 		velocity.x = x_dir * 350.0
 
 
+func save_weapons():
+	SaveManager.save_data["weapons"] = $visuals/arm_right/weapon.weapons_available
+
+
 func _on_weapon_melee_used():
 	hand_attack_rot = 110.0
 

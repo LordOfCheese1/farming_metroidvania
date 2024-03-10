@@ -7,6 +7,11 @@ var player_health : float = 15.0
 var remaining_pause = 0
 var freeze_player_movement = false
 var reset_health = false
+var update_weapons = false
+
+
+func _ready():
+	print("Running on " + OS.get_name())
 
 
 func _physics_process(_delta):

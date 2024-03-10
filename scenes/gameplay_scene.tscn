@@ -325,8 +325,8 @@ text_to_put = "City greenhouse"
 position = Vector2(640, 280)
 size = Vector2(400, 80)
 to_do_on_usage = "taxi_goal"
-params = ["res://prefabs/rooms/006_city_greenhouse.tscn"]
-text_to_put = "Dingus"
+params = ["res://prefabs/rooms/013_hell_greenhouse.tscn"]
+text_to_put = "Hell greenhouse"
 
 [node name="screen_transition" type="Node2D" parent="user_interface"]
 

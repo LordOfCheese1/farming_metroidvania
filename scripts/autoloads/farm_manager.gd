@@ -6,7 +6,7 @@ var plant_table = { # id : max growth stage
 	"banana" : 3
 }
 var plants_in_proximity = []
-var plant_tick_timer = 120
+var plant_tick_timer = 400
 # name of the plant object, id for texture, growth stage
 
 func _physics_process(_delta):
@@ -17,7 +17,7 @@ func _physics_process(_delta):
 			if !active_room_parent.get_child(0).has_plants:
 				plant_tick_timer -= 1
 	if plant_tick_timer <= 0:
-		plant_tick_timer = 120
+		plant_tick_timer = 600
 		SaveManager.tick_plants()
 
 
