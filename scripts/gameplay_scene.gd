@@ -13,6 +13,7 @@ var time = 0.0
 var player_has_been_hit = 0
 var pl_bar_points = []
 var current_boss = null
+var flash_mod : float = 0.0
 
 
 func _ready():
@@ -48,6 +49,10 @@ func _physics_process(delta):
 		player_has_been_hit -= 1
 	adjust_player_healthbar()
 	adjust_boss_bar()
+	
+	$user_interface/white.color.a = flash_mod
+	if flash_mod > 0.0:
+		flash_mod -= 0.01
 
 
 func reload():

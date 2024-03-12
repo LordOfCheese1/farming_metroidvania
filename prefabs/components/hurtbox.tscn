@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyhlmh24wo8pd"]
+[gd_scene load_steps=3 format=3 uid="uid://dyhlmh24wo8pd"]
 
 [ext_resource type="Script" path="res://scripts/components/hurtbox.gd" id="1_t3ery"]
+[ext_resource type="AudioStream" uid="uid://bbhtgdoh1uw72" path="res://audio/sfx/parry.mp3" id="2_td3nx"]
 
 [node name="hurtbox" type="Area2D"]
 script = ExtResource("1_t3ery")
+parry_sfx = ExtResource("2_td3nx")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

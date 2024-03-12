@@ -8,6 +8,7 @@ var remaining_pause = 0
 var freeze_player_movement = false
 var reset_health = false
 var update_weapons = false
+var added_player_velocity = Vector2(0, 0)
 
 
 func _ready():

@@ -10,6 +10,7 @@
 top_left = Vector2i(0, -1760)
 has_plants = true
 music = "hell_on_earth"
+bg_colour = Color(0.196078, 0.0941176, 0.121569, 1)
 
 [node name="plant" parent="plants" index="0" instance=ExtResource("2_o22g7")]
 position = Vector2(160, 640)

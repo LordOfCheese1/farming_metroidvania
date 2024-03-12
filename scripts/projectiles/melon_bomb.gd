@@ -28,13 +28,13 @@ func _on_body_entered(body):
 		$anim.play("explode")
 
 
-func effects_a():
-	ParticleSystem.new_circle(shell_particle, global_position, 16, 40)
+func effects_a(mg : int = 1):
+	ParticleSystem.new_circle(shell_particle, global_position, 16 * mg, 40 * mg)
 	ParticleSystem.new_explosion("res://prefabs/particles/particle_melon_juice.tscn", global_position, 22, 0.0, 2 * PI, Vector2(0, -1))
 
 
-func effects_b():
-	ParticleSystem.new_circle(juice_particle, global_position, 16, 80)
+func effects_b(mg : int = 1):
+	ParticleSystem.new_circle(juice_particle, global_position, 16 * mg, 80 * mg)
 	ParticleSystem.new_explosion("res://prefabs/particles/particle_melon_juice.tscn", global_position, 22, 0.0, 2 * PI, Vector2(0, -1))
 	ParticleSystem.new_circle(juice_particle, global_position, 16, 160)
 	call_deferred("free")
@@ -44,3 +44,16 @@ func _on_hurtbox_body_entered(body):
 	if body.is_in_group("player"):
 		body.is_grappling = true
 		body.velocity += (body.position - position) * 10
+
+
+func _on_hurtbox_has_parried():
+	$hurtbox/CollisionShape2D.shape.radius *= 1.6
+	$hurtbox.damage *= 20
+	if Globals.gameplay_scene_active:
+		get_tree().current_scene.flash_mod = 1.0
+		get_tree().current_scene.get_node("camera").zoom = Vector2(1.9, 1.9)
+	effects_a(2)
+	effects_a(3)
+	effects_b(2)
+	effects_b(3)
+	Globals.added_player_velocity = (Globals.player_pos - (position + Vector2(0, 100))).normalized() * 5000

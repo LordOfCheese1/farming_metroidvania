@@ -4,6 +4,7 @@ extends Area2D
 @export var ignore_in_detection = []
 @export var is_parriable = true
 @export var causes_parries = true
+@export var parry_sfx : AudioStream
 signal has_hit
 signal has_parried
 
@@ -26,6 +27,7 @@ func _on_area_entered(area):
 			if Globals.gameplay_scene_active:
 				get_tree().current_scene.get_node("camera").zoom = Vector2(1.1, 1.1)
 			ParticleSystem.new_circle(load("res://prefabs/particles/particle_parry.tscn"), area.global_position, 12, 80)
+			SoundManager.new_sound(parry_sfx, randf_range(0.8, 1.1))
 			do_damage_number(area)
 			area.emit_signal("has_parried")
 			print("parry")

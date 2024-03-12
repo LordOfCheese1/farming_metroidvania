@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://clj8w6nhm141t" path="res://prefabs/level_elements/gate.tscn" id="3_p86kv"]
 
 [node name="011-cerberus" instance=ExtResource("1_wx2y3")]
+music = "coolsville"
+bg_colour = Color(0.290196, 0.262745, 0.313726, 1)
 
 [node name="cool_orchid" parent="entities" index="0" instance=ExtResource("2_60fjj")]
 position = Vector2(1011, 722)

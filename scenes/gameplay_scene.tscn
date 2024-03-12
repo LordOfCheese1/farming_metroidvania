@@ -328,6 +328,10 @@ to_do_on_usage = "taxi_goal"
 params = ["res://prefabs/rooms/013_hell_greenhouse.tscn"]
 text_to_put = "Hell greenhouse"
 
+[node name="white" type="ColorRect" parent="user_interface"]
+offset_right = 1280.0
+offset_bottom = 879.0
+
 [node name="screen_transition" type="Node2D" parent="user_interface"]
 
 [node name="square" type="Polygon2D" parent="user_interface/screen_transition"]

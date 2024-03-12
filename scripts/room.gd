@@ -5,6 +5,7 @@ extends Node2D
 @export var bottom_right = Vector2i(1280, 880)
 @export var has_plants = false
 @export var music : String
+@export var bg_colour = Color("303748")
 
 
 func _ready():
@@ -15,6 +16,7 @@ func _ready():
 		elif scene_file_path == "res://prefabs/rooms/000_beginning.tscn":
 			if !SaveManager.save_data["coolsville_music_done"]:
 				MusicManager.new_music(music)
+		RenderingServer.set_default_clear_color(Color(bg_colour))
 
 
 func _process(_delta):

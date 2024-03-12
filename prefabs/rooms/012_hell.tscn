@@ -8,6 +8,7 @@
 [node name="012_hell" instance=ExtResource("1_fajes")]
 bottom_right = Vector2i(4320, 3040)
 music = "hell_on_earth"
+bg_colour = Color(0.301961, 0.054902, 0.0823529, 1)
 
 [node name="save_point" parent="fancy_stuff" index="0" instance=ExtResource("2_5h74h")]
 position = Vector2(702, 720)
@@ -38,6 +39,7 @@ new_room_path = "res://prefabs/rooms/013_hell_greenhouse.tscn"
 position = Vector2(-40, 2080)
 rect_size = Vector2(80, 320)
 id = 2
+new_room_path = "res://prefabs/rooms/014_big_hell_boss.tscn"
 
 [node name="border_left" parent="editor" index="0"]
 points = PackedVector2Array(0, 0, 0, 3040)

@@ -1,7 +1,7 @@
 extends "res://scripts/base_classes/entity.gd"
 
 var neck_length : float = 120.0
-var shoot_cd : int = 0
+var shoot_cd : int = 80
 var attacking : int = 0
 var gun_is_ready = false
 @export var spore_particle_scene : PackedScene

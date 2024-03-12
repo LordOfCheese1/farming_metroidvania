@@ -163,3 +163,4 @@ disabled = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="has_parried" from="hurtbox" to="." method="_on_hurtbox_has_parried"]

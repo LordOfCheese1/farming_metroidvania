@@ -75,6 +75,9 @@ func _physics_process(delta):
 	Globals.player_max_health = max_hp
 	Globals.player_health = hp
 	
+	if Globals.added_player_velocity != Vector2(0, 0):
+		delayed_velocity += Globals.added_player_velocity
+		Globals.added_player_velocity = Vector2(0, 0)
 	velocity += delayed_velocity
 	delayed_velocity = Vector2(0, 0)
 	
@@ -120,7 +123,7 @@ func _process(_delta):
 		if velocity.y < 0 && !has_released_jump:
 			if Input.is_action_just_released("jump") && !Globals.freeze_player_movement:
 				has_released_jump = true
-				velocity.y = velocity.y / 2
+				velocity.y *= 0.5
 	
 	if Input.is_action_pressed("test"):
 		position = get_global_mouse_position()
