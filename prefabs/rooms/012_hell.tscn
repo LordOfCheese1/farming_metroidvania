@@ -1,14 +1,56 @@
-[gd_scene load_steps=5 format=3 uid="uid://dtrfm4aelbkub"]
+[gd_scene load_steps=7 format=3 uid="uid://dtrfm4aelbkub"]
 
 [ext_resource type="PackedScene" uid="uid://dft2poo3r6nx4" path="res://prefabs/bases/room.tscn" id="1_fajes"]
 [ext_resource type="PackedScene" uid="uid://2h2m14p18e2" path="res://prefabs/level_elements/save_point.tscn" id="2_5h74h"]
 [ext_resource type="PackedScene" uid="uid://bwgc76hbpm0dp" path="res://prefabs/level_elements/door.tscn" id="3_g53e6"]
 [ext_resource type="PackedScene" uid="uid://4u05ucvyy0dg" path="res://prefabs/entities/devil.tscn" id="3_qyfyl"]
 
+[sub_resource type="Gradient" id="Gradient_hfsw4"]
+colors = PackedColorArray(0.862745, 0.596078, 0, 0.670588, 1, 0.215686, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ev85"]
+gradient = SubResource("Gradient_hfsw4")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 16
+
 [node name="012_hell" instance=ExtResource("1_fajes")]
 bottom_right = Vector2i(4320, 3040)
 music = "hell_on_earth"
 bg_colour = Color(0.301961, 0.054902, 0.0823529, 1)
+
+[node name="gradient" type="Polygon2D" parent="parallax_bg/back" index="0"]
+position = Vector2(6, 64)
+scale = Vector2(1, 4.81647)
+texture = SubResource("GradientTexture2D_2ev85")
+polygon = PackedVector2Array(-42, -46, 4381, -38.9409, 4355, 529, -61, 537)
+
+[node name="hand" type="Polygon2D" parent="parallax_bg/mid" index="0"]
+position = Vector2(900, 423)
+scale = Vector2(0.5, 0.5)
+color = Color(0.266667, 0.027451, 0.0784314, 1)
+polygon = PackedVector2Array(682, 2452, 1123, 1824, 1020, 1641, 899, 1634, 729, 1556, 708, 1506, 768, 1514, 820, 1539, 786, 1346, 798, 1276, 823, 1307, 869, 1481, 932, 1286, 942, 1236, 974, 1342, 1006, 1446, 1038, 1444, 1072, 1330, 1120, 1258, 1149, 1301, 1148, 1498, 1123, 1583, 1324, 1822, 1260, 2652, 696, 2730)
+
+[node name="satan" type="Polygon2D" parent="parallax_bg/mid" index="1"]
+position = Vector2(720, 549)
+scale = Vector2(0.7, 0.7)
+color = Color(0.266667, 0.027451, 0.0784314, 1)
+polygon = PackedVector2Array(727, 1773, -41, 1764, 54, 1416, 16, 1272, -6.25006, 835, 107.5, 707.5, 200, 750, 257.5, 831.25, 238.75, 893.75, 216.25, 841.25, 160, 830, 131, 916, 145, 978.75, 187, 1058, 562, 1008, 635, 874, 573, 768, 423, 753, 428, 842, 481, 868, 450, 885, 382, 846, 374, 765, 433, 698, 546, 665, 665, 696, 743, 791, 755, 911, 731, 1001, 740, 1089, 727, 1203, 675, 1335)
+
+[node name="spike" type="Polygon2D" parent="parallax_bg/mid" index="2"]
+position = Vector2(-1078, -223)
+color = Color(0.266667, 0.027451, 0.0784314, 1)
+polygon = PackedVector2Array(3324, 2011, 3344, 1250, 3279, 1055, 3078, 866, 3103, 864, 3142, 879, 3419, 1028, 3621, 1288, 3823, 1861)
+
+[node name="mountains" type="Polygon2D" parent="parallax_bg/front" index="0"]
+position = Vector2(49, -570)
+color = Color(0.2, 0.027451, 0.0745098, 1)
+polygon = PackedVector2Array(-251, 2068, 249, 2120, 346, 2165, 438, 2294, 777, 2478, 1506, 2735, 1778, 2665, 2148, 2474, 2489, 2540, 2875, 2345, 3239, 2065, 3595, 1939, 4478, 1701, 4467, 3090, -272, 3153)
+
+[node name="wall" type="Polygon2D" parent="decor" index="0"]
+color = Color(0.231373, 0.0235294, 0.0588235, 1)
+polygon = PackedVector2Array(-61, 213, 248, 271, 590, 171, 711, 313, 724, 423, 785, 477, 796, 571, 771, 589, 748, 576, 735, 587, 749, 585, 768, 597, 757, 622, 770, 646, 796, 652, 780, 640, 777, 619, 809, 603, 835, 636, 835, 673, 813, 684, 828, 691, 862, 680, 876, 631, 856, 600, 848, 567, 1013, 535, 1061, 497, 1093, 434, 1152, 409, 1497, 267, 1766, 328, 1850, 423, 1934, 424, 2028, 508, 2105, 615, 2226, 618, 2307, 672, 2375, 738, 2389, 858, 2242, 893, -247, 937)
 
 [node name="save_point" parent="fancy_stuff" index="0" instance=ExtResource("2_5h74h")]
 position = Vector2(702, 720)

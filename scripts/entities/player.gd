@@ -81,6 +81,7 @@ func _physics_process(delta):
 	velocity += delayed_velocity
 	delayed_velocity = Vector2(0, 0)
 	
+	
 	if is_on_floor():
 		if abs(velocity.x) > speed * 0.5:
 			if dust_particle_cd > 0:
