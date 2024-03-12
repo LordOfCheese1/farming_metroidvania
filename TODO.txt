@@ -1,6 +1,5 @@
 SOUND EFFECTS
 Heavenly disgrace
-Make a little hellish gauntlet up to a boss
 come up with said boss
 put a taxi there
 HEAVEN(one new enemy probably, reuse all old ones though)
@@ -12,4 +11,3 @@ The final little escape section after the boss
 CREDITS(OR just a "thanks for playing" will do as well)
 Redo hell music because I dont like it(Use church organ, it's cool)
 Pause menu without the pause part
-apple

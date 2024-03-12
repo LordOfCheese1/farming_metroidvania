@@ -1,12 +1,2 @@
 res://scenes/gameplay_scene.tscn
-res://prefabs/rooms/004_basement.tscn
-res://prefabs/rooms/005_plaza.tscn
-res://prefabs/bases/room.tscn
-res://prefabs/entities/player.tscn
-res://prefabs/rooms/014_big_hell_boss.tscn
-res://prefabs/rooms/012_hell.tscn
-res://prefabs/rooms/011_cerberus.tscn
-res://prefabs/entities/satan_arm.tscn
-res://prefabs/rooms/009_the_snail.tscn
-res://prefabs/rooms/016_prevoss.tscn
-res://scenes/main_menu.tscn
+res://TODO.txt
