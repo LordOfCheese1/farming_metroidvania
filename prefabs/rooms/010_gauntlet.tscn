@@ -52,3 +52,4 @@ position = Vector2(2240, 960)
 direction = "down"
 rect_size = Vector2(160, 160)
 id = 2
+new_room_path = "res://prefabs/rooms/016_prevoss.tscn"

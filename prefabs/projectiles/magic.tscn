@@ -34,8 +34,8 @@ ignore_in_detection = ["evil"]
 shape = SubResource("CircleShape2D_c1gfk")
 
 [node name="check_for_devil" type="Area2D" parent="."]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="check_for_devil"]
 shape = SubResource("RectangleShape2D_f21b4")

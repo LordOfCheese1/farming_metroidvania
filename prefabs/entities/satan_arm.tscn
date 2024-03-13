@@ -1,14 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://7gnxmfq3jdad"]
+[gd_scene load_steps=11 format=3 uid="uid://7gnxmfq3jdad"]
 
 [ext_resource type="Texture2D" uid="uid://bddrpin8mlb88" path="res://textures/entities/satan/arm.png" id="1_ff54j"]
 [ext_resource type="Script" path="res://scripts/entities/satan_arm.gd" id="1_skx6u"]
 [ext_resource type="Texture2D" uid="uid://c1hxqje6fcs5q" path="res://textures/entities/satan/fingie1.png" id="2_bsnss"]
+[ext_resource type="PackedScene" uid="uid://dxgodn1vt8xpq" path="res://prefabs/particles/particle_spiky.tscn" id="2_xx0j6"]
+[ext_resource type="PackedScene" uid="uid://b17t7pw2j4sb0" path="res://prefabs/projectiles/spore.tscn" id="3_8sskw"]
 [ext_resource type="Texture2D" uid="uid://bqxv0nberrsge" path="res://textures/entities/satan/fingie0.png" id="3_bpco8"]
 [ext_resource type="Texture2D" uid="uid://bbvjw2n5vakhu" path="res://textures/entities/satan/fingie2.png" id="4_2yooe"]
 [ext_resource type="Texture2D" uid="uid://d3x8lda6ceiqu" path="res://textures/entities/satan/fingie3.png" id="5_v3e67"]
+[ext_resource type="PackedScene" uid="uid://byuhphggfblsp" path="res://prefabs/components/hitbox.tscn" id="9_gkp2w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7by3b"]
+size = Vector2(238, 546)
 
 [node name="satan_arm" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_skx6u")
+magic_particle_scene = ExtResource("2_xx0j6")
+magick_proj_scene = ExtResource("3_8sskw")
 
 [node name="visuals" type="Node2D" parent="."]
 
@@ -36,3 +46,16 @@ offset = Vector2(0, 54)
 position = Vector2(56, 472)
 texture = ExtResource("5_v3e67")
 offset = Vector2(12, 42)
+
+[node name="hitbox" parent="." instance=ExtResource("9_gkp2w")]
+position = Vector2(0, 308)
+entity = NodePath("..")
+ignore_tag = "evil"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hitbox"]
+position = Vector2(1, -305)
+polygon = PackedVector2Array(-127, -1, -41, 492, 76, 480, 127, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 273)
+shape = SubResource("RectangleShape2D_7by3b")
