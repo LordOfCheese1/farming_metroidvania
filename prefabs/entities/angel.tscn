@@ -1,15 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://cymq2irodel20"]
+[gd_scene load_steps=8 format=3 uid="uid://cymq2irodel20"]
 
 [ext_resource type="Script" path="res://scripts/entities/angel.gd" id="1_8hs3g"]
 [ext_resource type="Texture2D" uid="uid://sp6yto7clwrv" path="res://textures/entities/angel.png" id="1_vdiss"]
+[ext_resource type="PackedScene" uid="uid://cfg7upryj7w76" path="res://prefabs/projectiles/laser.tscn" id="2_r7due"]
+[ext_resource type="PackedScene" uid="uid://byuhphggfblsp" path="res://prefabs/components/hitbox.tscn" id="3_byaef"]
+[ext_resource type="PackedScene" uid="uid://b5qjxt8gqalub" path="res://prefabs/particles/particle_generic_trail.tscn" id="3_fdjod"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wsi4y"]
-radius = 80.0562
+radius = 68.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a15qa"]
+radius = 79.0063
 
 [node name="angel" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_8hs3g")
+laser_proj = ExtResource("2_r7due")
+particle_scene = ExtResource("3_fdjod")
+max_hp = 14.0
+save_death_temporarily = true
 
 [node name="line" type="Line2D" parent="."]
 points = PackedVector2Array(0, -300, 0, 0)
@@ -19,5 +29,17 @@ default_color = Color(0, 0, 0, 1)
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_vdiss")
 
+[node name="laser" type="Node2D" parent="sprite"]
+position = Vector2(50, 3)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_wsi4y")
+
+[node name="hitbox" parent="." instance=ExtResource("3_byaef")]
+entity = NodePath("..")
+ignore_tag = "evil"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_a15qa")
+
+[connection signal="hit" from="hitbox" to="." method="_on_hitbox_hit"]
