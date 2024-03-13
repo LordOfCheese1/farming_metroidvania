@@ -10,6 +10,7 @@ var save_data = {
 	"coolsville_music_done" : false,
 	"unlocked_taxis" : {
 		"res://prefabs/rooms/006_city_greenhouse.tscn" : false,
+		"res://prefabs/rooms/016_prevoss.tscn" : false,
 		"res://prefabs/rooms/013_hell_greenhouse.tscn" : false
 	},
 	"weapons" : {

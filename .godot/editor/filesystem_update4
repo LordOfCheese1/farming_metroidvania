@@ -16,3 +16,10 @@ res://prefabs/projectiles/magic.tscn
 res://prefabs/particles/particle_spiky.tscn
 res://prefabs/projectiles/laser.tscn
 res://scripts/projectiles/laser.gd
+res://scripts/autoloads/save_manager.gd
+res://scripts/level_elements/door.gd
+res://TODO.txt
+res://prefabs/entities/angel.tscn
+res://scripts/entities/angel.gd
+res://prefabs/rooms/007_city_alley.tscn
+res://prefabs/rooms/015_disgrace.tscn

@@ -84,5 +84,6 @@ func change_scene():
 	if Globals.gameplay_scene_active:
 		Globals.freeze_player_movement = false
 		get_tree().current_scene.switch_room(new_room_path, send_to_id, id)
+		player.velocity.y = 0
 		player.delayed_velocity.y = delayed_velocity_for_later
 		delayed_velocity_for_later = 0

@@ -30,6 +30,7 @@ new_room_path = "res://prefabs/rooms/005_plaza.tscn"
 position = Vector2(-40, -640)
 rect_size = Vector2(80, 160)
 id = 1
+new_room_path = "res://prefabs/rooms/015_disgrace.tscn"
 
 [node name="border_left" parent="editor" index="0"]
 points = PackedVector2Array(0, -800, 0, 880)
