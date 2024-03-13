@@ -14,3 +14,5 @@ res://prefabs/rooms/010_gauntlet.tscn
 res://scripts/entities/satan_arm.gd
 res://prefabs/projectiles/magic.tscn
 res://prefabs/particles/particle_spiky.tscn
+res://prefabs/projectiles/laser.tscn
+res://scripts/projectiles/laser.gd

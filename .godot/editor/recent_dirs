@@ -1,9 +1,9 @@
+res://scripts/projectiles
+res://scripts/base_classes
+res://prefabs/projectiles
 res://prefabs/rooms
 res://scripts/entities
-res://scripts/base_classes
 res://prefabs/entities
-res://scripts/projectiles
-res://prefabs/projectiles
 C:/Gamedev/Godot4/farming_metroidvania
 res://scripts/particles
 res://prefabs/particles

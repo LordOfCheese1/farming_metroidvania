@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfg7upryj7w76"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/laser.gd" id="1_6uqcb"]
+[ext_resource type="PackedScene" uid="uid://dyhlmh24wo8pd" path="res://prefabs/components/hurtbox.tscn" id="2_ixmtl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bftx"]
+size = Vector2(15, 49)
+
+[node name="laser" type="Area2D"]
+script = ExtResource("1_6uqcb")
+
+[node name="line" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 0.0
+default_color = Color(1, 0.980392, 0.584314, 1)
+end_cap_mode = 2
+
+[node name="raycast" type="RayCast2D" parent="."]
+collision_mask = 128
+
+[node name="hurtbox" parent="." instance=ExtResource("2_ixmtl")]
+damage = 2.0
+ignore_in_detection = ["evil"]
+is_parriable = false
+causes_parries = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2(0, 24.5)
+shape = SubResource("RectangleShape2D_2bftx")
