@@ -11,7 +11,8 @@ var save_data = {
 	"unlocked_taxis" : {
 		"res://prefabs/rooms/006_city_greenhouse.tscn" : false,
 		"res://prefabs/rooms/016_prevoss.tscn" : false,
-		"res://prefabs/rooms/013_hell_greenhouse.tscn" : false
+		"res://prefabs/rooms/013_hell_greenhouse.tscn" : false,
+		"res://prefabs/rooms/015_disgrace.tscn" : false
 	},
 	"weapons" : {
 		"shovel" : -1,

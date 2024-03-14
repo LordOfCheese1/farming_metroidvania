@@ -313,7 +313,7 @@ offset_bottom = 879.0
 offset_left = 400.0
 offset_top = 80.0
 offset_right = 880.0
-offset_bottom = 480.0
+offset_bottom = 600.0
 color = Color(0.623529, 0.686275, 0.811765, 1)
 
 [node name="interface_handler" parent="user_interface/taxi_menu" instance=ExtResource("5_ewune")]
@@ -338,6 +338,24 @@ size = Vector2(400, 80)
 to_do_on_usage = "taxi_goal"
 params = ["res://prefabs/rooms/013_hell_greenhouse.tscn"]
 text_to_put = "Hell greenhouse"
+
+[node name="button4" parent="user_interface/taxi_menu/interface_handler" instance=ExtResource("6_1bo1v")]
+position = Vector2(640, 520)
+size = Vector2(400, 80)
+to_do_on_usage = "taxi_goal"
+params = ["res://prefabs/rooms/015_disgrace.tscn"]
+text_to_put = "Heaven"
+
+[node name="pause_menu" type="Node2D" parent="user_interface"]
+position = Vector2(320, 0)
+
+[node name="interface_handler" parent="user_interface/pause_menu" instance=ExtResource("5_ewune")]
+
+[node name="button" parent="user_interface/pause_menu/interface_handler" instance=ExtResource("6_1bo1v")]
+position = Vector2(1132, 48)
+size = Vector2(280, 80)
+params = ["res://scenes/main_menu.tscn"]
+text_to_put = "Quit to Menu"
 
 [node name="screen_transition" type="Node2D" parent="user_interface"]
 

@@ -560,6 +560,7 @@ layer_1/tile_data = PackedInt32Array(589828, 65538, 0, 589829, 65538, 0, 589826,
 
 [node name="snail" parent="bg" instance=ExtResource("5_3466s")]
 position = Vector2(325, 613)
+am_i_allowed_to_do_this = false
 set_hp_on_setup = false
 save_death_temporarily = false
 

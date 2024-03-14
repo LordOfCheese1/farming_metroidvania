@@ -84,7 +84,8 @@ func mouse_is_here():
 func _on_use():
 	match to_do_on_usage:
 		"scene_switch":
-			get_tree().change_scene_to_file(params[0])
+			if is_selected:
+				get_tree().change_scene_to_file(params[0])
 		"quit":
 			if OS.get_name() != "Web":
 				get_tree().quit()

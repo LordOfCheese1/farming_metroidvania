@@ -14,6 +14,7 @@ var player_has_been_hit = 0
 var pl_bar_points = []
 var current_boss = null
 var flash_mod : float = 0.0
+var pause_menu_active = false
 
 
 func _ready():
@@ -41,6 +42,16 @@ func _process(_delta):
 			set_camera()
 	
 	scale_transition()
+	
+	if Input.is_action_just_pressed("back"):
+		pause_menu_active = !pause_menu_active
+	
+	$user_interface/pause_menu/interface_handler.disabled = !pause_menu_active
+	if pause_menu_active:
+		$user_interface/pause_menu.position.x = lerp($user_interface/pause_menu.position.x, 0.0, 0.1)
+	else:
+		$user_interface/pause_menu/interface_handler/button.is_selected = false
+		$user_interface/pause_menu.position.x = lerp($user_interface/pause_menu.position.x, 320.0, 0.1)
 
 
 func _physics_process(delta):

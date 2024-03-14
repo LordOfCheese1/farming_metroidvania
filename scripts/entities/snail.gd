@@ -4,6 +4,7 @@ var time = 0.0
 var is_attacking = 0
 var attack_cd = 0
 @export var spit_scene : PackedScene
+@export var am_i_allowed_to_do_this = true
 
 
 func _ready():
@@ -23,9 +24,10 @@ func _physics_process(delta):
 			if attack_cd > 0:
 				attack_cd -= 1
 			else:
-				attack_cd = 50
-				is_attacking = 60
-				$anim.play("spit")
+				if am_i_allowed_to_do_this:
+					attack_cd = 50
+					is_attacking = 60
+					$anim.play("spit")
 	else:
 		velocity.x = 0
 		is_attacking -= 1

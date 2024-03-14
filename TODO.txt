@@ -1,11 +1,7 @@
 SOUND EFFECTS
 Heavenly disgrace
-HEAVEN(one new enemy probably, reuse all old ones though)
-Put a taxi near the final boss so you can go collect all your thingies
 THE FINAL BOSS
 Add a volume slider to the menu!
 DECOR(A LOT OF IT)
-The final little escape section after the boss
 CREDITS(OR just a "thanks for playing" will do as well)
 Redo hell music because I dont like it(Use church organ, it's cool)
-Pause menu without the pause part
