@@ -16,6 +16,10 @@ var weapons_available = { # filename : quantity, -1 is infite
 }
 signal melee_used
 signal throw_used
+@export var throw_sfx : AudioStream
+@export var melee_sfx : AudioStream
+@export var weapon_cycle_sfx : AudioStream
+@export var grapple_out : AudioStream
 
 
 func _process(_delta):
@@ -35,8 +39,10 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("scroll_up"):
 		cycle_weapons(-1)
+		SoundManager.new_sound(weapon_cycle_sfx)
 	if Input.is_action_just_pressed("scroll_down"):
 		cycle_weapons(1)
+		SoundManager.new_sound(weapon_cycle_sfx)
 
 
 func _physics_process(_delta):
@@ -73,10 +79,12 @@ func use():
 func melee_attack():
 	$hurtbox.damage = weapon_resource.melee_damage
 	melee_attack_cd = 12
+	SoundManager.new_sound(melee_sfx, randf_range(0.8, 1.0))
 
 
 func throw_attack():
 	if Globals.gameplay_scene_active:
+		SoundManager.new_sound(throw_sfx)
 		var projectile = load(weapon_resource.projectile_path).instantiate()
 		projectile.velocity = Vector2(get_global_mouse_position() - global_position).normalized()
 		projectile.position = global_position
@@ -93,6 +101,7 @@ func use_seeds():
 
 func grapple():
 	if active_grapple_hook == null:
+		SoundManager.new_sound(grapple_out)
 		var grapple_hook_inst = grapple_hook.instantiate()
 		grapple_hook_inst.position = global_position
 		grapple_hook_inst.orig_node = self

@@ -16,6 +16,7 @@ func _process(_delta):
 		if player_is_here:
 			if Input.is_action_just_pressed("jump"):
 				SaveManager.save_data["unlocked_taxis"][get_parent().get_parent().scene_file_path] = true
+				print(SaveManager.save_data["unlocked_taxis"])
 				if player != null:
 					player.delayed_velocity.y = 700
 				if !get_tree().current_scene.taxi_menu_active:

@@ -156,4 +156,5 @@ func spawn_laser(a = false):
 func _on_hitbox_hit():
 	blood($hitbox.global_position, 20, Vector2(0, 0))
 	if hp <= 0:
+		MusicManager.new_music("hell_on_earth")
 		get_node(gate).open()

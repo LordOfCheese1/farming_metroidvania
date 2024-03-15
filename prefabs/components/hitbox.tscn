@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://byuhphggfblsp"]
+[gd_scene load_steps=3 format=3 uid="uid://byuhphggfblsp"]
 
 [ext_resource type="Script" path="res://scripts/components/hitbox.gd" id="1_ao2wg"]
+[ext_resource type="AudioStream" uid="uid://k3lwtt4er0k5" path="res://audio/sfx/attack.mp3" id="2_c1itw"]
 
 [node name="hitbox" type="Area2D"]
 script = ExtResource("1_ao2wg")
+the_sound = ExtResource("2_c1itw")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

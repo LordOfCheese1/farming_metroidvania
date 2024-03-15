@@ -6,6 +6,7 @@ var current_damager : Area2D
 var immunity = 0
 @export var max_immunity = 12
 signal hit
+@export var the_sound : AudioStream
 
 
 func _ready():
@@ -35,7 +36,8 @@ func trigger_internal_hit():
 	entity_node.hit()
 	var damage_number = load("res://prefabs/particles/damage_number.tscn").instantiate()
 	damage_number.damage = current_damager.damage
-	damage_number.position = global_position
+	damage_number.position = current_damager.global_position
+	SoundManager.new_sound(the_sound, randf_range(0.8, 1.0))
 	get_tree().current_scene.get_node("active_room").get_child(0).get_node("particles").call_deferred("add_child", damage_number)
 	print("hit from " + current_damager.get_parent().name + " to " + get_node(entity).name + " - " + str(current_damager.damage) + " dmg")
 

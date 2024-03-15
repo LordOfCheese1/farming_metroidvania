@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://vndp7gpuf1ma"]
+[gd_scene load_steps=13 format=3 uid="uid://vndp7gpuf1ma"]
 
 [ext_resource type="Script" path="res://scripts/projectiles/melon_bomb.gd" id="1_p40bd"]
 [ext_resource type="PackedScene" uid="uid://dxgodn1vt8xpq" path="res://prefabs/particles/particle_spiky.tscn" id="2_tvuy2"]
 [ext_resource type="Texture2D" uid="uid://bqn77f211ybvp" path="res://textures/weapons/melon.png" id="2_xu1vo"]
 [ext_resource type="PackedScene" uid="uid://b5qjxt8gqalub" path="res://prefabs/particles/particle_generic_trail.tscn" id="3_pd5b1"]
+[ext_resource type="AudioStream" uid="uid://c6fcwpjnbtwxy" path="res://audio/sfx/explosion_layer_0.mp3" id="4_30xxg"]
 [ext_resource type="PackedScene" uid="uid://dyhlmh24wo8pd" path="res://prefabs/components/hurtbox.tscn" id="5_ul1s5"]
+[ext_resource type="AudioStream" uid="uid://bq2op63lexd1s" path="res://audio/sfx/explosion_layer_1.mp3" id="5_ytxrk"]
 
 [sub_resource type="Animation" id="Animation_taujg"]
 length = 0.001
@@ -125,6 +127,20 @@ tracks/4/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(1.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_sfx"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e5kyk"]
 _data = {
@@ -142,6 +158,8 @@ radius = 160.0
 script = ExtResource("1_p40bd")
 shell_particle = ExtResource("2_tvuy2")
 juice_particle = ExtResource("3_pd5b1")
+sfx_a = ExtResource("4_30xxg")
+sfx_b = ExtResource("5_ytxrk")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_xu1vo")

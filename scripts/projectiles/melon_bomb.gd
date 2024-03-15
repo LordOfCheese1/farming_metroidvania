@@ -3,6 +3,8 @@ extends "res://scripts/base_classes/projectile.gd"
 var self_destruct = false
 @export var shell_particle : PackedScene
 @export var juice_particle : PackedScene
+@export var sfx_a : AudioStream
+@export var sfx_b : AudioStream
 
 
 func _ready():
@@ -40,6 +42,11 @@ func effects_b(mg : int = 1):
 	call_deferred("free")
 
 
+func play_sfx():
+	SoundManager.new_sound(sfx_a)
+	SoundManager.new_sound(sfx_b)
+
+
 func _on_hurtbox_body_entered(body):
 	if body.is_in_group("player"):
 		body.is_grappling = true
@@ -48,7 +55,7 @@ func _on_hurtbox_body_entered(body):
 
 func _on_hurtbox_has_parried():
 	$hurtbox/CollisionShape2D.shape.radius *= 1.6
-	$hurtbox.damage *= 20
+	$hurtbox.damage *= 4
 	if Globals.gameplay_scene_active:
 		get_tree().current_scene.flash_mod = 1.0
 		get_tree().current_scene.get_node("camera").zoom = Vector2(1.9, 1.9)

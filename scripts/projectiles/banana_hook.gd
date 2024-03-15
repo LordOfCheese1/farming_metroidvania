@@ -6,6 +6,7 @@ var grapple_pos_adder = Vector2(0, 0)
 var over = false
 var remaining_hit_count = 3
 var has_done_hit = false
+@export var grapple_hit_sfx : AudioStream
 
 
 func _ready():
@@ -51,6 +52,7 @@ func _on_body_entered(body):
 		grapple_node = body
 		grapple_pos_adder = position - body.global_position
 		over = true
+		SoundManager.new_sound(grapple_hit_sfx)
 
 
 func _on_area_entered(area):
@@ -60,11 +62,13 @@ func _on_area_entered(area):
 				grapple_node = area
 				grapple_pos_adder = position - area.global_position
 				over = true
+				SoundManager.new_sound(grapple_hit_sfx)
 		elif area.is_in_group("hurtbox"):
 			if !area.ignore_in_detection.has("melee") && !area.ignore_in_detection.has("grapple"):
 				grapple_node = area
 				grapple_pos_adder = position - area.global_position
 				over = true
+				SoundManager.new_sound(grapple_hit_sfx)
 
 
 func _on_hurtbox_has_hit():

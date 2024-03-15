@@ -9,6 +9,25 @@
 [node name="010-gauntlet" instance=ExtResource("1_ig3hu")]
 bottom_right = Vector2i(3200, 880)
 music = "coolsville"
+bg_colour = Color(0.329412, 0.282353, 0.305882, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="parallax_bg/mid" index="0"]
+color = Color(0.317647, 0.243137, 0.286275, 1)
+polygon = PackedVector2Array(491, 139, 539, 197, 562, 419, 536, 738, 634, 746, 604, 420, 625, 193, 654, 134)
+
+[node name="Polygon2D2" type="Polygon2D" parent="parallax_bg/mid" index="1"]
+position = Vector2(672, -156)
+color = Color(0.317647, 0.243137, 0.286275, 1)
+polygon = PackedVector2Array(491, 139, 539, 197, 562, 419, 536, 738, 634, 746, 604, 420, 625, 193, 654, 134)
+
+[node name="Polygon2D3" type="Polygon2D" parent="parallax_bg/mid" index="2"]
+position = Vector2(1292, -124)
+color = Color(0.317647, 0.243137, 0.286275, 1)
+polygon = PackedVector2Array(491, 139, 539, 197, 562, 419, 536, 738, 634, 746, 604, 420, 625, 193, 654, 134)
+
+[node name="Polygon2D" type="Polygon2D" parent="parallax_bg/front" index="0"]
+color = Color(0.266667, 0.180392, 0.215686, 1)
+polygon = PackedVector2Array(20, 489, 476, 492, 490, 644, 744, 646, 867, 411, 1050, 411, 1108, 313, 1511, 315, 1578, 246, 1752, 243, 1752, 459, 1936, 461, 1986, 509, 1990, 627, 2112, 627, 2197, 527, 3126, 528, 3121, 1029, -69, 1023)
 
 [node name="slug" parent="entities" index="0" instance=ExtResource("5_5cso1")]
 position = Vector2(939, 702)

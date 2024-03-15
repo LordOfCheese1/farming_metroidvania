@@ -1,6 +1,6 @@
 extends Node2D
 
-var save_data = {
+@onready var save_data = {
 	"finished_triggers" : [],
 	"broken_blocks" : [],
 	"plants" : {},
@@ -24,7 +24,8 @@ var save_data = {
 		"banana" : 0
 	}
 }
-var session_data = {
+
+@onready var session_data = {
 	"temporary_enemy_deaths" : []
 }
 

@@ -1,13 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://6l5l8k14jpky"]
+[gd_scene load_steps=7 format=3 uid="uid://6l5l8k14jpky"]
 
 [ext_resource type="PackedScene" uid="uid://dft2poo3r6nx4" path="res://prefabs/bases/room.tscn" id="1_2g87i"]
 [ext_resource type="PackedScene" uid="uid://iy7hkj65xyw" path="res://prefabs/entities/snail.tscn" id="2_idh13"]
 [ext_resource type="PackedScene" uid="uid://msxebsg1p55h" path="res://prefabs/level_elements/moving_platform.tscn" id="3_krmfj"]
 [ext_resource type="PackedScene" uid="uid://bwgc76hbpm0dp" path="res://prefabs/level_elements/door.tscn" id="3_pql7y"]
+[ext_resource type="PackedScene" uid="uid://5cdthndl7f8w" path="res://prefabs/level_elements/npc.tscn" id="4_14ao6"]
+[ext_resource type="Texture2D" uid="uid://ofib6u6vkecl" path="res://textures/npcs/sign.png" id="5_7ulph"]
 
 [node name="007-city_alley" instance=ExtResource("1_2g87i")]
 top_left = Vector2i(0, -800)
 bottom_right = Vector2i(2080, 880)
+music = "coolsville"
+
+[node name="npc" parent="decor" index="0" instance=ExtResource("4_14ao6")]
+position = Vector2(1558, -79)
+dialogue_id = "sign"
+texture = ExtResource("5_7ulph")
 
 [node name="snail" parent="entities" index="0" instance=ExtResource("2_idh13")]
 position = Vector2(1166, 613)

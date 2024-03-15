@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d4f8jd2kjb7gn"]
+[gd_scene load_steps=6 format=3 uid="uid://d4f8jd2kjb7gn"]
 
 [ext_resource type="Script" path="res://scripts/projectiles/banana_hook.gd" id="1_oaydh"]
+[ext_resource type="AudioStream" uid="uid://codqlk5sr3p8c" path="res://audio/sfx/grapple_hit.mp3" id="2_g6t85"]
 [ext_resource type="Texture2D" uid="uid://jv3rr2cbammx" path="res://textures/projectiles/bananahook.png" id="2_xhym8"]
 [ext_resource type="PackedScene" uid="uid://dyhlmh24wo8pd" path="res://prefabs/components/hurtbox.tscn" id="3_5b6p4"]
 
@@ -11,6 +12,7 @@ radius = 26.0192
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_oaydh")
+grapple_hit_sfx = ExtResource("2_g6t85")
 
 [node name="line" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 0, 0)

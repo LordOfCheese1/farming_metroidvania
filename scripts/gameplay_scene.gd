@@ -164,8 +164,16 @@ func start_fade_out():
 func toggle_taxi_interface(on_off = true): # true to make it show up, false to make it not
 	print("taxi interface toggled - " + str(on_off))
 	var i = 0
-	for key in SaveManager.save_data["unlocked_taxis"].keys():
-		if SaveManager.save_data["unlocked_taxis"][key]:
+	var taxi_data = {
+		"res://prefabs/rooms/006_city_greenhouse.tscn" : false,
+		"res://prefabs/rooms/016_prevoss.tscn" : false,
+		"res://prefabs/rooms/013_hell_greenhouse.tscn" : false,
+		"res://prefabs/rooms/015_disgrace.tscn" : false
+	}
+	for a in SaveManager.save_data["unlocked_taxis"].keys():
+		taxi_data[a] = SaveManager.save_data["unlocked_taxis"][a]
+	for key in taxi_data.keys():
+		if taxi_data[key]:
 			$user_interface/taxi_menu/interface_handler.get_child(i).show()
 		else:
 			$user_interface/taxi_menu/interface_handler.get_child(i).hide()

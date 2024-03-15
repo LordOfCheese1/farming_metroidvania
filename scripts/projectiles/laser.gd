@@ -20,7 +20,7 @@ func _physics_process(delta):
 	
 	$line.width = lerp($line.width, 15 + sin(time * 4) * 4, 0.1)
 	modulate.a = lerp(modulate.a, wanted_alpha, 0.1)
-	$raycast.target_position = target_dir * 2000
+	$raycast.target_position = target_dir * 4000
 	if $raycast.is_colliding():
 		$line.points[1] = to_local($raycast.get_collision_point())
 		$hurtbox/CollisionShape2D.shape.size.y = position.distance_to($raycast.get_collision_point())

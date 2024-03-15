@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://clamalr4ean5k"]
+
+[ext_resource type="Script" path="res://scripts/interface/volume_slider.gd" id="1_dj2ko"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_maobr"]
+font_size = 40
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[node name="volume_slider" type="Node2D"]
+script = ExtResource("1_dj2ko")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -206.0
+offset_top = -40.0
+offset_right = 206.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
+
+[node name="display_text" type="Label" parent="."]
+offset_left = -206.0
+offset_top = -27.0
+offset_right = 206.0
+offset_bottom = 28.0
+text = "Volume : Medium"
+label_settings = SubResource("LabelSettings_maobr")
+horizontal_alignment = 1
+vertical_alignment = 1
