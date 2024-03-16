@@ -1,17 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://sigtjh6wtkcq"]
+[gd_scene load_steps=14 format=3 uid="uid://sigtjh6wtkcq"]
 
 [ext_resource type="Script" path="res://scripts/entities/sun.gd" id="1_0e4qm"]
 [ext_resource type="Texture2D" uid="uid://chtp041s4vbk5" path="res://textures/entities/sun/body.png" id="2_q8wnd"]
+[ext_resource type="PackedScene" uid="uid://b5qjxt8gqalub" path="res://prefabs/particles/particle_generic_trail.tscn" id="2_seoo1"]
+[ext_resource type="PackedScene" uid="uid://cfg7upryj7w76" path="res://prefabs/projectiles/laser.tscn" id="3_pd6d4"]
 [ext_resource type="Texture2D" uid="uid://cg58uj2rcupdf" path="res://textures/entities/sun/beam.png" id="3_r2cr0"]
 [ext_resource type="PackedScene" uid="uid://byuhphggfblsp" path="res://prefabs/components/hitbox.tscn" id="4_psqni"]
+[ext_resource type="PackedScene" uid="uid://vndp7gpuf1ma" path="res://prefabs/projectiles/melon_bomb.tscn" id="4_y6n6s"]
+[ext_resource type="PackedScene" uid="uid://dxgodn1vt8xpq" path="res://prefabs/particles/particle_spiky.tscn" id="5_cdqfy"]
 [ext_resource type="Texture2D" uid="uid://bqm7720gqjr2s" path="res://textures/entities/sun/hand.png" id="5_nu5vx"]
+[ext_resource type="PackedScene" uid="uid://btk46oeimy5yj" path="res://prefabs/particles/particle_magic.tscn" id="6_5gqcv"]
+[ext_resource type="PackedScene" uid="uid://866hq1klodqm" path="res://prefabs/projectiles/magic.tscn" id="7_u1lhm"]
+[ext_resource type="PackedScene" uid="uid://bwoh31pr8453m" path="res://prefabs/projectiles/vine.tscn" id="8_geto0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_axuei"]
 radius = 720.0
 
 [node name="sun" type="CharacterBody2D"]
+collision_layer = 6
+collision_mask = 6
 script = ExtResource("1_0e4qm")
-max_hp = 140.0
+basic_particle = ExtResource("2_seoo1")
+laser_scene = ExtResource("3_pd6d4")
+melon_scene = ExtResource("4_y6n6s")
+shell_particle = ExtResource("5_cdqfy")
+magic_particle = ExtResource("6_5gqcv")
+magic_scene = ExtResource("7_u1lhm")
+vine_scene = ExtResource("8_geto0")
+max_hp = 100.0
 blood_amt = 0
 
 [node name="beams" type="Node2D" parent="."]
@@ -89,16 +105,20 @@ offset = Vector2(0, 790)
 texture = ExtResource("2_q8wnd")
 
 [node name="hand" type="Sprite2D" parent="."]
-position = Vector2(342, 740)
-rotation = 1.33851
 texture = ExtResource("5_nu5vx")
 offset = Vector2(74.225, -14.6)
+
+[node name="laser" type="Node2D" parent="hand"]
+position = Vector2(82, 0)
 
 [node name="hitbox" parent="." instance=ExtResource("4_psqni")]
 entity = NodePath("..")
 ignore_tag = "evil"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_axuei")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_axuei")
 
 [connection signal="hit" from="hitbox" to="." method="_on_hitbox_hit"]

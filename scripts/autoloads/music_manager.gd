@@ -6,7 +6,8 @@ var tracklist = {
 	"coolsville" : [load("res://audio/music/coolsville.mp3"), 3.0, 48.01],
 	"flowerboss" : [load("res://audio/music/flowerboss.mp3"), 10.28, 37.70],
 	"hell_on_earth" : [load("res://audio/music/hell_on_earth.mp3"), 3.42, 37.70],
-	"kill_the_sun" : [load("res://audio/music/kill_the_sun.mp3"), 6.85, 61.70]
+	"kill_the_sun" : [load("res://audio/music/kill_the_sun.mp3"), 6.85, 61.70],
+	"credits" : [load("res://audio/music/credits.mp3"), 0.0, 25.64]
 }
 var current_loop_start : float = 0.0
 var current_loop_end : float = 0.0

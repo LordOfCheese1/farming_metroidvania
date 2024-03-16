@@ -6,6 +6,7 @@ extends "res://scripts/base_classes/interface_object.gd"
 @export_enum("scene_switch", "quit", "keybind", "taxi_goal", "toggle_fullscreen") var to_do_on_usage = "scene_switch"
 @export var params = []
 @export var text_to_put : String
+@export var click_sound : AudioStream
 var listening_for_input = false
 var illegal_inputs = [
 	"Escape",
@@ -85,6 +86,7 @@ func _on_use():
 	match to_do_on_usage:
 		"scene_switch":
 			if is_selected:
+				SoundManager.new_sound(click_sound, 1.5)
 				get_tree().change_scene_to_file(params[0])
 		"quit":
 			if OS.get_name() != "Web":
@@ -95,6 +97,7 @@ func _on_use():
 			taxi_response()
 		"toggle_fullscreen":
 			update_window()
+			SoundManager.new_sound(click_sound, 1.5)
 
 
 func update_window():
@@ -111,4 +114,5 @@ func update_window():
 
 func taxi_response():
 	if is_selected && Globals.gameplay_scene_active && !get_parent().disabled:
+		SoundManager.new_sound(click_sound, 1.5)
 		get_tree().current_scene.do_the_taxi(params[0])

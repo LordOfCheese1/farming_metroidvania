@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfg7upryj7w76"]
+[gd_scene load_steps=5 format=3 uid="uid://cfg7upryj7w76"]
 
 [ext_resource type="Script" path="res://scripts/projectiles/laser.gd" id="1_6uqcb"]
 [ext_resource type="PackedScene" uid="uid://dyhlmh24wo8pd" path="res://prefabs/components/hurtbox.tscn" id="2_ixmtl"]
+[ext_resource type="AudioStream" uid="uid://nxitn3colild" path="res://audio/sfx/drone.mp3" id="3_xe776"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2bftx"]
 size = Vector2(15, 49)
@@ -27,3 +28,7 @@ causes_parries = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2(0, 24.5)
 shape = SubResource("RectangleShape2D_2bftx")
+
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xe776")
+pitch_scale = 0.2

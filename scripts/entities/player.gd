@@ -126,9 +126,6 @@ func _process(_delta):
 				has_released_jump = true
 				velocity.y *= 0.5
 	
-	if Input.is_action_pressed("test"):
-		position = get_global_mouse_position()
-	
 	$interact_text.visible = is_near_npc 
 	$debug_velocity.set_point_position(1, velocity * 0.5)
 	$debug_velocity/label.text = str(Vector2i(snapped(velocity.x, 1.0), snapped(velocity.y, 1.0)))

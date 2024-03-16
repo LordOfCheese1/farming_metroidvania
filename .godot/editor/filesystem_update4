@@ -14,3 +14,13 @@ res://scripts/entities/sun.gd
 res://scripts/projectiles/melon_bomb.gd
 res://scripts/components/hitbox.gd
 res://scripts/misc/rotate_me.gd
+res://prefabs/projectiles/vine.tscn
+res://scripts/projectiles/vine.gd
+res://prefabs/components/weapon.tscn
+res://scripts/components/weapon.gd
+res://scenes/ending.tscn
+res://scripts/autoloads/music_manager.gd
+res://scripts/projectiles/laser.gd
+res://prefabs/interface/button.tscn
+res://scripts/interface/button.gd
+res://scripts/entities/player.gd

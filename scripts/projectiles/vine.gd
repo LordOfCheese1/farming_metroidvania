@@ -2,12 +2,17 @@ extends Area2D
 
 var is_done = false
 var remaining_time = 1.6
+var from = 0.4
+var to = 0.25
+var flip = false
 
 
 func _ready():
 	$hurtbox/CollisionShape2D.disabled = true
-	var look_dir = randf_range(-PI * 0.4, PI * 0.25)
+	var look_dir = randf_range(-PI * from, PI * to)
 	$raycast.target_position = Vector2(sin(look_dir) * 1280, -cos(look_dir) * 1280)
+	if flip:
+		$raycast.target_position.y *= -1
 
 
 func _physics_process(delta):

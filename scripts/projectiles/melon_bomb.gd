@@ -8,7 +8,6 @@ var self_destruct = false
 
 
 func _ready():
-	setup()
 	velocity = velocity * 800
 
 
@@ -28,6 +27,7 @@ func _on_body_entered(body):
 		velocity = Vector2(0, 0)
 		self_destruct = true
 		$anim.play("explode")
+		add_to_group("projectile")
 
 
 func effects_a(mg : int = 1):

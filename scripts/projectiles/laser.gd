@@ -13,6 +13,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	if !$sfx.playing:
+		$sfx.play(0.3)
 	projectile_update(delta)
 	
 	if to_follow != null:

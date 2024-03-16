@@ -1,3 +1,8 @@
+C:/Gamedev/Godot4/Exports/FarmingMetroid/mac
+C:/Gamedev/Godot4/Exports/FarmingMetroid/linux
+C:/Gamedev/Godot4/Exports/FarmingMetroid/web
+C:/Gamedev/Godot4/Exports/FarmingMetroid/windows
+res://scenes
 res://scripts/entities
 res://scripts/base_classes
 res://prefabs/entities
@@ -12,9 +17,7 @@ res://prefabs/particles
 res://resources/weapons
 res://scripts/level_elements
 res://prefabs/level_elements
-C:/Gamedev/Godot4/Exports/FarmingMetroid/web
 res://scripts/misc
-res://scenes
 res://scripts/components
 res://prefabs/components
 res://prefabs/autoloads
